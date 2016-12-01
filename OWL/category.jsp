@@ -11,7 +11,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp" >
-            <jsp:param name="owlbooksLocation" value='Estás en: <strong><a href="index.jsp">Portada</a> > Categorías > Ciencia ficción</strong>'/>
+            <jsp:param name="owlbooksLocation" value='Categorías > Ciencia ficción'/>
         </jsp:include>
         <div class="owlbooks-section">
 			<p>Nota: Se muestra una vista de la página principal con la sesión sin iniciar. Para consultar los detalles de una cuenta, pulsar <a href="account.jsp">aquí</a>.</p>
