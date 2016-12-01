@@ -1,0 +1,27 @@
+.owlbooks-account {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    padding-top: 60px;
+    padding-bottom: 120px;
+}
+.owlbooks-section {
+    height: 200px;
+    width: 320px;
+    min-height:120px;
+    margin: 1em;
+    vertical-align: middle;
+    display: inline-block;
+    color: #D6451B;
+    background: #e2e2e2;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    text-align: center;
+    padding-top: 30px;
+}
+.owlbooks-section p {
+    padding-top: 20px;
+    font-size: 200%;
+}

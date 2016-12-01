@@ -1,0 +1,236 @@
+body,html {
+    font-family: "Liberation Serif", "Times";
+    padding: 0;
+    margin: 0;
+    line-height: 1.2;
+    background:#f0f0f0;
+    background: -moz-linear-gradient(-45deg,  rgba(255,255,255,1) 0%, rgba(243,243,243,1) 50%, rgba(237,237,237,1) 51%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(-45deg,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%);
+    background: linear-gradient(135deg,  rgba(255,255,255,1) 0%,rgba(243,243,243,1) 50%,rgba(237,237,237,1) 51%,rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=1 );
+}
+a {
+    text-decoration:none;
+}
+p,ol,ul {
+    max-width:700px;
+    margin:auto;
+}
+h1 {
+    font-variant:small-caps;
+    text-align: left;
+    color: #D6451B;
+    font-weight: bold;
+    font-size: 2.4em;
+}
+h2 {
+    max-width:700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+li {
+    margin: .4em 0;
+}
+p {
+    margin-bottom: .8em;
+}
+input {
+    margin-right: 4px;
+    margin-left: 4px;
+}
+.owlbooks-hidden {
+    display: none;
+}
+.owlbooks-clickable {
+    cursor: pointer;
+}
+.owlbooks-header {
+    width: 100%;
+    height: 80px;
+    display: inline-block;
+    text-align: left;
+    margin-bottom: 5px;
+    vertical-align: middle;
+    padding:1em 0 0;
+    font-weight: bold;
+}
+.owlbooks-logo {
+    float: left;
+    vertical-align: middle;
+    display: inline-block;
+    padding: 0 2em;
+    height: 100%;
+    line-height: 100%;
+}
+.owlbooks-logo * {
+    vertical-align: middle;
+    height: 100%;
+}
+.owlbooks-location {
+    display: inline-block;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-weight: normal;
+    height: 32px;
+    padding: 10px 12px 0;
+}
+.owlbooks-basket {
+    background: #fff;
+    border:1px solid #bbb;
+    display: inline-block;
+    vertical-align: middle;
+    height: 30px;
+    line-height: 100%;
+    padding: 5px 1em;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+}
+.owlbooks-basket img {
+    vertical-align: middle;
+    height: 30px;
+    width: 30px;
+    line-height: 100%;
+}
+.owlbooks-login-hidden,.owlbooks-login-displayed {
+    display: inline-block;
+    vertical-align: middle;
+    margin:0;
+    padding:0;
+}
+.owlbooks-only-if-hidden {
+    display: none;
+}
+.owlbooks-login-hidden .owlbooks-only-if-hidden {
+    display: inline;
+}
+.owlbooks-login {
+    display: inline-block;
+    vertical-align: middle;
+    background: #D6451B;
+    color: #fff;
+    width: 110px;
+    height: 20px;
+    line-height: 100%;
+    padding: 11px 1em;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    margin-right: 20px;
+}
+.owlbooks-login-displayed .owlbooks-login {
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+}
+.owlbooks-login * {
+    vertical-align: middle;
+    height: 100%;
+}
+.owlbooks-login-popup-separator {
+    display: none;
+}
+.owlbooks-login-displayed .owlbooks-login-popup-separator {
+    display: inline-block;
+    vertical-align: middle;
+    background: #D6451B;
+    color: #fff;
+    height: 20px;
+    width: 110px;
+    line-height: 100%;
+    padding: 10px 1em;
+    -webkit-border-radius: 6px 6px 0 0;
+    -moz-border-radius: 6px 6px 0 0;
+    border-radius: 6px 6px 0 0;
+    margin-right: 20px;
+    position: absolute;
+    margin-top: 30px;
+    right: 0;
+}
+.owlbooks-login-popup {
+    display: none;
+}
+.owlbooks-login-displayed .owlbooks-login-popup {
+    display: inline-block;
+    vertical-align: middle;
+    background: #D6451B;
+background: rgb(214,69,27);
+background: -moz-linear-gradient(-45deg,  rgba(214,69,27,1) 0%, rgba(214,69,27,1) 64%, rgba(211,80,44,1) 69%, rgba(214,69,27,1) 72%, rgba(211,55,12,1) 76%, rgba(206,74,41,1) 81%, rgba(209,91,58,1) 87%, rgba(209,69,31,1) 93%, rgba(206,71,37,1) 97%);
+background: -webkit-linear-gradient(-45deg,  rgba(214,69,27,1) 0%,rgba(214,69,27,1) 64%,rgba(211,80,44,1) 69%,rgba(214,69,27,1) 72%,rgba(211,55,12,1) 76%,rgba(206,74,41,1) 81%,rgba(209,91,58,1) 87%,rgba(209,69,31,1) 93%,rgba(206,71,37,1) 97%);
+background: linear-gradient(135deg,  rgba(214,69,27,1) 0%,rgba(214,69,27,1) 64%,rgba(211,80,44,1) 69%,rgba(214,69,27,1) 72%,rgba(211,55,12,1) 76%,rgba(206,74,41,1) 81%,rgba(209,91,58,1) 87%,rgba(209,69,31,1) 93%,rgba(206,71,37,1) 97%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6451b', endColorstr='#ce4725',GradientType=1 );
+
+    color: #fff;
+    line-height: 100%;
+    padding: 10px 1em;
+    -webkit-border-radius: 6px 0 6px 6px;
+    -moz-border-radius: 6px 0 6px 6px;
+    border-radius: 6px 0 6px 6px;
+    border-bottom: 1px solid #222;
+    position: absolute;
+    margin-top: 7px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    right: 0;
+    text-align: right;
+}
+.owlbooks-login-popup * {
+    vertical-align: middle;
+    height: 100%;
+}
+.owlbooks-login-popup input {
+    margin: 5px;
+}
+.owlbooks-link-signup {
+    text-decoration: underline;
+    vertical-align: top;
+    color: #fff;
+}
+.owlbooks-section {
+    width: 100%;
+    min-height: 50px;
+    padding-bottom: 40px;
+}
+.owlbooks-footer {
+    background: #000;
+    color: #eee;
+    margin:0;
+    min-height: 50px;
+    padding: 45px 42px;
+}
+.owlbooks-footer a, .owlbooks-footer a:visited {
+    color:#fff;
+    font-weight: bold;
+}
+.owlbooks-footer img {
+    opacity: .7;
+}
+.owlbooks-footer img:hover {
+    opacity: 1;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+.owlbooks-footer p {
+    margin: 2em 0 0;
+}
+.owlbooks-line {
+    margin-bottom: 0;
+}
+.owlbooks-secondary-text {
+    font-size: 75%;
+}
+.owlbooks-footer img {
+    float:right;
+}
+.owlbooks-footer-vertical-separator {
+    display:inline-block;
+    padding:0 .8em;
+}
+.owlbooks-bookshelf {
+    background:url('../images/bookshelf.png') repeat-x;
+    background-size:80px auto;
+    background-position: bottom;
+    vertical-align: bottom;
+    height: 70px;
+    margin-top: 20px;
+}

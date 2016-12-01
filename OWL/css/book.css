@@ -1,0 +1,91 @@
+.owlbooks-navbar-left:after,.owlbooks-body:after,.owlbooks-container:after {
+    content:"";
+    display:table;
+    clear:both;
+}
+.owlbooks-navbar-left {
+    padding: 0 25px;
+    max-width: 200px;
+    font-size: 85%;
+    float:left;
+    width: 250px;
+}
+.owlbooks-navbar-left * {
+    margin-left: 0;
+    text-align: left;
+}
+.owlbooks-navbar-left ul, .owlbooks-navbar-left ol {
+    padding-left: 20px;
+}
+.owlbooks-navbar-left .owlbooks-section {
+    padding-bottom: 25px;
+}
+.owlbooks-section {
+    min-height: 50px;
+    padding-bottom: 50px;
+    width: auto;
+    margin:auto;
+}
+.owlbooks-body {
+    padding-left:270px;
+}
+.owlbooks-product-description,.owlbooks-product-cover {
+    display: inline-block;
+    vertical-align: top;
+    margin: auto;
+}
+.owlbooks-product-cover {
+    float:right;
+    padding: 0 0 20px 20px;
+}
+.owlbooks-product-actions {
+    text-align: center;
+    margin-bottom: 1.5em;
+    max-width: 710px;
+}
+.owlbooks-product-action {
+    width: 220px;
+    padding: .6em;
+    margin: 1em 25px;
+    vertical-align: middle;
+    display: inline-block;
+    color: #444;
+    background: #ddd;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 6px; /* Chrome, Safari, Opera */
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 120%;
+    vertical-align: middle;
+}
+.owlbooks-product-buy {
+    background: #D6451B;
+    color: #fff;
+    border: none;
+}
+.owlbooks-product-copy-buy {
+    margin: 1em auto;
+    display: block;
+}
+.owlbooks-product-copy {
+    padding: 20px;
+    background: #fff;
+    margin: 20px 30px 20px 10px;
+    max-width: 700px;
+    vertical-align: middle;
+    border-radius: 0 0 58px 0;
+    border: 1px solid #ccc;
+    background: #fff url('../images/page-corner.jpg') no-repeat;
+    background-size:70px;
+    background-position: right bottom;
+    -webkit-box-shadow: 1px 1px 2px 1px rgba(196,196,196,0.5); /* Chrome, Safari, Opera */
+    -moz-box-shadow: 1px 1px 2px 1px rgba(196,196,196,0.5);
+    box-shadow: 1px 1px 2px 1px rgba(196,196,196,0.5);
+}
+.owlbooks-product-copy-info {
+    -webkit-column-count: 3; /* Chrome, Safari, Opera */
+    -moz-column-count: 3;
+    column-count: 3;
+    vertical-align: middle;
+}
