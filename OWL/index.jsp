@@ -10,9 +10,7 @@
         </jsp:include>
 	</head>
 	<body>
-        <jsp:include page="header.jsp" >
-            <jsp:param name="owlbooksLocation" value=""/>
-        </jsp:include>
+        <jsp:include page="header.jsp"></jsp:include>
         <div class="owlbooks-section">
 			<p>Nota: Se muestra una vista de la página principal con la sesión sin iniciar. Para consultar los detalles de una cuenta, pulsar <a href="account.jsp">aquí</a>.</p>
 		</div>
