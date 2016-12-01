@@ -11,7 +11,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp" >
-            <jsp:param name="owlbooksLocation" value='Estás en: <strong><a href="index.jsp">Portada</a> > Aviso legal</strong>'/>
+            <jsp:param name="owlbooksLocation" value='Aviso legal'/>
         </jsp:include>
         <div class="owlbooks-aviso-legal">
             <h1>Aviso legal<!-- fuente: <https://www.avellanadigital.com/es/los-3-textos-legales-que-debe-tener-tu-pagina-web> --></h1>
