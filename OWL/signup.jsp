@@ -11,7 +11,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp" >
-            <jsp:param name="owlbooksLocation" value='Estás en: <strong><a href="index.jsp">Portada</a> > Cuenta > Datos personales</strong>'/>
+            <jsp:param name="owlbooksLocation" value='Cuenta > Datos personales'/>
         </jsp:include>
         
         <%--
