@@ -11,7 +11,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp" >
-            <jsp:param name="owlbooksLocation" value='Estás en: <strong><a href="index.jsp">Portada</a> > Libros > El Quijote</strong>'/>
+            <jsp:param name="owlbooksLocation" value='Libros > El Quijote'/>
         </jsp:include>
         <div class="owlbooks-container">
             <div class="owlbooks-navbar-left">
