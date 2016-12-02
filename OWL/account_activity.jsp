@@ -6,7 +6,7 @@
     <head>
         <jsp:include page="head.jsp" >
             <jsp:param name="title" value="Movimientos de la cuenta"/>
-            <jsp:param name="specificCss" value="account_personal"/>
+            <jsp:param name="specificCss" value="account_activity"/>
         </jsp:include>
     </head>
     <body>
@@ -37,6 +37,18 @@
                     <td>Registro en OwlBooks<br></td>
                     <td></td>
                     <td></td>
+                </tr>
+                <tr>
+                    <td>2011-08-15 11:40<br></td>
+                    <td>Puesta a la venta<br></td>
+                    <td>5541854 - El Quijote, de Miguel de Cervantes Saavedra<br></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>2011-08-16 19:01<br></td>
+                    <td>Venta</td>
+                    <td>5541854 - El Quijote, de ...<br></td>
+                    <td>11,50 €</td>
                 </tr>
                 <tr>
                     <td>2011-08-15 11:40<br></td>
