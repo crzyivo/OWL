@@ -6,7 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.*;
 
 import facades.UsuariosFacade;
 import Data.OwlUserVO;
@@ -14,12 +13,13 @@ import Data.OwlUserVO;
 /**
  * Servlet implementation class CrearUsuarioServlet
  */
-public class LoginServlet extends HttpServlet {
+public class BorrarUsuarioServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public LoginServlet() {
+    public BorrarUsuarioServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -28,13 +28,10 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	 	
-		boolean errores = false;
-		String email = request.getParameter("owlbooks-correo");
-		String pass = request.getParameter("owlbooks-clave");
-		boolean badLogin;
-		
-		
+		boolean errores = true;	
+		String email = (String) request.getSession().getAttribute("user");
 		if (email != null){
 			if (!email.trim().equals(new String(""))){
 				errores = false;
@@ -42,24 +39,14 @@ public class LoginServlet extends HttpServlet {
 		}
 		if (!errores){
 			try{
-
-				/*UsuariosFacade fachada = new UsuariosFacade();
-				badLogin=fachada.comprobarLogin(email,pass);
-				if(!badLogin){
-					request.getSession().setAttribute("user", email);
-				}
-				else{
-					request.getSession().setAttribute("errorMessage", "Email o contraseña erroneos");
-					RequestDispatcher rd = request.getRequestDispatcher("header.jsp");
-                    rd.forward(request, response);
-				}*/
-				request.getSession().setAttribute("user", email);
-				RequestDispatcher rd = request.getRequestDispatcher((String) request.getSession().getAttribute("current"));
-                rd.forward(request, response);
+				UsuariosFacade fachada = new UsuariosFacade();
+				fachada.borrarCuenta(email);
 			}catch (Exception e){
 				e.printStackTrace(System.err);
 			}
-
+			response.sendRedirect("exito_borrar.html");
+		}else{
+			response.sendRedirect("errorInterno.html");
 		}
 		
 	}

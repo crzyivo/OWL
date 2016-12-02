@@ -1,5 +1,6 @@
 package jdbc;
 import java.sql.*;
+import java.util.ArrayList;
 
 
 
@@ -131,12 +132,14 @@ public class JDBCTemplate {
 	}
 
 	
-	public ResultSet executeQueryResult(String sql) {
+	public ResultSet executeQueryResult(String sqlorig,String email) {
 
 		// Creamos una sentencia para poder usarla con la conexion que
 		// tenemos abierta
 		Statement stmt = null;
 		ResultSet rs;
+		String sql= sqlorig.substring(0,sqlorig.length()-1);
+		sql+=email;
 		try {
 			System.out
 					.println("---------------------------------------------------------------------------------------");
@@ -243,6 +246,62 @@ public class JDBCTemplate {
 				}
 			}
 		}
+	}
+	
+	public ArrayList<Object> executeSentenceResult(String sql, Object...params) {
+		PreparedStatement stmt = null;
+		ArrayList<Object> list = new ArrayList<Object>();
+		ResultSet rs;
+		try {
+			System.out
+					.println("---------------------------------------------------------------------------------------");
+			stmt = connection.prepareStatement(sql);
+			for(int i = 0; i<params.length; i++) {
+				stmt.setObject(i+1, params[i]);
+			}
+			//int resultado = stmt.executeUpdate();
+			//rs=stmt.executeUpdate();
+			rs=stmt.executeQuery();
+			//System.out.println(resultado);
+			ResultSetMetaData rsmd = rs.getMetaData();
+			int numberOfColumns = rsmd.getColumnCount();
+
+			for (int i = 1; i <= numberOfColumns; i++) {
+				System.out.print(" " + rsmd.getColumnLabel(i) + "\t | ");
+			}
+			System.out.println();
+			System.out
+					.println("---------------------------------------------------------------------------------------");
+
+			// Creamos las filas de la tabla con la informacion de la tuplas
+			// obtenidas
+			while (rs.next()) {// Por cada tupla
+				// creamos una linea con la informacion:
+				for (int j = 1; j <= numberOfColumns; j++) {
+					System.out.print(" " + rs.getString(j) + "\t | ");
+					list.add(rs.getString(j));
+				}
+				System.out.println();
+			}
+			//return rs;
+			return list;
+			
+			
+		} catch (SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+			rs=null;
+		} finally {
+			System.out
+					.println("---------------------------------------------------------------------------------------");
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
+		//return rs;
+		return list;
 	}
 
 	public Cursor executeQueryAndGetCursor(String sql) {

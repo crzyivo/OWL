@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +24,7 @@ public class OwlUserDAO {
             		"VALUES (?,?,?,?,?,?,?,?,?,?,?)";
             
             
-            jdbctemp.executeSentence(queryString, usuario.getEmail(),
+           jdbctemp.executeSentence(queryString, usuario.getEmail(),
             usuario.getNombre(),
             usuario.getApellidos(),
             usuario.getNacimiento(),
@@ -34,11 +35,12 @@ public class OwlUserDAO {
             usuario.getPoblacion(),
             usuario.getProvincia(),
             usuario.getPassword());
-           // PreparedStatement preparedStatement = jdbctemp.prepareStatement(queryString);
+           //PreparedStatement preparedStatement = jdbctemp.prepareStatement(queryString);
           //  jdbctemp.
             
-            /* Fill "preparedStatement". */    
-           /* preparedStatement.setString(1, usuario.getEmail());
+            /* Fill "preparedStatement". */ 
+           /*
+           preparedStatement.setString(1, usuario.getEmail());
             preparedStatement.setString(2, usuario.getNombre());
             preparedStatement.setString(3, usuario.getApellidos());
             preparedStatement.setInt(4, usuario.getNacimiento());
@@ -48,10 +50,10 @@ public class OwlUserDAO {
             preparedStatement.setString(8, usuario.getPiso());
             preparedStatement.setString(9, usuario.getPoblacion());
             preparedStatement.setString(10, usuario.getProvincia());
-            preparedStatement.setString(11, usuario.getPass()); */
+            preparedStatement.setString(11, usuario.getPassword());
+            int insertedRows = preparedStatement.executeUpdate();*/
 		}catch (Exception e){
-			System.out.println("DAO-Error al insertar: ");
-			System.out.println("DAO-Error: " + e.getMessage());
+			System.out.println("Usuario ya existente. ");
 		}
 		
 	}
@@ -113,39 +115,42 @@ public class OwlUserDAO {
     } 
             
     public OwlUserVO obtenerUsuario (String usuario, JDBCTemplate jdbctemp){     
-    	OwlUserVO usuarioVO = null;
+    	OwlUserVO usuarioVO = new OwlUserVO();
     	try{
             /* Create "preparedStatement". */
-            String queryString = "SELECT  nombre, apellidos, nacimiento, tlfn, calle, numero, piso, poblacion,"+
-            		" provincia, pass FROM usuario WHERE  email = ?";                    
+    		String sql="SELECT  nombre, apellidos, nacimiento, tlfn, calle, numero, piso, poblacion,"+
+            		" provincia, pass,email FROM usuario WHERE  email = '"+usuario+"'";                    
             //PreparedStatement preparedStatement = 
                 //connection.prepareStatement(queryString);
             
             /* Execute query. */   
-            ResultSet resultSet=  jdbctemp.executeQueryResult(usuario);
+            ArrayList<Object> resultSet=  jdbctemp.executeSentenceResult(sql);
                    
             /* Execute query. */                    
           //  ResultSet resultSet = preparedStatement.executeQuery();
                
-            if (!resultSet.first()) {
+            /*if (!resultSet.first()) {
                 throw new SQLException( "Usuario no encontrado!!!!");
-            }
+            }*/
             
-            /* Execute query. */                    
-            String nombre = resultSet.getString(1);
-            String apellidos = resultSet.getString(2);
-            Integer tlfn = resultSet.getInt(3);
-            Integer nacimiento = resultSet.getInt(4);
-            String calle = resultSet.getString(5);
-            String numero = resultSet.getString(6);
-            String piso_puerta = resultSet.getString(7);
-            String poblacion = resultSet.getString(8);
-            String provincia = resultSet.getString(9);
-            String pass = resultSet.getString(10);
+            /* Execute query. */  
+            if(!resultSet.isEmpty()){
+            String nombre = (String) resultSet.get(0);
+            String apellidos = (String) resultSet.get(1);
+            Integer tlfn = Integer.parseInt((String) resultSet.get(2));
+            Integer nacimiento = Integer.parseInt((String) resultSet.get(3));
+            String calle = (String) resultSet.get(4);
+            String numero = (String) resultSet.get(5);
+            String piso_puerta = (String) resultSet.get(6);
+            String poblacion = (String) resultSet.get(7);
+            String provincia = (String) resultSet.get(8);
+            String pass = (String) resultSet.get(9);
+            String email = (String) resultSet.get(10);
  
             usuarioVO = new OwlUserVO (usuario, nombre, apellidos, tlfn, nacimiento,
             							calle, numero, piso_puerta,
             							poblacion, provincia, pass);
+            }
                 
         } catch (Exception e) {
             e.printStackTrace(System.err);
@@ -153,44 +158,22 @@ public class OwlUserDAO {
     	return usuarioVO;
     }
     
-    public OwlUserVO passckeck (String usuario, JDBCTemplate jdbctemp){     
-    	OwlUserVO usuarioVO = null;
-    	try{
-            /* Create "preparedStatement". */
-            String queryString = "SELECT pass FROM usuario WHERE  email = ?";                    
-            //PreparedStatement preparedStatement = 
-                //connection.prepareStatement(queryString);
+    
+    public void borrarUsuario (String usuario, JDBCTemplate jdbctemp){
+		//No Connectuion, se trabajara con jdbtemplate
+		try{
+			 /* Create "preparedStatement". */
+            String queryString = "DELETE * FROM usuario " +
+                "WHERE email = "+usuario;
             
-            /* Execute query. */   
-            ResultSet resultSet=  jdbctemp.executeQueryResult(usuario);
-                   
-            /* Execute query. */                    
-          //  ResultSet resultSet = preparedStatement.executeQuery();
-               
-            if (!resultSet.first()) {
-                throw new SQLException( "Usuario no encontrado!!!!");
-            }
             
-            /* Execute query. */                    
-            String nombre = resultSet.getString(1);
-            String apellidos = resultSet.getString(2);
-            Integer tlfn = resultSet.getInt(3);
-            Integer nacimiento = resultSet.getInt(4);
-            String calle = resultSet.getString(5);
-            String numero = resultSet.getString(6);
-            String piso_puerta = resultSet.getString(7);
-            String poblacion = resultSet.getString(8);
-            String provincia = resultSet.getString(9);
-            String pass = resultSet.getString(10);
- 
-            usuarioVO = new OwlUserVO (usuario, nombre, apellidos, tlfn, nacimiento,
-            							calle, numero, piso_puerta,
-            							poblacion, provincia, pass);
-                
-        } catch (Exception e) {
-            e.printStackTrace(System.err);
-        }
-    	return usuarioVO;
-    }
+            jdbctemp.executeQuery(queryString);
+
+		}catch (Exception e){
+			System.out.println("DAO-Error al borrar: ");
+			System.out.println("DAO-Error: " + e.getMessage());
+		}
+		
+	}
 
 }
