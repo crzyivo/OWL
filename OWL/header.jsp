@@ -27,7 +27,7 @@ boolean login = false;
                 <a href="index.jsp"><img src="images/logo.png" alt="Owl Books" /></a>
             </div>
             <div class="owlbooks-location"><c:if test="${not empty param.owlbooksLocation}">Estás&nbsp;en: <strong><a href="index.jsp">Portada</a> > ${param.owlbooksLocation}</strong></c:if></div>
-            <div style="float:right;">
+            <div class="owlbooks-top-actions">
                 <a href=""><div class="owlbooks-basket">
                     <img src="images/shopping-cart.png" alt="carrito" />
                 </div></a>
