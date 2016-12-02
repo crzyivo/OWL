@@ -4,13 +4,13 @@
 %><!DOCTYPE html>
 <html lang="es">
     <head>
-        <jsp:include page="head.jsp" >
+        <jsp:include page="includes/head.jsp" >
             <jsp:param name="title" value="Owl Books"/>
             <jsp:param name="specificCss" value="privacy_policy"/>
         </jsp:include>
     </head>
     <body>
-        <jsp:include page="header.jsp" >
+        <jsp:include page="includes/header.jsp" >
             <jsp:param name="owlbooksLocation" value='Política de privacidad'/>
         </jsp:include>
         <div class="owlbooks-privacy-policy">
@@ -21,6 +21,6 @@
             <p>A su vez, y en virtud de lo establecido en la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio electrónico, OWLBOOKS, S. L. informa de que podrá utilizar las direcciones de correo electrónico facilitadas, para remitirle información acerca de sus productos y servicios, avisos y ofertas y, en general, información de carácter comercial de interés relativa a la actividad de la empresa.</p>
             <p>Asimismo, le informamos de la posibilidad que tiene de ejercer los derechos de acceso, rectificación, cancelación y oposición de sus datos de carácter personal de forma presencial en las oficinas de OWLBOOKS, S. L., acompañando copia de DNI, o bien mediante correo electrónico dirigido a 696773@unizar.es.</p>
         </div>
-        <%@include file="footer.jsp" %>
+        <%@include file="includes/footer.jsp" %>
     </body>
 </html>

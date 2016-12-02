@@ -5,13 +5,13 @@
 <% session.setAttribute("current","index.jsp"); %>
 <html lang="es">
 	<head>
-        <jsp:include page="head.jsp" >
+        <jsp:include page="includes/head.jsp" >
             <jsp:param name="title" value="Owl Books"/>
             <jsp:param name="specificCss" value="index"/>
         </jsp:include>
 	</head>
 	<body>
-        <jsp:include page="header.jsp"></jsp:include>
+        <jsp:include page="includes/header.jsp"></jsp:include>
         <div class="owlbooks-section">
 			<p>Nota: Se muestra una vista de la página principal con la sesión sin iniciar. Para consultar los detalles de una cuenta, pulsar <a href="account.jsp">aquí</a>.</p>
 		</div>
@@ -52,6 +52,6 @@
 			<div class="owlbooks-category">
 			</div>
 		</div>
-        <%@include file="footer.jsp" %>
+        <%@include file="includes/footer.jsp" %>
 	</body>
 </html>

@@ -4,13 +4,13 @@
 %><!DOCTYPE html>
 <html lang="es">
     <head>
-        <jsp:include page="head.jsp" >
+        <jsp:include page="includes/head.jsp" >
             <jsp:param name="title" value="Movimientos de la cuenta"/>
             <jsp:param name="specificCss" value="account_activity"/>
         </jsp:include>
     </head>
     <body>
-        <jsp:include page="header.jsp" >
+        <jsp:include page="includes/header.jsp" >
             <jsp:param name="owlbooksLocation" value='Cuenta > Movimientos'/>
         </jsp:include>
         
@@ -64,6 +64,6 @@
                 </tr>
             </table>
         </div>
-        <%@include file="footer.jsp" %>
+        <%@include file="includes/footer.jsp" %>
     </body>
 </html>

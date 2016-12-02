@@ -4,13 +4,13 @@
 %><!DOCTYPE html>
 <html lang="es">
     <head>
-        <jsp:include page="head.jsp" >
+        <jsp:include page="includes/head.jsp" >
             <jsp:param name="title" value="Owl Books"/>
             <jsp:param name="specificCss" value="aviso_legal"/>
         </jsp:include>
     </head>
     <body>
-        <jsp:include page="header.jsp" >
+        <jsp:include page="includes/header.jsp" >
             <jsp:param name="owlbooksLocation" value='Aviso legal'/>
         </jsp:include>
         <div class="owlbooks-aviso-legal">
@@ -54,6 +54,6 @@
             <h2>12. LEGISLACIÓN APLICABLE Y JURISDICCIÓN</h2>
             <p>La relación entre OWLBOOKS, S. L. y el USUARIO se regirá por la normativa española vigente y cualquier controversia se someterá a los Juzgados y tribunales de la ciudad de Zaragoza.</p>
         </div>
-        <%@include file="footer.jsp" %>
+        <%@include file="includes/footer.jsp" %>
     </body>
 </html>

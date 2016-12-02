@@ -4,13 +4,13 @@
 %><!DOCTYPE html>
 <html lang="es">
     <head>
-        <jsp:include page="head.jsp" >
+        <jsp:include page="includes/head.jsp" >
             <jsp:param name="title" value="Owl Books"/>
             <jsp:param name="specificCss" value="account_personal"/>
         </jsp:include>
     </head>
     <body>
-        <jsp:include page="header.jsp" >
+        <jsp:include page="includes/header.jsp" >
             <jsp:param name="owlbooksLocation" value='Cuenta > Datos personales'/>
         </jsp:include>
         
@@ -134,6 +134,6 @@
                 </div>
             </form>
         </div>
-        <%@include file="footer.jsp" %>
+        <%@include file="includes/footer.jsp" %>
 	</body>
 </html>
