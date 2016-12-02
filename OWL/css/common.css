@@ -112,11 +112,11 @@ input {
     border-radius: 6px;
     margin-right: 20px;
 }
-.owlbooks-login-unlogged {
+.owlbooks-unlogged .owlbooks-login {
     width: 110px;
 }
-.owlbooks-login-loggedin {
-    width: 50px;
+.owlbooks-loggedin .owlbooks-login {
+    width: 48px;
 }
 .owlbooks-login-displayed .owlbooks-login {
     -webkit-border-radius: 6px 6px 0 0;
