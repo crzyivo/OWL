@@ -5,7 +5,7 @@
 <html lang="es">
     <head>
         <jsp:include page="head.jsp" >
-            <jsp:param name="title" value="Owl Books"/>
+            <jsp:param name="title" value="Registrarse"/>
             <jsp:param name="specificCss" value="account_personal"/>
         </jsp:include>
     </head>
@@ -24,12 +24,16 @@
             }
         --%>
         <div class="owlbooks-account">
-            <h1>Datos personales asociados a la cuenta</h1>
+            <h1>Datos para el registro</h1>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
             <form class="owlbooks-account-personal-form" method="post" action=InsertarUsuraio.do>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="email">Correo electrónico:</label>
                     <input type="email" name="correo" id="email" required /><span class="owlbooks-secondary-text">(es tu identificador de acceso)</span>
+                </div>
+                <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
+                    <label for="passwd">Contraseña:</label>
+                    <input type="password" name="clave" id="passwd" required /><span class="owlbooks-secondary-text">(REQUISITOS DE LA CLAVE...)</span>
                 </div>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="name">Nombre:</label>

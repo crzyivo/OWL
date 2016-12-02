@@ -4,7 +4,6 @@
 %><title>${param.title}</title>
         <link rel="stylesheet" type="text/css" href="css/common.css" />
         <link rel="stylesheet" type="text/css" href="css/${param.specificCss}.css" />
-        <meta charset="UTF-8" />
         <link rel="apple-touch-icon" sizes="57x57" href="images/ico/apple-icon-57x57.png">
         <link rel="apple-touch-icon" sizes="60x60" href="images/ico/apple-icon-60x60.png">
         <link rel="apple-touch-icon" sizes="72x72" href="images/ico/apple-icon-72x72.png">
@@ -19,9 +18,13 @@
         <link rel="icon" type="image/png" sizes="96x96" href="images/ico/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="images/ico/favicon-16x16.png">
         <link rel="manifest" href="images/ico/manifest.json">
+        <meta charset="UTF-8" />
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="images/ico/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
+        <meta name="description" content="Vende y compra libros de altos vuelos">
+        <meta name="keywords" content="libros,biblioteca,books,marketplace,bookcrossing,bestsellers">
+        <meta name="author" content="David Abián, Iván Escuín y Héctor Herrmann">
         <script type="text/javascript">
             function owlDisplayLoginPopup(){
                 var NAME = document.getElementById("owlbooks-login-display");

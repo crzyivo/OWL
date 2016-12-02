@@ -11,7 +11,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp" >
-            <jsp:param name="owlbooksLocation" value='Estás en: <strong><a href="index.jsp">Portada</a> > Política de privacidad</strong>'/>
+            <jsp:param name="owlbooksLocation" value='Política de privacidad'/>
         </jsp:include>
         <div class="owlbooks-privacy-policy">
             <h1>Política de privacidad<!-- fuente: <https://www.avellanadigital.com/es/los-3-textos-legales-que-debe-tener-tu-pagina-web> --></h1>
