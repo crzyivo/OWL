@@ -9,10 +9,17 @@ import Data.OwlUserVO;
 public class ErrorsStrings {
 
 	private static List<String> lista_provincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Andalucía,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
+<<<<<<< HEAD
 	final static Pattern pattern_email = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$");
 	final static Pattern pattern_tlfn = Pattern.compile("^(.*[0-9]){5}.*$");
 
 	public static void compruebaDatos(final OwlUserVO  usuario, List<String> errores) {
+=======
+	final Pattern pattern_email = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$");
+	final Pattern pattern_tlfn = Pattern.compile("^(.*[0-9]){5}.*$");
+
+	public void compruebaDatos(OwlUserVO usuario, List<String> errores) {
+>>>>>>> 003f0ca45f1ed962a96a54190f21d8ad4f3a91d1
 		// String thrown="";
 
 		Matcher memail = pattern_email.matcher(usuario.getEmail());
@@ -41,6 +48,14 @@ public class ErrorsStrings {
 			errores.add(
 					"El telefono debe tener al menos 9 dígitos y ser menor que " + Integer.toString(Integer.MAX_VALUE));
 		}
+<<<<<<< HEAD
+=======
+		if (usuario.getNacimiento() == null || usuario.getNacimiento().equals("")) {
+			errores.add("Introduzca un año de nacimiento");
+		} else if ((usuario.getNacimiento() > 1999)||(usuario.getNacimiento() < 1920) ) {
+			errores.add("Introduzca un año válido");
+		}
+>>>>>>> 003f0ca45f1ed962a96a54190f21d8ad4f3a91d1
 		if (usuario.getCalle() == null || usuario.getCalle().equals("")) {
 			errores.add("Introduzca una calle");
 		} else if ((usuario.getCalle()).length() < 3 || usuario.getCalle().length() > 120) {
@@ -65,4 +80,8 @@ public class ErrorsStrings {
 			errores.add("Introduzca un nombre");
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 003f0ca45f1ed962a96a54190f21d8ad4f3a91d1

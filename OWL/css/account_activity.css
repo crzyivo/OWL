@@ -1,0 +1,36 @@
+h1 {
+    text-align: center;
+}
+fieldset {
+    margin: 20px auto;
+}
+.owlbooks-account {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    padding-bottom: 70px;
+}
+.owlbooks-account-activity {
+    margin-left:2em;
+    margin-right:2em;
+    text-align:center;
+    display:inline-block;
+}
+.owlbooks-account-activity tr:nth-child(even) {
+    background:rgba(0,0,0,0.1);
+}
+.owlbooks-account-activity tr:nth-child(odd) {
+    background:rgba(0,0,0,0.2);
+}
+.owlbooks-account-activity td {
+    text-align:left;
+    padding:.2em .5em;
+}
+.owlbooks-account-activity tr:first-child {
+    background:#000;
+    color:#fff;
+    font-weight:bold;
+}
+.owlbooks-account-activity tr:first-child th {
+    padding:.4em .5em;
+}
