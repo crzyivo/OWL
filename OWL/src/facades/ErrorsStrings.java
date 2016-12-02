@@ -41,6 +41,11 @@ public class ErrorsStrings {
 			errores.add(
 					"El telefono debe tener al menos 9 dígitos y ser menor que " + Integer.toString(Integer.MAX_VALUE));
 		}
+		if (usuario.getNacimiento() == null || usuario.getNacimiento().equals("")) {
+			errores.add("Introduzca un año de nacimiento");
+		} else if ((usuario.getNacimiento() > 1999)||(usuario.getNacimiento() < 1920) ) {
+			errores.add("Introduzca un año válido");
+		}
 		if (usuario.getCalle() == null || usuario.getCalle().equals("")) {
 			errores.add("Introduzca una calle");
 		} else if ((usuario.getCalle()).length() < 3 || usuario.getCalle().length() > 120) {
