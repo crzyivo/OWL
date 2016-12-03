@@ -1,7 +1,7 @@
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
-%><title>${param.title}</title>
+%><title>OwlBooks<% if (request.getParameter("title") != null) { %> - ${param.title}<% } %></title>
         <link rel="stylesheet" type="text/css" href="css/common.css" />
         <link rel="stylesheet" type="text/css" href="css/${param.specificCss}.css" />
         <link rel="apple-touch-icon" sizes="57x57" href="images/ico/apple-icon-57x57.png">
