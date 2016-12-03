@@ -5,7 +5,7 @@
 <html lang="es">
     <head>
         <jsp:include page="includes/head.jsp" >
-            <jsp:param name="title" value="Owl Books"/>
+            <jsp:param name="title" value="Datos de la cuenta"/>
             <jsp:param name="specificCss" value="account_personal"/>
         </jsp:include>
     </head>
