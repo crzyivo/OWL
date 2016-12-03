@@ -7,7 +7,7 @@ if (session.getAttribute("user") == null) { %>
     <div class="owlbooks-header owlbooks-unlogged"><% 
 }
 else {
-	login=true;
+    login=true;
 %>
     <div class="owlbooks-header owlbooks-loggedin"><% 
 }
