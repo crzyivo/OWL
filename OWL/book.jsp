@@ -5,7 +5,7 @@
 <html lang="es">
     <head>
         <jsp:include page="includes/head.jsp" >
-            <jsp:param name="title" value="Owl Books"/>
+            <jsp:param name="title" value="El Quijote, de Miguel de Cervantes Saavedra"/>
             <jsp:param name="specificCss" value="book"/>
         </jsp:include>
     </head>
