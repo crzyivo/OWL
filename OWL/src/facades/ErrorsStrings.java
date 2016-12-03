@@ -9,8 +9,8 @@ import Data.OwlUserVO;
 public class ErrorsStrings {
 
 	private static List<String> lista_provincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Andalucía,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
-	final Pattern pattern_email = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$");
-	final Pattern pattern_tlfn = Pattern.compile("^(.*[0-9]){5}.*$");
+	private final Pattern pattern_email = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$");
+	private final Pattern pattern_tlfn = Pattern.compile("^(.*[0-9]){5}.*$");
 
 	public void compruebaDatos(OwlUserVO usuario, List<String> errores) {
 		
