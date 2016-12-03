@@ -8,12 +8,12 @@ import Data.OwlUserVO;
 
 public class ErrorsStrings {
 
-	private static List<String> lista_provincias = Arrays.asList("¡lava,Albacete,Alicante,AlmerÌa,AndalucÌa,Asturias,¡vila,Badajoz,Barcelona,Burgos,Cantabria,CastellÛn,Ceuta,Ciudad Real,Cuenca,C·ceres,C·diz,CÛrdoba,Gerona,Granada,Guadalajara,Guip˙zcoa,Huelva,Huesca,Islas Baleares,JaÈn,La CoruÒa,La Rioja,Las Palmas,LeÛn,Lugo,LÈrida,Madrid,Melilla,Murcia,M·laga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
+	private static List<String> lista_provincias = Arrays.asList("√Ålava,Albacete,Alicante,Almer√≠a,Andaluc√≠a,Asturias,√Åvila,Badajoz,Barcelona,Burgos,Cantabria,Castell√≥n,Ceuta,Ciudad Real,Cuenca,C√°ceres,C√°diz,C√≥rdoba,Gerona,Granada,Guadalajara,Guip√∫zcoa,Huelva,Huesca,Islas Baleares,Ja√©n,La Coru√±a,La Rioja,Las Palmas,Le√≥n,Lugo,L√©rida,Madrid,Melilla,Murcia,M√°laga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
 	final Pattern pattern_email = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$");
 	final Pattern pattern_tlfn = Pattern.compile("^(.*[0-9]){5}.*$");
 
 	public void compruebaDatos(OwlUserVO usuario, List<String> errores) {
-		// String thrown="";
+		
 
 		Matcher memail = pattern_email.matcher(usuario.getEmail());
 		Matcher mtlf = pattern_tlfn.matcher(Integer.toString(usuario.getTlfn())); // Cuestionable si tlfn deberia ser integer
@@ -23,7 +23,7 @@ public class ErrorsStrings {
 		} else if ((usuario.getEmail()).length() < 7 || usuario.getEmail().length() > 90) {
 			errores.add("El correo debe tener entre 7 y 90 caracteres");
 		} else if (!memail.matches()) {
-			errores.add("El correo no es v·lido");
+			errores.add("El correo no es v√°lido");
 		}
 		if (usuario.getNombre() == null || usuario.getNombre().equals("")) {
 			errores.add("Introduzca un nombre");
@@ -31,9 +31,9 @@ public class ErrorsStrings {
 			errores.add("El nombre debe tener menos de 90 caracteres");
 		}
 		if (usuario.getNacimiento() == null || usuario.getNacimiento().equals("")) {
-			errores.add("Introduzca un aÒo de nacimiento");
+			errores.add("Introduzca un a√±o de nacimiento");
 		} else if ((usuario.getNacimiento() > 1999)||(usuario.getNacimiento() < 1920) ) {
-			errores.add("Introduzca un aÒo v·lido");
+			errores.add("Introduzca un a√±o v√°lido");
 		}
 		if (usuario.getApellidos() == null || usuario.getApellidos().equals("")) {
 			errores.add("Introduzca un apellido");
@@ -44,7 +44,7 @@ public class ErrorsStrings {
 			errores.add("Introduzca un telefono");
 		} else if (usuario.getTlfn() < 100000000 || usuario.getTlfn() > Integer.MAX_VALUE) {// usuario.getTlfn() > 9999999999999999999) esta fuera de rango de integer
 			errores.add(
-					"El telefono debe tener al menos 9 dÌgitos y ser menor que " + Integer.toString(Integer.MAX_VALUE));
+					"El telefono debe tener al menos 9 d√≠gitos y ser menor que " + Integer.toString(Integer.MAX_VALUE));
 		}
 		if (usuario.getCalle() == null || usuario.getCalle().equals("")) {
 			errores.add("Introduzca una calle");
@@ -62,9 +62,9 @@ public class ErrorsStrings {
 			errores.add("Seleccione una provincia de la lista");
 		}
 		if (usuario.getPassword() == null || usuario.getPassword().equals("")) {
-			errores.add("Introduzca una contraseÒa");
+			errores.add("Introduzca una contrase√±a");
 		} else if ((usuario.getPassword()).length() < 6 || usuario.getPassword().length() > 500) {
-			errores.add("La contraseÒa debe tener entre 6 y 500 caracteres");
+			errores.add("La contrase√±a debe tener entre 6 y 500 caracteres");
 		}
 		if (usuario.getNombre() == null || usuario.getNombre().equals("")) {
 			errores.add("Introduzca un nombre");
