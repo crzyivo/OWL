@@ -6,7 +6,6 @@
 <html lang="es">
 	<head>
         <jsp:include page="includes/head.jsp" >
-            <jsp:param name="title" value="Owl Books"/>
             <jsp:param name="specificCss" value="index"/>
         </jsp:include>
 	</head>
