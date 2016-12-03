@@ -5,7 +5,7 @@
 <html lang="es">
     <head>
         <jsp:include page="includes/head.jsp" >
-            <jsp:param name="title" value="Owl Books"/>
+            <jsp:param name="title" value="Ciencia ficción"/>
             <jsp:param name="specificCss" value="category"/>
         </jsp:include>
     </head>
