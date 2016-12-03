@@ -1,46 +1,38 @@
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
-%>
-<%
-
+%><%
 boolean login = false;
+if (session.getAttribute("user") == null) { %>
+    <div class="owlbooks-header owlbooks-unlogged"><% 
+}
+else {
+	login=true;
 %>
-<%if(session.getAttribute("user") == null) { %>
-
-<div class="owlbooks-header owlbooks-unlogged">
-
-
-<%}else{
-	login=true;%>
-<div class="owlbooks-header owlbooks-loggedin">
-<%}%>
-<%
-    boolean error = false;
-    if(session.getAttribute("errorMessage") != null){
-        error=true;
-    }
+    <div class="owlbooks-header owlbooks-loggedin"><% 
+}
+boolean error = false;
+if (session.getAttribute("errorMessage") != null) {
+    error=true;
+}
 %>
-
-
             <div class="owlbooks-logo">
                 <a href="index.jsp"><img src="images/logo.png" alt="Owl Books" /></a>
             </div>
-            <div class="owlbooks-location"><c:if test="${not empty param.owlbooksLocation}">Estás&nbsp;en: <strong><a href="index.jsp">Portada</a> > ${param.owlbooksLocation}</strong></c:if></div>
+            <div class="owlbooks-location"><%
+            if (request.getParameter("owlbooksLocation") != null) { %>
+                Estás&nbsp;en: <strong><a href="index.jsp">Portada</a> > ${param.owlbooksLocation}</strong>
+            <% } %></div>
             <div class="owlbooks-top-actions">
                 <a href=""><div class="owlbooks-basket">
                     <img src="images/shopping-cart.png" alt="carrito" />
-                </div></a>
-                <%if(error){%>
-                    
-                    <div class="owlbooks-login-display" id="owlbooks-login-display">
-                    
-                    <%}else{%>
-                            
-                        <div class="owlbooks-login-hidden" id="owlbooks-login-display">
-             
-                    <%}%>
-                
+                </div></a><%
+                if (error) { %>
+                <div class="owlbooks-login-display" id="owlbooks-login-display"><%
+                }
+                else { %>
+                <div class="owlbooks-login-hidden" id="owlbooks-login-display"><%
+                } %>
                     <div class="owlbooks-login owlbooks-clickable" onclick="owlDisplayLoginPopup();">
                         iniciar&nbsp;sesión&nbsp;<span class="owlbooks-only-if-hidden">»</span>
                     </div>
