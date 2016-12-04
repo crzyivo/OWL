@@ -194,8 +194,12 @@ input {
     vertical-align: top;
     color: #fff;
 }
+.owlbooks-login-welcome {
+    font-weight:normal;
+}
 .owlbooks-loggedin .owlbooks-login-actions {
     padding-left:1em;
+    list-style-type: none;
 }
 .owlbooks-login-actions a {
     color:#fff;
