@@ -115,10 +115,10 @@ input {
     border-radius: 6px;
     margin-right: 20px;
 }
-.owlbooks-unlogged .owlbooks-login {
+.owlbooks-unlogged .owlbooks-login, .owlbooks-unlogged .owlbooks-login-popup-separator {
     width: 110px;
 }
-.owlbooks-loggedin .owlbooks-login {
+.owlbooks-loggedin .owlbooks-login, .owlbooks-loggedin .owlbooks-login-popup-separator {
     width: 20px;
 }
 .owlbooks-login-displayed .owlbooks-login {
@@ -139,7 +139,6 @@ input {
     background: #D6451B;
     color: #fff;
     height: 20px;
-    width: 110px;
     line-height: 100%;
     padding: 10px 1em;
     -webkit-border-radius: 6px 6px 0 0;
@@ -152,20 +151,23 @@ input {
 }
 .owlbooks-login-popup {
     display: none;
+    text-align: right;
+}
+.owlbooks-loggedin .owlbooks-login-popup {
+    text-align: left;
 }
 .owlbooks-login-displayed .owlbooks-login-popup {
     display: inline-block;
     vertical-align: middle;
     background: #D6451B;
-background: rgb(214,69,27);
-background: -moz-linear-gradient(-45deg,  rgba(214,69,27,1) 0%, rgba(214,69,27,1) 64%, rgba(211,80,44,1) 69%, rgba(214,69,27,1) 72%, rgba(211,55,12,1) 76%, rgba(206,74,41,1) 81%, rgba(209,91,58,1) 87%, rgba(209,69,31,1) 93%, rgba(206,71,37,1) 97%);
-background: -webkit-linear-gradient(-45deg,  rgba(214,69,27,1) 0%,rgba(214,69,27,1) 64%,rgba(211,80,44,1) 69%,rgba(214,69,27,1) 72%,rgba(211,55,12,1) 76%,rgba(206,74,41,1) 81%,rgba(209,91,58,1) 87%,rgba(209,69,31,1) 93%,rgba(206,71,37,1) 97%);
-background: linear-gradient(135deg,  rgba(214,69,27,1) 0%,rgba(214,69,27,1) 64%,rgba(211,80,44,1) 69%,rgba(214,69,27,1) 72%,rgba(211,55,12,1) 76%,rgba(206,74,41,1) 81%,rgba(209,91,58,1) 87%,rgba(209,69,31,1) 93%,rgba(206,71,37,1) 97%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6451b', endColorstr='#ce4725',GradientType=1 );
-
+    background: rgb(214,69,27);
+    background: -moz-linear-gradient(-45deg,  rgba(214,69,27,1) 0%, rgba(214,69,27,1) 64%, rgba(211,80,44,1) 69%, rgba(214,69,27,1) 72%, rgba(211,55,12,1) 76%, rgba(206,74,41,1) 81%, rgba(209,91,58,1) 87%, rgba(209,69,31,1) 93%, rgba(206,71,37,1) 97%);
+    background: -webkit-linear-gradient(-45deg,  rgba(214,69,27,1) 0%,rgba(214,69,27,1) 64%,rgba(211,80,44,1) 69%,rgba(214,69,27,1) 72%,rgba(211,55,12,1) 76%,rgba(206,74,41,1) 81%,rgba(209,91,58,1) 87%,rgba(209,69,31,1) 93%,rgba(206,71,37,1) 97%);
+    background: linear-gradient(135deg,  rgba(214,69,27,1) 0%,rgba(214,69,27,1) 64%,rgba(211,80,44,1) 69%,rgba(214,69,27,1) 72%,rgba(211,55,12,1) 76%,rgba(206,74,41,1) 81%,rgba(209,91,58,1) 87%,rgba(209,69,31,1) 93%,rgba(206,71,37,1) 97%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6451b', endColorstr='#ce4725',GradientType=1 );
     color: #fff;
     line-height: 100%;
-    padding: 10px 1em;
+    padding: 13px 1.2em;
     -webkit-border-radius: 6px 0 6px 6px;
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
@@ -176,7 +178,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6451b', end
     margin-bottom: 20px;
     margin-left: 20px;
     right: 0;
-    text-align: right;
 }
 .owlbooks-login-popup * {
     vertical-align: middle;
@@ -192,6 +193,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6451b', end
     text-decoration: underline;
     vertical-align: top;
     color: #fff;
+}
+.owlbooks-loggedin .owlbooks-login-actions {
+    padding-left:1em;
+}
+.owlbooks-login-actions a {
+    color:#fff;
 }
 .owlbooks-section {
     width: 100%;
