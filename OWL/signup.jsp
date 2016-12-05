@@ -2,7 +2,7 @@
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
 %><!DOCTYPE html>
-<% session.setAttribute("current","signup.jsp"); %>
+<% session.setAttribute("current","singup.jsp"); %>
 <html lang="es">
     <head>
         <jsp:include page="includes/head.jsp" >
@@ -35,10 +35,6 @@
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="passwd">Contraseña:</label>
                     <input type="password" name="clave" id="passwd" required /><span class="owlbooks-secondary-text">(REQUISITOS DE LA CLAVE...)</span>
-                </div>
-                <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
-                    <label for="confirm-passwd">Confirmar contraseña:</label>
-                    <input type="password" name="confirmarclave" id="confirm-passwd" required />
                 </div>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="name">Nombre:</label>
