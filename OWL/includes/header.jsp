@@ -52,7 +52,7 @@ if (session.getAttribute("errorMessage") != null) {
                             <input type="email" name="owlbooks-correo" id="owlbooks-email" required placeholder="correo@electronico.com" /><br>
                             <label for="owlbooks-passwd" class="owlbooks-hidden">Contraseña:</label>
                             <input type="password" name="owlbooks-clave" id="owlbooks-passwd" required placeholder="contraseña" /><br>
-                            <p class="owlbooks-secondary-text">¿Aún no eres miembro? <a class="owlbooks-link-signup" id="owlbooks-link-signup" href="account_personal.jsp">Regístrate</a> en OwlBooks.</p>
+                            <p class="owlbooks-secondary-text">¿Aún no eres miembro? <a class="owlbooks-link-signup" id="owlbooks-link-signup" href="signup.jsp">Regístrate</a> en OwlBooks.</p>
                             <input type="submit" value="Acceder »" id="owlbooks-submit-login" />
                         </form><% 
                         }
