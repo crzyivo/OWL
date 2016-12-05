@@ -26,7 +26,7 @@
         <div class="owlbooks-account">
             <h1>Datos personales asociados a la cuenta</h1>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
-            <form class="owlbooks-account-personal-form" method="post" action=InsertarUsuraio.do>
+            <form class="owlbooks-account-personal-form" method="post" action=InsertarUsuario.do>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="email">Correo electrónico:</label>
                     <input type="email" name="correo" id="email" required /><span class="owlbooks-secondary-text">(es tu identificador de acceso)</span>
