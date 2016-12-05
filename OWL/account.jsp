@@ -22,7 +22,7 @@
                 <img src="images/money.png" alt="" />
                 <p>Movimientos</p>
             </div></a>
-            <a href=""><div class="owlbooks-section owlbooks-account-deleteaccount">
+            <a href="BorrarUsuario.do"><div class="owlbooks-section owlbooks-account-deleteaccount">
                 <img src="images/delete.png" alt="" />
                 <p>Eliminar cuenta</p>
             </div></a>
