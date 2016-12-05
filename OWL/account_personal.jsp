@@ -33,6 +33,14 @@
                     <input type="email" name="correo" id="email" required /><span class="owlbooks-secondary-text">(es tu identificador de acceso)</span>
                 </div>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
+                    <label for="passwd">Contraseña:</label>
+                    <input type="password" name="clave" id="passwd" required /><span class="owlbooks-secondary-text">(REQUISITOS DE LA CLAVE...)</span>
+                </div>
+                <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
+                    <label for="confirm-passwd">Confirmar contraseña:</label>
+                    <input type="password" name="confirmarclave" id="confirm-passwd" required />
+                </div>
+                <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="name">Nombre:</label>
                     <input type="text" name="nombre" id="name" required />
                 </div>
