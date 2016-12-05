@@ -1,4 +1,7 @@
-body,html {
+html {
+    background:#000;
+}
+body {
     font-family: "Liberation Serif", "Times";
     padding: 0;
     margin: 0;
@@ -250,4 +253,16 @@ input {
     vertical-align: bottom;
     height: 70px;
     margin-top: 20px;
+}
+.owlbooks-message-success {
+    background:#dfd;
+    border-bottom:10px solid green;
+    border-top:10px solid green;
+    color:green;
+    font-size:200%;
+    font-weight:bold;
+    max-width:none;
+    padding:1.5em 0;
+    text-align:center;
+    width:100%;
 }
