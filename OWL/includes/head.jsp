@@ -23,7 +23,7 @@
         <meta name="msapplication-TileImage" content="images/ico/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <meta name="description" content="Vende y compra libros de altos vuelos">
-        <meta name="keywords" content="libros,biblioteca,books,marketplace,bookcrossing,bestsellers">
+        <meta name="keywords" content="libros,compra,venta,biblioteca,books,marketplace,bookcrossing,bestsellers">
         <meta name="author" content="David Abián, Iván Escuín y Héctor Herrmann">
         <script type="text/javascript">
             function owlDisplayLoginPopup(){
