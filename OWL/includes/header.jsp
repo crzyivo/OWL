@@ -59,7 +59,7 @@ if (session.getAttribute("errorMessage") != null) {
                         else { %>
                         <p class="owlbooks-login-welcome">¡Hola, Fulanito!</p>
                         <ul class="owlbooks-login-actions">
-                            <a id="owlbooks-login-action-myaccount"><li>Mi cuenta »</li></a>
+                            <a id="owlbooks-login-action-myaccount" href="account.jsp"><li>Mi cuenta »</li></a>
                             <a id="owlbooks-login-actions-logout" href="logout.jsp"><li>Cerrar sesión »</li></a>
                         </ul><% 
                         } %>
