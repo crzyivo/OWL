@@ -11,8 +11,10 @@
         <meta http-equiv="refresh" content="3; URL='index.jsp'" />
     </head>
     <body>
-        <div class="owlbooks-message-success">
-            Cuenta borrada con éxito.
+        <div class="owlbooks-account">
+            <div class="owlbooks-message-success">
+                Cuenta borrada con éxito.
+            </div>
         </div>
         <%@include file="includes/footer.jsp" %>
     </body>
