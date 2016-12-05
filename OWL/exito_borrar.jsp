@@ -8,10 +8,11 @@
             <jsp:param name="title" value="Cuenta"/>
             <jsp:param name="specificCss" value="account"/>
         </jsp:include>
+        <meta http-equiv="refresh" content="3; URL='index.jsp'" />
     </head>
     <body>
-        <div class="owlbooks-account">
-            <p>Cuenta borrada con exito</p>
+        <div class="owlbooks-message-success">
+            Cuenta borrada con éxito.
         </div>
         <%@include file="includes/footer.jsp" %>
     </body>
