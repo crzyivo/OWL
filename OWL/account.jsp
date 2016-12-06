@@ -14,7 +14,7 @@
             <jsp:param name="owlbooksLocation" value='Cuenta'/>
         </jsp:include>
         <div class="owlbooks-account">
-            <a href="account_personal.jsp"><div class="owlbooks-section owlbooks-account-data">
+            <a href="VerUsuario.do"><div class="owlbooks-section owlbooks-account-data">
                 <img src="images/data.png" alt="" />
                 <p>Datos personales</p>
             </div></a>
