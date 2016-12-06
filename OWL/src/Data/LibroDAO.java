@@ -8,7 +8,7 @@ import java.util.List;
 
 import jdbc.JDBCTemplate;
 
-//TODO Método para incrementar ventas en N.
+//TODO MÃ©todo para incrementar ventas en N.
 
 public class LibroDAO {
 
@@ -30,7 +30,7 @@ public class LibroDAO {
         		   libro.getVentas());
 
 		}catch (Exception e){
-			System.out.println("Error inserción libro ");
+			System.out.println("Error inserciÃ³n libro ");
 		}
 		
 	}
@@ -113,7 +113,7 @@ public class LibroDAO {
            	lista.add(libroVO);
              
             }
-            else{i=2;}
+            else{i=-2;}
             }
                 
         } catch (Exception e) {
