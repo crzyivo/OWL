@@ -60,7 +60,7 @@ public class EjemplarDAO {
         }                
     } 
             
-    public EjemplarVO obtenerEjemplar (String id, JDBCTemplate jdbctemp){     
+    public EjemplarVO obtenerEjemplar (int id, JDBCTemplate jdbctemp){     
     	EjemplarVO ejemplarVO = new EjemplarVO();
     	try{
             /* Create "preparedStatement". */
