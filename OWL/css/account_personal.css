@@ -39,17 +39,3 @@ fieldset {
     content: " *";
     color:#D6451B;
 }
-.owlbooks-band-errors {
-	padding:1.5em;
-	margin:2em 0;
-	background:#D6451B;
-	border-top:3px solid #000;
-	border-bottom:3px solid #000;
-	color:#fff;
-	font-size:150%;
-}
-.owlbooks-band-errors-list {
-	text-align:left;
-	margin:auto;
-	font-weight:bold;
-}
