@@ -1,6 +1,7 @@
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
+         import="java.util.List,java.util.Arrays"
 %><!DOCTYPE html>
 <% session.setAttribute("current","signup.jsp"); %>
 <html lang="es">
@@ -26,6 +27,22 @@
         --%>
         <div class="owlbooks-account">
             <h1>Datos para el registro</h1>
+            <% 
+                List<String> error_list=(List<String>) request.getAttribute("errors"); 
+                if(!(error_list==null)){
+            %>
+            <div class="owlbooks-band-errors">
+                <p>Por favor, subsana los siguientes problemas:</p>
+                <ul class="owlbooks-band-errors-list">
+                    <li>Los nombres feos no se admiten en OwlBooks.</li>
+                    <%
+                        for (String error : error_list) {   
+                    %>
+                        <li><%=error%></li>
+                    <%}%>
+                </ul>
+            </div>
+            <%}%>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
             <form class="owlbooks-account-personal-form" method="post" action=InsertarUsuario.do>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
