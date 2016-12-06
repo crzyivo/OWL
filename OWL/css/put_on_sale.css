@@ -1,0 +1,62 @@
+h1 {
+    text-align: center;
+}
+fieldset {
+    margin: 20px auto;
+}
+.owlbooks-account {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    padding-bottom: 70px;
+}
+.owlbooks-account-personal-form {
+    margin:1em auto 0;
+    display: inline-block;
+}
+.owlbooks-account-personal-form-group {
+    display: table-row;
+    text-align: left;
+}
+.owlbooks-account-personal-form-group * {
+    display: table-cell;
+    margin: 5px;
+    padding: 5px;
+    text-align: left;
+}
+.owlbooks-account-personal-form-group option {
+    display:block;
+    margin: 0;
+}
+.owlbooks-account-personal-form-group select {
+    padding: 0;
+}
+.owlbooks-account-personal-form-group .owlbooks-secondary-text {
+    display:inline;
+}
+.owlbooks-account-personal-form-required label:after,
+.owlbooks-account-personal-form-required-example {
+    content: " *";
+    color:#D6451B;
+}
+.owlbooks-account-personal-form-group-checkboxes {
+    text-align:left;
+    padding:1em;
+    vertical-align: middle;
+}
+.owlbooks-account-personal-form-group-checkboxes p, .owlbooks-account-personal-form-group-checkboxes input {
+	margin:.4em;
+    display:inline-block;
+    vertical-align: middle;
+}
+.owlbooks-account-personal-form-group-actions {
+	text-align:center;
+    margin:auto;
+    display:inline-block;
+}
+#price {
+	width:3em;
+}
+#publicationyear {
+	width:5.5em;
+}
