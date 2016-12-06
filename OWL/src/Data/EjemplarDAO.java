@@ -32,7 +32,7 @@ public class EjemplarDAO {
         		   ejemplar.getAnno());
 
 		}catch (Exception e){
-			System.out.println("Error inserción ejemplar ");
+			System.out.println("Error inserciÃ³n ejemplar ");
 		}
 		
 	}
@@ -135,7 +135,7 @@ public class EjemplarDAO {
              lista.add(ejemplarVO);
              
             }
-            else{i=2;}
+            else{i=-2;}
             }
                 
         } catch (Exception e) {
