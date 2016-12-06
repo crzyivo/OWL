@@ -27,12 +27,11 @@
         <div class="owlbooks-account">
             <h1>Datos personales asociados a la cuenta</h1>
             <div class="owlbooks-band-errors">
-            <p>Por favor, subsana los siguientes problemas:</p>
-	            <ul class="owlbooks-band-errors-list">
-	            	<li>Los nombres feos no se admiten en OwlBooks.</li>
-            	</ul>
-           	</div>
-            </ul>
+                <p>Por favor, subsana los siguientes problemas:</p>
+                <ul class="owlbooks-band-errors-list">
+                    <li>Los nombres feos no se admiten en OwlBooks.</li>
+                </ul>
+            </div>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
             <form class="owlbooks-account-personal-form" method="post" action=EditarUsuario.do>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
