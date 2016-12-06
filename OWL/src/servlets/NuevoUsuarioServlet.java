@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -44,18 +45,9 @@ public class NuevoUsuarioServlet extends HttpServlet {
 		String piso = request.getParameter("piso");
 		String poblacion = request.getParameter("poblacion");
 		String provincia = request.getParameter("provincia");
-		String pass = request.getParameter("pass");
-		//String pass = "hell";
-		List<String> error_list = null;
+		String pass = request.getParameter("clave");
+		List<String> error_list = new ArrayList();
 		
-	/*	if (email != null){
-			if (!email.trim().equals(new String(""))){
-				if(request.getSession().getAttribute("modo").equals(new String("NUEVO"))){
-				errores = false;
-				}
-			}
-		}*/
-		if (!errores){
 			OwlUserVO usuario = new OwlUserVO(email,nombre,apellidos,telefono,nacimiento,calle,numero,piso,poblacion,provincia,pass);
 			//OwlUserVO usuario = new OwlUserVO("help@aaappaaa.com","pls","help me",688455211,1995,"Despair","89","0","Zaragoza","Zaragoza","hell");
 
@@ -63,14 +55,20 @@ public class NuevoUsuarioServlet extends HttpServlet {
 				//Class.forName("com.mysql.jdbc.Driver");
 				UsuariosFacade fachada = new UsuariosFacade();
 				fachada.insertarNuevoUsuario(usuario,error_list);
+				if(error_list.isEmpty()){
+					RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+		            rd.forward(request, response);
+				}
+				else{
+					request.setAttribute("errors", error_list);
+					RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
+		            rd.forward(request, response);
+				}
 			}catch (Exception e){
 				e.printStackTrace(System.err);
 			}
-			RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-            rd.forward(request, response);
 		}
 		
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

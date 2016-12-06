@@ -1,6 +1,9 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,41 +38,45 @@ public class DatosUsuarioServlet extends HttpServlet {
 		
 	if (request.getSession().getAttribute("user") != null){
 			if (!request.getSession().getAttribute("user").equals(new String(""))){
-				if(request.getSession().getAttribute("modo").equals(new String("EDICION"))){
+				
 				errores = false;
-				}
 			}
 		}
 		if (!errores){
 			OwlUserVO usuario = new OwlUserVO();
 			try{
+			
 				UsuariosFacade fachada = new UsuariosFacade();
 				String usuario_sesion=(String) request.getSession().getAttribute("user");
-				fachada.verUsuario(usuario_sesion, usuario);
+				usuario = fachada.verUsuario(usuario_sesion);
 				String email = usuario.getEmail();
-				String nombre = request.getParameter("nombre");
-				String apellidos = request.getParameter("apellidos");
-				int telefono = Integer.parseInt(request.getParameter("telefono"));
-				int nacimiento = Integer.parseInt(request.getParameter("nacimiento"));
-				String calle = request.getParameter("calle");
-				String numero = request.getParameter("numero");
-				String piso = request.getParameter("piso");
-				String poblacion = request.getParameter("poblacion");
-				String provincia = request.getParameter("provincia");
-				request.getSession().setAttribute("email", email);
-				request.getSession().setAttribute("nombre", nombre);
-				request.getSession().setAttribute("apellidos", apellidos);
-				request.getSession().setAttribute("telefono", telefono);
-				request.getSession().setAttribute("nacimiento", nacimiento);
-				request.getSession().setAttribute("calle", calle);
-				request.getSession().setAttribute("numero", numero);
-				request.getSession().setAttribute("piso", piso);
-				request.getSession().setAttribute("poblacion", poblacion);
-				request.getSession().setAttribute("provincia", provincia);
+				String nombre = usuario.getNombre();
+				String apellidos = usuario.getApellidos();
+				int telefono = usuario.getTlfn();
+				int nacimiento = usuario.getNacimiento();
+				String calle = usuario.getCalle();
+				String numero = usuario.getNumero();
+				String piso = usuario.getPiso();
+				String poblacion = usuario.getPoblacion();
+				String provincia = usuario.getProvincia();
+				String pass = usuario.getPassword();
+				request.setAttribute("correo", email);
+				request.setAttribute("nombre", nombre);
+				request.setAttribute("apellidos", apellidos);
+				request.setAttribute("telefono", telefono);
+				request.setAttribute("nacimiento", nacimiento);
+				request.setAttribute("calle", calle);
+				request.setAttribute("numero", numero);
+				request.setAttribute("piso", piso);
+				request.setAttribute("poblacion", poblacion);
+				request.setAttribute("provincia", provincia);
+				request.getSession().setAttribute("password", pass);
 			}catch (Exception e){
 				e.printStackTrace(System.err);
 			}
-			response.sendRedirect("exito.html");
+			RequestDispatcher rd = request.getRequestDispatcher("account_personal.jsp");
+            rd.forward(request, response);
+			
 		}else{
 			response.sendRedirect("errorInterno.html");
 		}

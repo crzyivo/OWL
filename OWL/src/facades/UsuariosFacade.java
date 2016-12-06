@@ -21,15 +21,17 @@ public class UsuariosFacade{
 			mysql.connect();
 			OwlUserDAO OwlDAO=new OwlUserDAO();
 			ErrorsStrings.compruebaDatos(usuario,errores);
-			verUsuario(usuario.getEmail(),test);
-			if(test.getEmail()!=null){
-				System.out.println("Repetido");
-			}
-			else{
-			PasswordAuthentication passauth= new PasswordAuthentication();
-			String hashpass=passauth.hash(usuario.getPassword());
-			usuario.setPassword(hashpass);
-			OwlDAO.insertarUsuario(usuario,mysql);
+			if(errores.isEmpty()){
+				test = verUsuario(usuario.getEmail());
+				if(test.getEmail()!=null){
+					errores.add("Este correo ya esta en uso");
+				}
+				else{
+				PasswordAuthentication passauth= new PasswordAuthentication();
+				String hashpass=passauth.hash(usuario.getPassword());
+				usuario.setPassword(hashpass);
+				OwlDAO.insertarUsuario(usuario,mysql);
+				}
 			}
 			mysql.disconnect();
 			
@@ -43,11 +45,16 @@ public class UsuariosFacade{
 		
 	}
 	
-	public void modificarUsuario(OwlUserVO usuario){
+	public void modificarUsuario(OwlUserVO usuario,boolean pass){
 		JDBCTemplate mysql=MysqlConnection.getConnection();
 		try{
 			mysql.connect();
 			OwlUserDAO OwlDAO=new OwlUserDAO();
+			if(pass){
+				PasswordAuthentication passauth= new PasswordAuthentication();
+				String hashpass=passauth.hash(usuario.getPassword());
+				usuario.setPassword(hashpass);
+			}
 			OwlDAO.actualizarUsuario(usuario,mysql);
 			mysql.disconnect();
 			
@@ -59,16 +66,18 @@ public class UsuariosFacade{
 		
 	}
 	//Obtiene datos de un usuario a partir de su mail.
-	public void verUsuario(String email,OwlUserVO userdata){
+	public OwlUserVO verUsuario(String email){
 		JDBCTemplate mysql=MysqlConnection.getConnection();
 		try{
 			mysql.connect();
 			OwlUserDAO OwlDAO=new OwlUserDAO();
-			userdata=OwlDAO.obtenerUsuario(email,mysql);
+			OwlUserVO userdata=OwlDAO.obtenerUsuario(email,mysql);
 			mysql.disconnect();
+			return userdata;
 			
 			}catch (Exception e) {
 				       e.printStackTrace(System.err);
+				       return null;
 			}finally{
 				mysql.disconnect();
 			}

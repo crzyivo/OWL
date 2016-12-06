@@ -31,32 +31,50 @@ public class EditarUsuarioServlet extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	 	
 		boolean errores = true;
-		String email = request.getParameter("correo");
-		String nombre = request.getParameter("nombre");
-		String apellidos = request.getParameter("apellidos");
-		int telefono = Integer.parseInt(request.getParameter("telefono"));
-		int nacimiento = Integer.parseInt(request.getParameter("nacimiento"));
-		String calle = request.getParameter("calle");
-		String numero = request.getParameter("numero");
-		String piso = request.getParameter("piso");
-		String poblacion = request.getParameter("poblacion");
-		String provincia = request.getParameter("provincia");
+		String email = (String) request.getSession().getAttribute("user");
+		String nombre = request.getParameter("nnombre");
+		String apellidos = request.getParameter("napellidos");
+		int telefono = Integer.parseInt(request.getParameter("ntelefono"));
+		int nacimiento = Integer.parseInt(request.getParameter("nnacimiento"));
+		String calle = request.getParameter("ncalle");
+		String numero = request.getParameter("nnumero");
+		String piso = request.getParameter("npiso");
+		String poblacion = request.getParameter("npoblacion");
+		String provincia = request.getParameter("nprovincia");
+		String pass = (String) request.getSession().getAttribute("password");
 		
 		
-		if (email != null){
-			if (!email.trim().equals(new String(""))){
+		if (request.getSession().getAttribute("user") != null){
+			if (!request.getSession().getAttribute("user").equals(new String(""))){
 				errores = false;
 			}
 		}
 		if (!errores){
-			OwlUserVO usuario = new OwlUserVO();
+			OwlUserVO usuario = new OwlUserVO (email, nombre, apellidos, telefono, nacimiento,calle, numero, piso,poblacion, provincia, pass);
 			try{
 				UsuariosFacade fachada = new UsuariosFacade();
-				fachada.modificarUsuario(usuario);
+				fachada.modificarUsuario(usuario,false);
 			}catch (Exception e){
 				e.printStackTrace(System.err);
 			}
-			response.sendRedirect("exito.html");
+			if(usuario.getPassword()==null){
+				response.getWriter().append("no pass");
+			}
+			else if(usuario.getNumero()==null){
+				response.getWriter().append("no numero");
+			}
+			else if(usuario.getPiso()==null){
+				response.getWriter().append("no piso");
+			}
+			else if(usuario.getProvincia()==null){
+				response.getWriter().append("no provincia");
+			}
+			else if(usuario.getPoblacion()==null){
+				response.getWriter().append("no poblacion");
+			}
+			else{
+			response.sendRedirect("account.jsp");
+			}
 		}else{
 			response.sendRedirect("errorInterno.html");
 		}

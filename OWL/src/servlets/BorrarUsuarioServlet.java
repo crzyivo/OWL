@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,10 +43,13 @@ public class BorrarUsuarioServlet extends HttpServlet {
 			try{
 				UsuariosFacade fachada = new UsuariosFacade();
 				fachada.borrarCuenta(email);
+				request.getSession().removeAttribute("user");
+				RequestDispatcher rd = request.getRequestDispatcher("exito_borrar.jsp");
+				response.setHeader("Refresh", "3;url=index.jsp");
+                rd.forward(request, response);
 			}catch (Exception e){
 				e.printStackTrace(System.err);
 			}
-			response.sendRedirect("exito_borrar.html");
 		}else{
 			response.sendRedirect("errorInterno.html");
 		}

@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
 		boolean errores = false;
 		String email = request.getParameter("owlbooks-correo");
 		String pass = request.getParameter("owlbooks-clave");
-		boolean badLogin;
+		boolean goodLogin;
 		
 		
 		if (email != null){
@@ -43,19 +43,19 @@ public class LoginServlet extends HttpServlet {
 		if (!errores){
 			try{
 
-				/*UsuariosFacade fachada = new UsuariosFacade();
-				badLogin=fachada.comprobarLogin(email,pass);
-				if(!badLogin){
+				UsuariosFacade fachada = new UsuariosFacade();
+				goodLogin=fachada.comprobarLogin(email,pass);
+				if(goodLogin){
 					request.getSession().setAttribute("user", email);
+					RequestDispatcher rd = request.getRequestDispatcher((String) request.getSession().getAttribute("current"));
+	                rd.forward(request, response);
 				}
 				else{
 					request.getSession().setAttribute("errorMessage", "Email o contraseña erroneos");
-					RequestDispatcher rd = request.getRequestDispatcher("header.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher((String) request.getSession().getAttribute("current"));
                     rd.forward(request, response);
-				}*/
-				request.getSession().setAttribute("user", email);
-				RequestDispatcher rd = request.getRequestDispatcher((String) request.getSession().getAttribute("current"));
-                rd.forward(request, response);
+				}
+				
 			}catch (Exception e){
 				e.printStackTrace(System.err);
 			}
