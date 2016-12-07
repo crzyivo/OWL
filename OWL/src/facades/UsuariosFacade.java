@@ -45,17 +45,26 @@ public class UsuariosFacade{
 		
 	}
 	
-	public void modificarUsuario(OwlUserVO usuario,boolean pass){
+	public void modificarUsuario(OwlUserVO usuario,boolean pass,List<String> errores){
 		JDBCTemplate mysql=MysqlConnection.getConnection();
 		try{
 			mysql.connect();
 			OwlUserDAO OwlDAO=new OwlUserDAO();
 			if(pass){
+				ErrorsStrings.compruebaDatos(usuario,errores);
+				if(errores.isEmpty()){
 				PasswordAuthentication passauth= new PasswordAuthentication();
 				String hashpass=passauth.hash(usuario.getPassword());
 				usuario.setPassword(hashpass);
+				OwlDAO.actualizarUsuario(usuario,mysql);
+				}
 			}
-			OwlDAO.actualizarUsuario(usuario,mysql);
+			else{
+				ErrorsStrings.compruebaDatos(usuario,errores);
+				if(errores.isEmpty()){
+					OwlDAO.actualizarUsuario(usuario,mysql);
+				}
+			}
 			mysql.disconnect();
 			
 			}catch (Exception e) {
