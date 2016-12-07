@@ -110,10 +110,12 @@ public class LibroDAO {
 		    resultSet.remove(0);
             int id = Integer.parseInt((String) resultSet.get(0));
 		    resultSet.remove(0);
+            
             	
             
            	libroVO = new LibroVO (id, titulo, autort, descripcion, ventas);
            	lista.add(libroVO);
+            }
              
                 
         } catch (Exception e) {

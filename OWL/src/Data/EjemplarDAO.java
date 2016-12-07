@@ -73,15 +73,15 @@ public class EjemplarDAO {
             
             /* Execute query. */  
             if(!resultSet.isEmpty()){
-            int libro = (int) resultSet.get(0);
+            int libro = (Integer) resultSet.get(0);
             String editorial = (String) resultSet.get(1);
             String estado = (String) resultSet.get(2);
-            float precio = (float) resultSet.get(3);
+            float precio = (Float) resultSet.get(3);
             String vendedor = (String) resultSet.get(4);
             String comprador = (String) resultSet.get(5);
             String ISBN = (String) resultSet.get(6);
-            int anno = (int) resultSet.get(7);
-            int ids = (int) resultSet.get(8);
+            int anno = (Integer) resultSet.get(7);
+            int ids = (Integer) resultSet.get(8);
  
             ejemplarVO = new EjemplarVO (ids, libro, editorial, estado, precio,
             							vendedor, comprador, ISBN,anno);
@@ -117,13 +117,13 @@ public class EjemplarDAO {
             
             /* Execute query. */ 
             while(!resultSet.isEmpty()){
-            int libro = (int) resultSet.get(0);
+            int libro = (Integer) resultSet.get(0);
 		    resultSet.remove(0);
             String editorial = (String) resultSet.get(0);
 		    resultSet.remove(0);
             String estado = (String) resultSet.get(0);
 		    resultSet.remove(0);
-            float precio = (float) resultSet.get(0);
+            float precio = (Float) resultSet.get(0);
 		    resultSet.remove(0);
             String vendedor = (String) resultSet.get(0);
 		    resultSet.remove(0);
@@ -131,9 +131,9 @@ public class EjemplarDAO {
 		    resultSet.remove(0);
             String ISBN = (String) resultSet.get(0);
 		    resultSet.remove(0);
-            int anno = (int) resultSet.get(0);
+            int anno = (Integer) resultSet.get(0);
 		    resultSet.remove(0);
-            int ids = (int) resultSet.get(0);
+            int ids = (Integer) resultSet.get(0);
 		    resultSet.remove(0);
             	
             
