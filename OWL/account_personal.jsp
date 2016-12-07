@@ -5,13 +5,13 @@
 %><!DOCTYPE html>
 <html lang="es">
     <head>
-        <jsp:include page="includes/head.jsp" >
+        <jsp:include page="includes/head.jsp">
             <jsp:param name="title" value="Datos de la cuenta"/>
             <jsp:param name="specificCss" value="account_personal"/>
         </jsp:include>
     </head>
     <body>
-        <jsp:include page="includes/header.jsp" >
+        <jsp:include page="includes/header.jsp">
             <jsp:param name="owlbooksLocation" value='Cuenta > Datos personales'/>
         </jsp:include>
         
@@ -25,23 +25,18 @@
             }
         --%>
         <div class="owlbooks-account">
-            <h1>Datos personales asociados a la cuenta</h1>
-            <% 
-                List<String> error_list=(List<String>) request.getAttribute("errors"); 
-                if(!(error_list==null)){
-                    
-            %>
+            <h1>Datos personales asociados a la cuenta</h1><% 
+            List<String> error_list = (List<String>) request.getAttribute("errors"); 
+            if (error_list != null) { %>
             <div class="owlbooks-band-errors">
                 <p>Por favor, subsana los siguientes problemas:</p>
-                <ul class="owlbooks-band-errors-list">
-                    <%
-                        for (String error : error_list) {   
-                    %>
-                        <li><%=error%></li>
-                    <%}%>
+                <ul class="owlbooks-band-errors-list"><%
+                    for (String error : error_list) { %>
+                    <li><%=error%></li><% 
+                    } %>
                 </ul>
-            </div>
-            <%}%>
+            </div><% 
+            } %>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
             <form class="owlbooks-account-personal-form" method="post" action=EditarUsuario.do>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
@@ -92,8 +87,8 @@
                     </div>
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                         <label for="province">Provincia:</label>
-                        <select id="province" name="nprovincia"required><%
-                                                    List<String> listaProvincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
+                        <select id="province" name="nprovincia" required><%
+                            List<String> listaProvincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
                             String provinciaPredefinida = (String) request.getAttribute("provincia");
                             for (String provincia : listaProvincias) {
                             if (provinciaPredefinida.equals(provincia)) { %>
