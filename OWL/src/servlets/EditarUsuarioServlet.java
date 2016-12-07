@@ -1,6 +1,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,7 +45,21 @@ public class EditarUsuarioServlet extends HttpServlet {
 		String piso = request.getParameter("npiso");
 		String poblacion = request.getParameter("npoblacion");
 		String provincia = request.getParameter("nprovincia");
-		String pass = (String) request.getSession().getAttribute("password");
+		String pass = request.getParameter("nclave");
+		String cpass = request.getParameter("nconfirmarclave");
+		boolean cambioPass = false;
+		List<String> errorList = new ArrayList();
+		if(pass.equals("")){	
+			pass = (String) request.getSession().getAttribute("password");
+		}
+		else{
+			if(!(pass.equals(cpass))){
+				errorList.add("Las contraseñas no coinciden");
+			}else{
+				cambioPass=true;
+			}
+		}
+		
 		
 		
 		if (request.getSession().getAttribute("user") != null){
@@ -53,27 +71,18 @@ public class EditarUsuarioServlet extends HttpServlet {
 			OwlUserVO usuario = new OwlUserVO (email, nombre, apellidos, telefono, nacimiento,calle, numero, piso,poblacion, provincia, pass);
 			try{
 				UsuariosFacade fachada = new UsuariosFacade();
-				fachada.modificarUsuario(usuario,false);
+				fachada.modificarUsuario(usuario,cambioPass,errorList);
+				if(errorList.isEmpty()){
+					RequestDispatcher rd = request.getRequestDispatcher("account.jsp");
+		            rd.forward(request, response);
+				}
+				else{
+					request.setAttribute("errors", errorList);
+					RequestDispatcher rd = request.getRequestDispatcher("VerUsuario.do");
+		            rd.forward(request, response);
+				}
 			}catch (Exception e){
 				e.printStackTrace(System.err);
-			}
-			if(usuario.getPassword()==null){
-				response.getWriter().append("no pass");
-			}
-			else if(usuario.getNumero()==null){
-				response.getWriter().append("no numero");
-			}
-			else if(usuario.getPiso()==null){
-				response.getWriter().append("no piso");
-			}
-			else if(usuario.getProvincia()==null){
-				response.getWriter().append("no provincia");
-			}
-			else if(usuario.getPoblacion()==null){
-				response.getWriter().append("no poblacion");
-			}
-			else{
-			response.sendRedirect("account.jsp");
 			}
 		}else{
 			response.sendRedirect("errorInterno.html");

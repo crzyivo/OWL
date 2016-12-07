@@ -38,7 +38,7 @@ public class NuevoUsuarioServlet extends HttpServlet {
 		String email = request.getParameter("correo");
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");
-		int telefono = Integer.parseInt(request.getParameter("telefono"));
+		int telefono=Integer.parseInt(request.getParameter("telefono"));
 		int nacimiento = Integer.parseInt(request.getParameter("nacimiento"));
 		String calle = request.getParameter("calle");
 		String numero = request.getParameter("numero");
@@ -46,21 +46,33 @@ public class NuevoUsuarioServlet extends HttpServlet {
 		String poblacion = request.getParameter("poblacion");
 		String provincia = request.getParameter("provincia");
 		String pass = request.getParameter("clave");
-		List<String> error_list = new ArrayList();
+		String cpass = request.getParameter("confirmarclave");
+		List<String> errorList = new ArrayList();
+		if(!(pass.equals(cpass))){
+			errorList.add("Las contraseñas no coinciden");
+			pass = "";
+		}
 		
 			OwlUserVO usuario = new OwlUserVO(email,nombre,apellidos,telefono,nacimiento,calle,numero,piso,poblacion,provincia,pass);
-			//OwlUserVO usuario = new OwlUserVO("help@aaappaaa.com","pls","help me",688455211,1995,"Despair","89","0","Zaragoza","Zaragoza","hell");
-
 			try{
-				//Class.forName("com.mysql.jdbc.Driver");
 				UsuariosFacade fachada = new UsuariosFacade();
-				fachada.insertarNuevoUsuario(usuario,error_list);
-				if(error_list.isEmpty()){
+				fachada.insertarNuevoUsuario(usuario,errorList);
+				if(errorList.isEmpty()){
 					RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
 		            rd.forward(request, response);
 				}
 				else{
-					request.setAttribute("errors", error_list);
+					request.setAttribute("errors", errorList);
+					request.setAttribute("correo", email);
+					request.setAttribute("nombre", nombre);
+					request.setAttribute("apellidos", apellidos);
+					request.setAttribute("telefono", telefono);
+					request.setAttribute("nacimiento", nacimiento);
+					request.setAttribute("calle", calle);
+					request.setAttribute("numero", numero);
+					request.setAttribute("piso", piso);
+					request.setAttribute("poblacion", poblacion);
+					request.setAttribute("provincia", provincia);
 					RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
 		            rd.forward(request, response);
 				}
