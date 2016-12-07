@@ -16,10 +16,16 @@
             <jsp:param name="owlbooksLocation" value='Libros > El Quijote > Poner a la venta'/>
         </jsp:include>
         <div class="owlbooks-account">
-            <h1>Poner a la venta un ejemplar de El Quijote</h1>
+            <h1>Poner a la venta un ejemplar de <em>El Quijote</em></h1>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
             <form class="owlbooks-account-personal-form" method="post" action="">
                 <div class="owlbooks-account-personal-form">
+                    <div class="owlbooks-account-personal-form-group">
+                    <p>Título de la obra:</p><em>El Quijote</em>
+                    </div>
+                    <div class="owlbooks-account-personal-form-group">
+                    <p>Autor/a:</p><p>Miguel de Cervantes Saavedra</p>
+                    </div>
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                         <label for="editor">Editorial:</label>
                         <input type="text" name="neditorial" id="editor" required />
@@ -31,6 +37,14 @@
                     <div class="owlbooks-account-personal-form-group">
                         <label for="isbn">ISBN:</label>
                         <input type="text" name="nisbn" id="isbn" />
+                    </div>
+                    <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
+                        <label for="preservation">Estado de conservación:</label>
+                        <select id="preservation" name="nconservacion" required>
+                            <option value="excelente">Excelente (de primera mano)</option>
+                            <option value="bueno" selected="">Bueno</option>
+                            <option value="deteriorado">Deteriorado</option>
+                        </select>
                     </div>
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                         <label for="price">Precio:</label>
@@ -70,8 +84,8 @@
                     </div>
                 </div>
                 <div class="owlbooks-account-personal-form-group-checkboxes">
-                    <input type="checkbox" class="owlbooks-account-personal-form-required" id="owlbooks-readpolicies-checkbox" required ><p>He leído y acepto el <a href="aviso_legal.jsp" target="_blank">aviso legal</a> y la <a href="privacy_policy.jsp" target="_blank">política de privacidad</a>.</p><br>
-                    <input type="checkbox" class="owlbooks-account-personal-form-required" id="owlbooks-authenticity" required ><p>Declaro, bajo pena de perjurio, que poseo el ejemplar en cuestión y que los datos arriba especificados son ciertos.</p>
+                    <input type="checkbox" class="owlbooks-account-personal-form-required" id="owlbooks-readpolicies-checkbox" required ><p><span class="owlbooks-account-personal-form-required-example">*</span>&nbsp;<strong>He leído y acepto</strong> el <a href="aviso_legal.jsp" target="_blank">aviso legal</a> y la <a href="privacy_policy.jsp" target="_blank">política de privacidad</a> de OwlBooks.</p><br>
+                    <input type="checkbox" class="owlbooks-account-personal-form-required" id="owlbooks-authenticity" required ><p><span class="owlbooks-account-personal-form-required-example">*</span>&nbsp;<strong>Declaro, bajo pena de perjurio</strong>, que poseo el ejemplar que pongo a la venta con los datos arriba especificados, los cuales se ajustan con exactitud a la realidad.</p>
                 </div>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-group-actions">
                     <input type="submit" value="Guardar" />
