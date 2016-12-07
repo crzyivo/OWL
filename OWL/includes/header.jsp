@@ -12,7 +12,7 @@ else {
     <div class="owlbooks-header owlbooks-loggedin"><% 
 }
 boolean error = false;
-if (session.getAttribute("errorMessage") != null) {
+if (request.getAttribute("errorMessage") != null) {
     error=true;
 }
 %>
@@ -60,7 +60,7 @@ if (session.getAttribute("errorMessage") != null) {
                         <p class="owlbooks-login-welcome">¡Hola, Fulanito!</p>
                         <ul class="owlbooks-login-actions">
                             <a id="owlbooks-login-action-myaccount" href="account.jsp"><li>Mi cuenta »</li></a>
-                            <a id="owlbooks-login-actions-logout" href="logout.jsp"><li>Cerrar sesión »</li></a>
+                            <a id="owlbooks-login-actions-logout" href="logout.do"><li>Cerrar sesión »</li></a>
                         </ul><% 
                         } %>
                     </div>
