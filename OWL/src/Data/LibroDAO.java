@@ -99,22 +99,22 @@ public class LibroDAO {
                    
             
             /* Execute query. */ 
-            int i=0;
-            for(i=0;i>-1;i=i+5){
-            if(!resultSet.isEmpty()){
-            String titulo = (String) resultSet.get(i);
-            String autort = (String) resultSet.get(i+1);
-            String descripcion = (String) resultSet.get(i+2);
-            int ventas = Integer.parseInt((String) resultSet.get(i+3));
-            int id = Integer.parseInt((String) resultSet.get(i+4));
+            while(!resultSet.isEmpty()){
+            String titulo = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            String autort = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            String descripcion = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            int ventas = Integer.parseInt((String) resultSet.get(0));
+		    resultSet.remove(0);
+            int id = Integer.parseInt((String) resultSet.get(0));
+		    resultSet.remove(0);
             	
             
            	libroVO = new LibroVO (id, titulo, autort, descripcion, ventas);
            	lista.add(libroVO);
              
-            }
-            else{i=-2;}
-            }
                 
         } catch (Exception e) {
             e.printStackTrace(System.err);
