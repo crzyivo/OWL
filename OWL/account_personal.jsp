@@ -26,12 +26,12 @@
         --%>
         <div class="owlbooks-account">
             <h1>Datos personales asociados a la cuenta</h1><% 
-            final List<String> ERROR_LIST = (List<String>) request.getAttribute("errors"); 
-            if (ERROR_LIST != null) { %>
+            List<String> error_list = (List<String>) request.getAttribute("errors"); 
+            if (error_list != null) { %>
             <div class="owlbooks-band-errors">
                 <p>Por favor, subsana los siguientes problemas:</p>
                 <ul class="owlbooks-band-errors-list"><% 
-                    for (String error : ERROR_LIST) { %>
+                    for (String error : error_list) { %>
                     <li><%=error%></li><% 
                     } %>
                 </ul>
@@ -88,16 +88,16 @@
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                         <label for="province">Provincia:</label>
                         <select id="province" name="nprovincia" required><%
-                            final List<String> LISTA_PROVINCIAS = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
-                            final String PROVINCIA_PREDEFINIDA = (String) request.getAttribute("provincia");
-                            for (String provincia : LISTA_PROVINCIAS) {
-                            if (PROVINCIA_PREDEFINIDA.equals(provincia)) { %>
+                            List<String> listaProvincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
+                            String provinciaPredefinida = (String) request.getAttribute("provincia");
+                            for (String provincia : listaProvincias) {
+                            if (provinciaPredefinida.equals(provincia)) { %>
                             <option value="<%=provincia%>" selected=""><%=provincia%></option><% 
-                            } // if
+                            }
                             else { %>
                             <option value="<%=provincia%>"><%=provincia%></option><% 
-                            } // else
-                            } // for %>
+                            }
+                            } %>
                         </select>
                     </div>
                     <div class="owlbooks-account-personal-form-group">
