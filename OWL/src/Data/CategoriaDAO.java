@@ -7,7 +7,7 @@ import java.util.List;
 
 import jdbc.JDBCTemplate;
 
-//TODO: MÃ©todo a parte para aumentar el numero de libros libros a una categoria sin hacer updateCategoria
+//TODO: Método a parte para aumentar el numero de libros libros a una categoria sin hacer updateCategoria
 //TODO: Control de errores
 public class CategoriaDAO {
 
@@ -26,7 +26,7 @@ public class CategoriaDAO {
         		   categoria.getNLibros());
 
 		}catch (Exception e){
-			System.out.println("Error inserciÃ³n categoria ");
+			System.out.println("Error inserción categoria ");
 		}
 		
 	}
@@ -50,7 +50,7 @@ public class CategoriaDAO {
            actualizarCategoria(cat2,jdbctemp);
 
 		}catch (Exception e){
-			System.out.println("Error inserciÃ³n libro a categoria ");
+			System.out.println("Error inserción libro a categoria ");
 		}
 		
 	}
@@ -88,21 +88,22 @@ public class CategoriaDAO {
                    
             
             /* Execute query. */ 
-            int i=0;
-            for(i=0;i>-1;i=i+5){
-            if(!resultSet.isEmpty()){
-            String titulo = (String) resultSet.get(i);
-            String autort = (String) resultSet.get(i+1);
-            String descripcion = (String) resultSet.get(i+2);
-            int ventas = Integer.parseInt((String) resultSet.get(i+3));
-            int id = Integer.parseInt((String) resultSet.get(i+4));
+            while(!resultSet.isEmpty()){
+            String titulo = (String) resultSet.get(0);
+            resultSet.remove(0)
+            String autort = (String) resultSet.get(0);
+            resultSet.remove(0)
+            String descripcion = (String) resultSet.get(0);
+            resultSet.remove(0)
+            int ventas = Integer.parseInt((String) resultSet.get(0));
+            resultSet.remove(0)
+            int id = Integer.parseInt((String) resultSet.get(0));
+            resultSet.remove(0)
             	
             
            	libroVO = new LibroVO (id, titulo, autort, descripcion, ventas);
            	lista.add(libroVO);
              
-            }
-            else{i=-200;}
             }
                 
         } catch (Exception e) {
@@ -135,21 +136,22 @@ public class CategoriaDAO {
                    
             
             /* Execute query. */ 
-            int i=0;
-            for(i=0;i>-1;i=i+5){
-            if(!resultSet.isEmpty()){
-            String titulo = (String) resultSet.get(i);
-            String autort = (String) resultSet.get(i+1);
-            String descripcion = (String) resultSet.get(i+2);
-            int ventas = Integer.parseInt((String) resultSet.get(i+3));
-            int id = Integer.parseInt((String) resultSet.get(i+4));
+            while(!resultSet.isEmpty()){
+            String titulo = (String) resultSet.get(0);
+            resultSet.remove(0)
+            String autort = (String) resultSet.get(0);
+            resultSet.remove(0)
+            String descripcion = (String) resultSet.get(0);
+            resultSet.remove(0)
+            int ventas = Integer.parseInt((String) resultSet.get(0));
+            resultSet.remove(0)
+            int id = Integer.parseInt((String) resultSet.get(0));
+            resultSet.remove(0)
             	
             
            	libroVO = new LibroVO (id, titulo, autort, descripcion, ventas);
            	lista.add(libroVO);
              
-            }
-            else{i=-200;}
             }
                 
         } catch (Exception e) {
