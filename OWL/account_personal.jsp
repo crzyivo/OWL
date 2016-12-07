@@ -25,31 +25,36 @@
             }
         --%>
         <div class="owlbooks-account">
-            <h1>Datos personales asociados a la cuenta</h1><% 
-            List<String> error_list = (List<String>) request.getAttribute("errors"); 
-            if (error_list != null) { %>
+            <h1>Datos personales asociados a la cuenta</h1>
+            <% 
+                List<String> error_list=(List<String>) request.getAttribute("errors"); 
+                if(!(error_list==null)){
+                    
+            %>
             <div class="owlbooks-band-errors">
                 <p>Por favor, subsana los siguientes problemas:</p>
-                <ul class="owlbooks-band-errors-list"><% 
-                    for (String error : error_list) { %>
-                    <li><%=error%></li><% 
-                    } %>
+                <ul class="owlbooks-band-errors-list">
+                    <%
+                        for (String error : error_list) {   
+                    %>
+                        <li><%=error%></li>
+                    <%}%>
                 </ul>
-            </div><% 
-            } %>
+            </div>
+            <%}%>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
             <form class="owlbooks-account-personal-form" method="post" action=EditarUsuario.do>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="email">Correo electrónico:</label>
                     <input type="email" name="ncorreo" id="email" value="<%=request.getAttribute("correo")%>" required disabled /><span class="owlbooks-secondary-text">(es tu identificador de acceso)</span>
                 </div>
-                <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
+                <div class="owlbooks-account-personal-form-group ">
                     <label for="passwd">Contraseña:</label>
-                    <input type="password" name="nclave" id="passwd" required /><span class="owlbooks-secondary-text">(REQUISITOS DE LA CLAVE...)</span>
+                    <input type="password" name="nclave" id="passwd" /><span class="owlbooks-secondary-text">(REQUISITOS DE LA CLAVE...)</span>
                 </div>
-                <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
+                <div class="owlbooks-account-personal-form-group ">
                     <label for="confirm-passwd">Confirmar contraseña:</label>
-                    <input type="password" name="nconfirmarclave" id="confirm-passwd" required />
+                    <input type="password" name="nconfirmarclave" id="confirm-passwd" />
                 </div>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="name">Nombre:</label>
@@ -87,8 +92,8 @@
                     </div>
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                         <label for="province">Provincia:</label>
-                        <select id="province" name="nprovincia" required><%
-                            List<String> listaProvincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
+                        <select id="province" name="nprovincia"required><%
+                                                    List<String> listaProvincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
                             String provinciaPredefinida = (String) request.getAttribute("provincia");
                             for (String provincia : listaProvincias) {
                             if (provinciaPredefinida.equals(provincia)) { %>
