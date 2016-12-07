@@ -7,7 +7,7 @@ import java.util.List;
 
 import jdbc.JDBCTemplate;
 
-//TODO: Método a parte para aumentar el numero de libros libros a una categoria sin hacer updateCategoria
+//TODO: MÃ©todo a parte para aumentar el numero de libros libros a una categoria sin hacer updateCategoria
 //TODO: Control de errores
 public class CategoriaDAO {
 
@@ -26,7 +26,7 @@ public class CategoriaDAO {
         		   categoria.getNLibros());
 
 		}catch (Exception e){
-			System.out.println("Error inserción categoria ");
+			System.out.println("Error inserciÃ³n categoria ");
 		}
 		
 	}
@@ -50,7 +50,7 @@ public class CategoriaDAO {
            actualizarCategoria(cat2,jdbctemp);
 
 		}catch (Exception e){
-			System.out.println("Error inserción libro a categoria ");
+			System.out.println("Error inserciÃ³n libro a categoria ");
 		}
 		
 	}
@@ -102,7 +102,7 @@ public class CategoriaDAO {
            	lista.add(libroVO);
              
             }
-            else{i=-2;}
+            else{i=-200;}
             }
                 
         } catch (Exception e) {
@@ -149,7 +149,7 @@ public class CategoriaDAO {
            	lista.add(libroVO);
              
             }
-            else{i=-2;}
+            else{i=-200;}
             }
                 
         } catch (Exception e) {
