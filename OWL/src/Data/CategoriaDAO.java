@@ -111,6 +111,53 @@ public class CategoriaDAO {
     	return lista;
     }
     
+    public List<LibroVO> obtenerLibrosInCategoria ( String nombre,JDBCTemplate jdbctemp, String orderparam){     
+    	LibroVO libroVO = new LibroVO ();
+    	List<LibroVO> lista = new ArrayList <LibroVO>();
+    	String sql="";
+    	try{
+    		if (orderparam.equals("lecturas")){
+            /* Create "preparedStatement". */
+    			sql="SELECT  l.titulo, l.autor, descripcion, ventas, id"+
+                		"  FROM libro l,pertenece p WHERE "+ "p.categoria"+" = " +"'"+nombre+"'"
+                		+"and p.titulo=l.titulo and p.autor=l.autor "+
+                		"ORDER BY l.ventas desc "; 
+    		}
+    		else{
+    			sql="SELECT  l.titulo, l.autor, descripcion, ventas, id"+
+                		"  FROM libro l,pertenece p WHERE "+ "p.categoria"+" = " +"'"+nombre+"'"
+                		+"and p.titulo=l.titulo and p.autor=l.autor"; 
+    		}
+
+            
+            /* Execute query. */   
+            ArrayList<Object> resultSet=  jdbctemp.executeSentenceResult(sql);
+                   
+            
+            /* Execute query. */ 
+            int i=0;
+            for(i=0;i>-1;i=i+5){
+            if(!resultSet.isEmpty()){
+            String titulo = (String) resultSet.get(i);
+            String autort = (String) resultSet.get(i+1);
+            String descripcion = (String) resultSet.get(i+2);
+            int ventas = Integer.parseInt((String) resultSet.get(i+3));
+            int id = Integer.parseInt((String) resultSet.get(i+4));
+            	
+            
+           	libroVO = new LibroVO (id, titulo, autort, descripcion, ventas);
+           	lista.add(libroVO);
+             
+            }
+            else{i=-2;}
+            }
+                
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+        }
+    	return lista;
+    }
+    
     public List<CategoriaVO> obtenerCategorias ( JDBCTemplate jdbctemp){     
     	CategoriaVO categoriaVO = new CategoriaVO ();
     	List<CategoriaVO> lista = new ArrayList <CategoriaVO>();
@@ -118,7 +165,7 @@ public class CategoriaDAO {
     	try{
     		
             /* Create "preparedStatement". */
-    			sql="SELECT nombre,nibros FROM categoria";  
+    			sql="SELECT nombre,nlibros FROM categoria ORDER BY nlibros desc";  
 
             
             /* Execute query. */   
