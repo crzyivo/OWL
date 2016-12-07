@@ -40,6 +40,14 @@
     <servlet-name>BorrarUsuarioServlet</servlet-name>
     <url-pattern>/BorrarUsuario.do</url-pattern>
   </servlet-mapping>
+ <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>servlets.LogoutServlet</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout.do</url-pattern>
+  </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
