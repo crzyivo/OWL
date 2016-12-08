@@ -175,17 +175,15 @@ public class CategoriaDAO {
                    
             
             /* Execute query. */ 
-            int i=0;
-            for(i=0;i>-1;i=i+2){
-            if(!resultSet.isEmpty()){
-            String nombre = (String) resultSet.get(i);
-            int nlibros = Integer.parseInt((String) resultSet.get(i+1));
+            while(!resultSet.isEmpty()){
+            String nombre = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            int nlibros = Integer.parseInt((String) resultSet.get(i0));
+		    resultSet.remove(0);
             
            	categoriaVO = new CategoriaVO (nombre,nlibros);
            	lista.add(categoriaVO);
              
-            }
-            else{i=-2;}
             }
                 
         } catch (Exception e) {
