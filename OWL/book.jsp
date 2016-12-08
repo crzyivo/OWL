@@ -5,8 +5,8 @@
 %><!DOCTYPE html>
 <html lang="es">
     <head>
-        <jsp:include page="includes/head.jsp" >
-            <jsp:param name="title" value="El Quijote, de Miguel de Cervantes Saavedra"/>
+        <jsp:include page="includes/head.jsp">
+            <jsp:param name="title" value="<%=request.getAttribute("titulo")%>, de <%=request.getAttribute("autor")%>"/>
             <jsp:param name="specificCss" value="book"/>
         </jsp:include>
     </head>
@@ -52,8 +52,8 @@
                             Ejemplares del libro ordenados de menor a mayor precio.
                         -->
                         <div class="owlbooks-section owlbooks-categories"><% 
-                        List<String> ejemplaresList = (List<String>) request.getAttribute("libros"); 
-                        if (!(ejemplaresList.isEmpty())) {
+                            List<String> ejemplaresList = (List<String>) request.getAttribute("libros"); 
+                            if (!ejemplaresList.isEmpty()) {
                             for (String libro : ejemplaresList) {
                             String[] at = libro.split(","); %>
                             <div class="owlbooks-product-copy">
@@ -64,12 +64,19 @@
                                     <li>ISBN: <%=at[3]%></li>
                                     <li>Vendedor: <%=at[4]%></li>
                                     <li>Origen: <%=at[5]%></li>
-                                    <li>Estado: <span class="owlbooks-product-copy-info-<%=at[2].toLowerCase()%>"><%=at[6]%></span></li>
+                                    <li>Estado: <span class="owlbooks-product-copy-info-<%=at[6].toLowerCase()%>"><%=at[6]%></span></li>
                                 </ul>
                                 <a href=""><div class="owlbooks-product-action owlbooks-product-buy owlbooks-product-copy-buy">Comprar este ejemplar</div></a>
-                            </div>
-                            <%}
-                            }%>
+                            </div><% 
+                            }
+                            }
+                            else { %>
+                            <div class="owlbooks-band-none">
+                                Ahora mismo no tenemos ejemplares de este libro a la venta.<br>
+                                ¡Sé el primero en vender uno!
+                            </div><% 
+                            } %>
+                        </div>
                     </div>
                 </div>
             </div>
