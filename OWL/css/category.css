@@ -26,5 +26,6 @@ h1 {
 }
 .owlbooks-h-book {
     font-style: italic;
-    margin: .3em .7em 0 .7em;
+    margin:.3em .7em .2em .7em;
+    line-height:1.1em;
 }
