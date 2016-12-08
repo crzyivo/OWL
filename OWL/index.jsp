@@ -24,7 +24,7 @@
         </div>
         <h1 class="owlbooks-h-categories">Categorías</h1>
         <div class="owlbooks-section owlbooks-categories">
-            <a href="category.jsp"><div class="owlbooks-category">
+            <a href="Categoria.do?categoria=Ciencia ficción"><div class="owlbooks-category">
                 <h2 class="owlbooks-h-category">Ciencia ficción</h2>
                 <p>535 libros</p>
             </div></a>
