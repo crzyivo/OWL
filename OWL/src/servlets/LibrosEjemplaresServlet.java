@@ -46,21 +46,21 @@ public class LibrosEjemplaresServlet extends HttpServlet {
 		try {
 			OWLFacade fachada = new OWLFacade(); 
 			ejemplaresvarios=fachada.EjemplaresLibro(id);
+			RequestDispatcher rd = request.getRequestDispatcher("book.jsp");
 			if((!ejemplaresvarios.isEmpty())){
 				for(EjemplarVO libro:ejemplaresvarios){
 					origen = fachada.verUsuario(libro.getVendedor()).getProvincia();
 					String s = libro.getEditorial()+","+libro.getAnno()+","+libro.getPrecio()+","+libro.getISBN()+","+libro.getVendedor()+","+origen+","+libro.getEstado();
 					listas.add(s);
 				}
-				RequestDispatcher rd = request.getRequestDispatcher("book.jsp");
+				
 				request.setAttribute("libros",listas);
 				request.setAttribute("titulo", titulo);
 				request.setAttribute("autor",autor);
 				request.setAttribute("descripcion",descripcion);
 				request.setAttribute("id", id);
-	            rd.forward(request, response);
 			}else{
-				RequestDispatcher rd = request.getRequestDispatcher("book.jsp");
+				
 				request.setAttribute("noLibros", "1");
 				request.setAttribute("libros",listas);
 				request.setAttribute("titulo", titulo);
@@ -68,6 +68,7 @@ public class LibrosEjemplaresServlet extends HttpServlet {
 				request.setAttribute("descripcion",descripcion);
 				request.setAttribute("id", id);
 			}
+			rd.forward(request, response);
 			
 		}catch (Exception e){
 				e.printStackTrace(System.err);
