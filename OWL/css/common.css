@@ -75,24 +75,6 @@ input {
 .owlbooks-top-actions {
     float:right;
 }
-.owlbooks-basket {
-    background: #fff;
-    border:1px solid #bbb;
-    display: inline-block;
-    vertical-align: middle;
-    height: 30px;
-    line-height: 100%;
-    padding: 5px 1em;
-    -webkit-border-radius: 6px;
-    -moz-border-radius: 6px;
-    border-radius: 6px;
-}
-.owlbooks-basket img {
-    vertical-align: middle;
-    height: 30px;
-    width: 30px;
-    line-height: 100%;
-}
 .owlbooks-login-hidden,.owlbooks-login-displayed {
     display: inline-block;
     vertical-align: middle;
@@ -107,6 +89,9 @@ input {
 }
 .owlbooks-login {
     display: inline-block;
+    position: absolute;
+    right:30px;
+    top:20px;
     vertical-align: middle;
     background: #D6451B;
     color: #fff;
@@ -116,7 +101,6 @@ input {
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    margin-right: 20px;
 }
 .owlbooks-unlogged .owlbooks-login, .owlbooks-unlogged .owlbooks-login-popup-separator {
     width: 110px;
@@ -141,16 +125,16 @@ input {
     vertical-align: middle;
     background: #D6451B;
     color: #fff;
-    height: 20px;
+    height: 25px;
     line-height: 100%;
     padding: 10px 1em;
     -webkit-border-radius: 6px 6px 0 0;
     -moz-border-radius: 6px 6px 0 0;
     border-radius: 6px 6px 0 0;
-    margin-right: 20px;
     position: absolute;
-    margin-top: 30px;
-    right: 0;
+    right:30px;
+    top:40px;
+    z-index:-999;
 }
 .owlbooks-login-popup {
     display: none;
@@ -170,17 +154,14 @@ input {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6451b', endColorstr='#ce4725',GradientType=1 );
     color: #fff;
     line-height: 100%;
-    padding: 13px 1.2em;
+    padding: 15px 1.4em 13px 1em;
     -webkit-border-radius: 6px 0 6px 6px;
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
     border-bottom: 1px solid #222;
     position: absolute;
-    margin-top: 7px;
-    margin-right: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    right: 0;
+    right:30px;
+    top:60px;
 }
 .owlbooks-login-popup * {
     vertical-align: middle;
@@ -201,7 +182,7 @@ input {
     font-weight:normal;
 }
 .owlbooks-loggedin .owlbooks-login-actions {
-    padding-left:1em;
+    padding-left:0.9em;
     list-style-type: none;
 }
 .owlbooks-login-actions a {
