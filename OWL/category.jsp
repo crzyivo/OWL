@@ -12,12 +12,12 @@
     </head>
     <body>
         <jsp:include page="includes/header.jsp" >
-            <jsp:param name="owlbooksLocation" value='Categorías > Ciencia ficción'/>
+            <jsp:param name="owlbooksLocation" value="Categorías >${categoria}"/>
         </jsp:include>
         <div class="owlbooks-section">
             <p>Nota: Se muestra una vista de la página principal con la sesión sin iniciar. Para consultar los detalles de una cuenta, pulsar <a href="account.jsp">aquí</a>.</p>
         </div>
-        <h1 class="owlbooks-h-categories">Libros en la categoría «Ciencia&nbsp;ficción»</h1>
+        <h1 class="owlbooks-h-categories">Libros en la categoría «<%=request.getAttribute("categoria")%>»</h1>
         <div class="owlbooks-section owlbooks-categories"><% 
         List<String> librosList = (List<String>) request.getAttribute("libros"); 
         if (librosList != null) {

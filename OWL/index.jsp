@@ -1,6 +1,7 @@
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
+         import="java.util.List,java.util.Arrays"
 %><!DOCTYPE html>
 <% session.setAttribute("current","index.jsp"); %>
 <html lang="es">
@@ -24,32 +25,17 @@
         </div>
         <h1 class="owlbooks-h-categories">Categorías</h1>
         <div class="owlbooks-section owlbooks-categories">
-            <a href="Categoria.do?categoria=Ciencia ficción"><div class="owlbooks-category">
-                <h2 class="owlbooks-h-category">Ciencia ficción</h2>
-                <p>535 libros</p>
+        <%List<String> CategoryList = (List<String>) request.getAttribute("categorias"); 
+            if (CategoryList != null) {
+                for(String cat:CategoryList){
+                    String[] at = cat.split(",");{%>
+            <a href="Categoria.do?categoria=<%=at[0]%>"><div class="owlbooks-category">
+                <h2 class="owlbooks-h-category"><%=at[0]%></h2>
+                <p><%=at[1]%> libros</p>
             </div></a>
-            <a href=""><div class="owlbooks-category">
-                <h2 class="owlbooks-h-category">Policíaca</h2>
-                <p>23 libros</p>
-            </div></a>
-            <a href=""><div class="owlbooks-category">
-                <h2 class="owlbooks-h-category">Misterio</h2>
-                <p>623 libros</p>
-            </div></a>
-            <a href=""><div class="owlbooks-category">
-                <h2 class="owlbooks-h-category">Histórica</h2>
-                <p>32 libros</p>
-            </div></a>
-            <div class="owlbooks-category">
-            </div>
-            <div class="owlbooks-category">
-            </div>
-            <div class="owlbooks-category">
-            </div>
-            <div class="owlbooks-category">
-            </div>
-            <div class="owlbooks-category">
-            </div>
+            <%}
+            }
+          }%>
         </div>
         <%@include file="includes/footer.jsp" %>
     </body>
