@@ -16,12 +16,11 @@ public class EjemplarDAO {
 		try{
 			 /* Create "preparedStatement". */
             String queryString = "INSERT INTO ejemplar " +
-                "(id, libro, editorial, estado, precio, vendedor, comprador, ISBN, anno)"+
-            		"VALUES (?,?,?,?,?,?,?,?,?)";
+                "(libro, editorial, estado, precio, vendedor, comprador, ISBN, anno)"+
+            		"VALUES (?,?,?,?,?,?,?,?)";
             
             
            jdbctemp.executeSentence(queryString, 
-        		   ejemplar.getId(),
         		   ejemplar.getLibro(),
         		   ejemplar.getEditorial(),
         		   ejemplar.getEstado(),
