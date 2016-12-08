@@ -6,7 +6,7 @@
 <html lang="es">
     <head>
         <jsp:include page="includes/head.jsp">
-            <jsp:param name="title" value="<%=request.getAttribute("titulo")%>, de <%=request.getAttribute("autor")%>"/>
+            <jsp:param name="title" value="${titulo}, de ${autor}"/>
             <jsp:param name="specificCss" value="book"/>
         </jsp:include>
     </head>
