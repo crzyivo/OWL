@@ -32,7 +32,7 @@ public class EjemplarDAO {
         		   ejemplar.getAnno());
 
 		}catch (Exception e){
-			System.out.println("Error inserción ejemplar ");
+			System.out.println("Error inserciÃ³n ejemplar ");
 		}
 		
 	}
@@ -73,15 +73,15 @@ public class EjemplarDAO {
             
             /* Execute query. */  
             if(!resultSet.isEmpty()){
-            int libro = (int) resultSet.get(0);
+            int libro = Integer.parseInt (resultSet.get(0));
             String editorial = (String) resultSet.get(1);
             String estado = (String) resultSet.get(2);
             float precio = (float) resultSet.get(3);
             String vendedor = (String) resultSet.get(4);
             String comprador = (String) resultSet.get(5);
             String ISBN = (String) resultSet.get(6);
-            int anno = (int) resultSet.get(7);
-            int ids = (int) resultSet.get(8);
+            int anno = Integer.parseInt(resultSet.get(7));
+            int ids = Integer.parseInt (resultSet.get(8));
  
             ejemplarVO = new EjemplarVO (ids, libro, editorial, estado, precio,
             							vendedor, comprador, ISBN,anno);
@@ -118,26 +118,31 @@ public class EjemplarDAO {
                    
             
             /* Execute query. */ 
-            int i=0;
-            for(i=0;i>-1;i=i+9){
-            if(!resultSet.isEmpty()){
-            int libro = (int) resultSet.get(i);
-            String editorial = (String) resultSet.get(i+1);
-            String estado = (String) resultSet.get(i+2);
-            float precio = (float) resultSet.get(i+3);
-            String vendedor = (String) resultSet.get(i+4);
-            String comprador = (String) resultSet.get(i+5);
-            String ISBN = (String) resultSet.get(i+6);
-            int anno = (int) resultSet.get(i+7);
-            int ids = (int) resultSet.get(i+8);
+            while(!resultSet.isEmpty()){
+            int libro = (int) resultSet.get(0);
+		    resultSet.remove(0);
+            String editorial = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            String estado = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            float precio = (float) resultSet.get(0);
+		    resultSet.remove(0);
+            String vendedor = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            String comprador = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            String ISBN = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            int anno = (int) resultSet.get(0);
+		    resultSet.remove(0);
+            int ids = (int) resultSet.get(0);
+		    resultSet.remove(0);
             	
             
              ejemplarVO = new EjemplarVO (ids, libro, editorial, estado, precio,
             							vendedor, comprador, ISBN,anno);
              lista.add(ejemplarVO);
              
-            }
-            else{i=2;}
             }
                 
         } catch (Exception e) {
