@@ -3,7 +3,7 @@
          pageEncoding="UTF-8"
          import="java.util.List,java.util.Arrays"
 %><!DOCTYPE html>
-<% session.setAttribute("current","index.jsp"); %>
+<% session.setAttribute("current","Index.do"); %>
 <html lang="es">
     <head>
         <jsp:include page="includes/head.jsp" >
@@ -22,7 +22,7 @@
             if (MostReadList != null) {
                 for(String lib:MostReadList){
                     String[] at = lib.split(",");%>
-                <li><span class="owlbooks-mostread-title"><a href="book.jsp"><em><%=at[0]%></em></a></span>, de <%=at[1]%>.</li>
+                <li><span class="owlbooks-mostread-title"><a href="LibroEjemplar.do?titulo=<%=at[0]%>&autor=<%=at[1]%>&id=<%=at[3]%>&desc=<%=at[2]%>"><em><%=at[0]%></em></a></span>, de <%=at[1]%>.</li>
                 <%}
                 }%>
             </ol>

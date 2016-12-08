@@ -23,7 +23,7 @@
         if (librosList != null) {
         for (String libro : librosList) {
         String[] at = libro.split(","); %>
-        <a href="book.jsp"><div class="owlbooks-book">
+        <a href="LibroEjemplar.do?titulo=<%=at[0]%>&autor=<%=at[1]%>&id=<%=at[3]%>&desc=<%=at[2]%>"><div class="owlbooks-book">
             <div style="width:100px; height:140px; border:1px solid #000; background: #fff; float:left; margin-right:.9em;"></div>
             <h2 class="owlbooks-h-book"><%=at[0] %></h2>
             <p>de <%=at[1]%>.</p>

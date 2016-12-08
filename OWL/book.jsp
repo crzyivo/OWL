@@ -1,5 +1,6 @@
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
+         import="java.util.List,java.util.Arrays"
          pageEncoding="UTF-8"
 %><!DOCTYPE html>
 <html lang="es">
@@ -11,7 +12,7 @@
     </head>
     <body>
         <jsp:include page="includes/header.jsp" >
-            <jsp:param name="owlbooksLocation" value='Libros > El Quijote'/>
+            <jsp:param name="owlbooksLocation" value="Libros > ${titulo}"/>
         </jsp:include>
         <div class="owlbooks-container">
             <div class="owlbooks-navbar-left">
@@ -33,7 +34,7 @@
             </div>
             <div class="owlbooks-body">
                 <div class="owlbooks-section owlbooks-product">
-                    <h1><em>Nombre del libro</em><span class="owlbooks-secondary-text">, de Miguel de Cervantes Saavedra</span></h1>
+                    <h1><em><%=request.getAttribute("titulo")%></em><span class="owlbooks-secondary-text">, de <%=request.getAttribute("autor")%></span></h1>
                     <div class="owlbooks-product-actions">
                         <a href="#buy"><div class="owlbooks-product-action owlbooks-product-buy">Comprar este libro</div></a>
                         <a href=""><div class="owlbooks-product-action owlbooks-product-sell">Vender este libro</div></a>
@@ -50,39 +51,25 @@
                         <!--
                             Ejemplares del libro ordenados de menor a mayor precio.
                         -->
-                        <div class="owlbooks-product-copy">
-                            <ul class="owlbooks-product-copy-info">
-                                <li>Precio: <strong>5,99&nbsp;€</strong></li>
-                                <li>Editorial: <strong>Santillana</strong></li>
-                                <li>Año de publicación: 1999</li>
-                                <li>ISBN: 1234...89</li>
-                                <li>Vendedor: fulanito@detal.es</li>
-                                <li>Origen: Málaga</li>
-                            </ul>
-                            <a href=""><div class="owlbooks-product-action owlbooks-product-buy owlbooks-product-copy-buy">Comprar este ejemplar</div></a>
-                        </div>
-                        <div class="owlbooks-product-copy">
-                            <ul class="owlbooks-product-copy-info">
-                                <li>Precio: <strong>5,99&nbsp;€</strong></li>
-                                <li>Editorial: <strong>Santillana</strong></li>
-                                <li>Año de publicación: 1999</li>
-                                <li>ISBN: 1234...89</li>
-                                <li>Vendedor: fulanito@detal.es</li>
-                                <li>Origen: Málaga</li>
-                            </ul>
-                            <a href=""><div class="owlbooks-product-action owlbooks-product-buy owlbooks-product-copy-buy">Comprar este ejemplar</div></a>
-                        </div>
-                        <div class="owlbooks-product-copy">
-                            <ul class="owlbooks-product-copy-info">
-                                <li>Precio: <strong>5,99&nbsp;€</strong></li>
-                                <li>Editorial: <strong>Santillana</strong></li>
-                                <li>Año de publicación: 1999</li>
-                                <li>ISBN: 1234...89</li>
-                                <li>Vendedor: fulanito@detal.es</li>
-                                <li>Origen: Málaga</li>
-                            </ul>
-                            <a href=""><div class="owlbooks-product-action owlbooks-product-buy owlbooks-product-copy-buy">Comprar este ejemplar</div></a>
-                        </div>
+                        <div class="owlbooks-section owlbooks-categories"><% 
+                        List<String> ejemplaresList = (List<String>) request.getAttribute("libros"); 
+                        if (!(ejemplaresList.isEmpty())) {
+                            for (String libro : ejemplaresList) {
+                            String[] at = libro.split(","); %>
+                            <div class="owlbooks-product-copy">
+                                <ul class="owlbooks-product-copy-info">
+                                    <li>Precio: <strong><%=at[2]%>€</strong></li>
+                                    <li>Editorial: <strong><%=at[0]%></strong></li>
+                                    <li>Año de publicación: <%=at[1]%></li>
+                                    <li>ISBN: <%=at[3]%></li>
+                                    <li>Vendedor: <%=at[4]%></li>
+                                    <li>Origen: <%=at[5]%></li>
+                                    <li>Estado: <span class="owlbooks-product-copy-info-<%=at[2].toLowerCase()%>"><%=at[6]%></span></li>
+                                </ul>
+                                <a href=""><div class="owlbooks-product-action owlbooks-product-buy owlbooks-product-copy-buy">Comprar este ejemplar</div></a>
+                            </div>
+                            <%}
+                            }%>
                     </div>
                 </div>
             </div>
