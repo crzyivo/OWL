@@ -15,7 +15,7 @@ public class EjemplarDAO {
 		//No Connectuion, se trabajara con jdbtemplate
 		try{
 			 /* Create "preparedStatement". */
-            String queryString = "INSERT INTO libroF " +
+            String queryString = "INSERT INTO ejemplar " +
                 "(id, libro, editorial, estado, precio, vendedor, comprador, ISBN, anno)"+
             		"VALUES (?,?,?,?,?,?,?,?,?)";
             
@@ -40,7 +40,7 @@ public class EjemplarDAO {
 	public void actualizarEjemplar (EjemplarVO ejemplar, JDBCTemplate jdbctemp) {     
         try{
             /* Create "preparedStatement". */
-            String queryString = "UPDATE libroF " +
+            String queryString = "UPDATE ejemplar " +
                 "SET libro = ?, editorial = ?, estado = ?, " +
             	" precio = ?, vendedor = ?, comprador = ?, ISBN = ?, anno = ? WHERE  id = ?)";  
             jdbctemp.executeSentence(queryString, 
@@ -65,7 +65,7 @@ public class EjemplarDAO {
     	try{
             /* Create "preparedStatement". */
     		String sql="SELECT  libro, editorial, estado, precio, vendedor, comprador,"+
-            		" ISBN, anno, id FROM libroF WHERE  id = '"+id+"'";                    
+            		" ISBN, anno, id FROM ejemplar WHERE  id = '"+id+"'";                    
             
             /* Execute query. */   
             ArrayList<Object> resultSet=  jdbctemp.executeSentenceResult(sql);
@@ -73,15 +73,15 @@ public class EjemplarDAO {
             
             /* Execute query. */  
             if(!resultSet.isEmpty()){
-            int libro = Integer.parseInt (resultSet.get(0));
+            int libro = (Integer) resultSet.get(0);
             String editorial = (String) resultSet.get(1);
             String estado = (String) resultSet.get(2);
-            float precio = (float) resultSet.get(3);
+            float precio = (Float) resultSet.get(3);
             String vendedor = (String) resultSet.get(4);
             String comprador = (String) resultSet.get(5);
             String ISBN = (String) resultSet.get(6);
-            int anno = Integer.parseInt(resultSet.get(7));
-            int ids = Integer.parseInt (resultSet.get(8));
+            int anno = (Integer) resultSet.get(7);
+            int ids = (Integer) resultSet.get(8);
  
             ejemplarVO = new EjemplarVO (ids, libro, editorial, estado, precio,
             							vendedor, comprador, ISBN,anno);
@@ -102,14 +102,12 @@ public class EjemplarDAO {
     		if(parametro.equals("libro")||parametro.equals("anno")){
             /* Create "preparedStatement". */
     			sql="SELECT  libro, editorial, estado, precio, vendedor, comprador,"+
-            		" ISBN, anno, id FROM libroF WHERE "+ parametro+" = " +"'"+valueifint+"'"
-            		+" ORDER BY precio asc";  
+            		" ISBN, anno, id FROM ejemplar WHERE "+ parametro+" = " +"'"+valueifint+"'";  
     		}
     		else if(parametro.equals("editorial")||parametro.equals("comprador")||parametro.equals("vendedor")){
     			/* Create "preparedStatement". */
     			sql="SELECT  libro, editorial, estado, precio, vendedor, comprador,"+
-            		" ISBN, anno, id FROM libroF WHERE "+ parametro+" = " +"'"+valueifstring+"'"
-            		+" ORDER BY precio asc"; 
+            		" ISBN, anno, id FROM ejemplar WHERE "+ parametro+" = " +"'"+valueifstring+"'"; 
     			
     		}
             
@@ -119,13 +117,13 @@ public class EjemplarDAO {
             
             /* Execute query. */ 
             while(!resultSet.isEmpty()){
-            int libro = (int) resultSet.get(0);
+            int libro = (Integer) resultSet.get(0);
 		    resultSet.remove(0);
             String editorial = (String) resultSet.get(0);
 		    resultSet.remove(0);
             String estado = (String) resultSet.get(0);
 		    resultSet.remove(0);
-            float precio = (float) resultSet.get(0);
+            float precio = (Float) resultSet.get(0);
 		    resultSet.remove(0);
             String vendedor = (String) resultSet.get(0);
 		    resultSet.remove(0);
@@ -133,9 +131,9 @@ public class EjemplarDAO {
 		    resultSet.remove(0);
             String ISBN = (String) resultSet.get(0);
 		    resultSet.remove(0);
-            int anno = (int) resultSet.get(0);
+            int anno = (Integer) resultSet.get(0);
 		    resultSet.remove(0);
-            int ids = (int) resultSet.get(0);
+            int ids = (Integer) resultSet.get(0);
 		    resultSet.remove(0);
             	
             
@@ -157,7 +155,7 @@ public class EjemplarDAO {
 		//No Connectuion, se trabajara con jdbtemplate
 		try{
 			 /* Create "preparedStatement". */
-            String queryString = "DELETE * FROM libroF " +
+            String queryString = "DELETE * FROM ejemplar " +
                 "WHERE id = "+id;
             
             
