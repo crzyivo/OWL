@@ -102,12 +102,12 @@ public class EjemplarDAO {
     		if(parametro.equals("libro")||parametro.equals("anno")){
             /* Create "preparedStatement". */
     			sql="SELECT  libro, editorial, estado, precio, vendedor, comprador,"+
-            		" ISBN, anno, id FROM ejemplar WHERE "+ parametro+" = " +"'"+valueifint+"'";  
+            		" ISBN, anno, id FROM ejemplar WHERE "+ parametro+" = " +"'"+valueifint+"'"+" ORDER BY precio asc";  
     		}
     		else if(parametro.equals("editorial")||parametro.equals("comprador")||parametro.equals("vendedor")){
     			/* Create "preparedStatement". */
     			sql="SELECT  libro, editorial, estado, precio, vendedor, comprador,"+
-            		" ISBN, anno, id FROM ejemplar WHERE "+ parametro+" = " +"'"+valueifstring+"'"; 
+            		" ISBN, anno, id FROM ejemplar WHERE "+ parametro+" = " +"'"+valueifstring+"'"+" ORDER BY precio asc"; 
     			
     		}
             
