@@ -17,7 +17,7 @@ if (request.getAttribute("errorMessage") != null) {
 }
 %>
             <div class="owlbooks-logo">
-                <a href="index.jsp"><img src="images/logo.png" alt="Owl Books" /></a>
+                <a href="Index.do"><img src="images/logo.png" alt="Owl Books" /></a>
             </div>
             <div class="owlbooks-location"><%
             if (request.getParameter("owlbooksLocation") != null) { %>
