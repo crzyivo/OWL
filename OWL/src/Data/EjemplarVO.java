@@ -2,32 +2,30 @@ package Data;
 
 public class EjemplarVO{
 	
-	private int id;
-	private int libro;
+	private Integer id;
+	private Integer libro;
 	private String editorial;
 	private String estado; //excelente, bueno o deteriorado
-	private float precio;
+	private Float precio;
 	private String vendedor;
 	private String comprador;
 	private String ISBN;
-	private int anno;
+	private Integer anno;
 	
 	public EjemplarVO() {
 		this.id=-1;
 		this.libro=-1;
 		this.editorial="--";
 		this.estado = "No inicializado";
-		this.precio = -1;
+		this.precio = (float) -1;
 		this.vendedor=null;
 		this.comprador = null;
 		this.ISBN = null;
 		this.anno=0000;
-
-		
 	}
 	
-	public EjemplarVO( int id, int libro, String editorial, String estado, 
-		float precio, String vendedor, String comprador, String ISBN, int anno){
+	public EjemplarVO( Integer id, Integer libro, String editorial, String estado, 
+		float precio, String vendedor, String comprador, String ISBN, Integer anno){
 		this.id=id;
 		this.libro=libro;
 		this.editorial=editorial;
@@ -38,7 +36,7 @@ public class EjemplarVO{
 		this.ISBN = ISBN;
 		this.anno=anno;		
 	}
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
 
@@ -46,7 +44,7 @@ public class EjemplarVO{
 		this.id = id;
 	}
 
-	public int getLibro() {
+	public Integer getLibro() {
 		return this.libro;
 	}
 
@@ -70,7 +68,7 @@ public class EjemplarVO{
 		this.estado = estado;
 	}
 
-	public float getPrecio() {
+	public Float getPrecio() {
 		return this.precio;
 	}
 
@@ -102,7 +100,7 @@ public class EjemplarVO{
 		this.ISBN = ISBN;
 	}
 
-	public int getAnno() {
+	public Integer getAnno() {
 		return this.anno;
 	}
 
