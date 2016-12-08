@@ -2,31 +2,27 @@
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
 %><%
+{
 boolean login = false;
 if (session.getAttribute("user") == null) { %>
     <div class="owlbooks-header owlbooks-unlogged"><% 
 }
 else {
-    login=true;
-%>
+login = true; %>
     <div class="owlbooks-header owlbooks-loggedin"><% 
 }
 boolean error = false;
-if (request.getAttribute("errorMessage") != null) {
-    error=true;
-}
-%>
+if (session.getAttribute("errorMessage") != null) {
+error = true;
+} %>
             <div class="owlbooks-logo">
-                <a href="Index.do"><img src="images/logo.png" alt="Owl Books" /></a>
+                <a href="index.jsp"><img src="images/logo.png" alt="Owl Books" /></a>
             </div>
             <div class="owlbooks-location"><%
             if (request.getParameter("owlbooksLocation") != null) { %>
                 Estás&nbsp;en: <strong><a href="index.jsp">Portada</a> > ${param.owlbooksLocation}</strong>
             <% } %></div>
-            <div class="owlbooks-top-actions">
-                <a href=""><div class="owlbooks-basket">
-                    <img src="images/shopping-cart.png" alt="carrito" />
-                </div></a><%
+            <div class="owlbooks-top-actions"><%
                 if (error) { %>
                 <div class="owlbooks-login-display" id="owlbooks-login-display"><%
                 }
@@ -60,10 +56,11 @@ if (request.getAttribute("errorMessage") != null) {
                         <p class="owlbooks-login-welcome">¡Hola, Fulanito!</p>
                         <ul class="owlbooks-login-actions">
                             <a id="owlbooks-login-action-myaccount" href="account.jsp"><li>Mi cuenta »</li></a>
-                            <a id="owlbooks-login-actions-logout" href="logout.do"><li>Cerrar sesión »</li></a>
+                            <a id="owlbooks-login-actions-logout" href="logout.jsp"><li>Cerrar sesión »</li></a>
                         </ul><% 
                         } %>
                     </div>
                 </div>
             </div>
-        </div>
+        </div><% 
+} %>
