@@ -40,7 +40,7 @@
     <servlet-name>BorrarUsuarioServlet</servlet-name>
     <url-pattern>/BorrarUsuario.do</url-pattern>
   </servlet-mapping>
- <servlet>
+   <servlet>
     <servlet-name>LogoutServlet</servlet-name>
     <servlet-class>servlets.LogoutServlet</servlet-class>
  </servlet>
@@ -48,10 +48,27 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout.do</url-pattern>
   </servlet-mapping>
+     <servlet>
+    <servlet-name>LibrosCategoriaServlet</servlet-name>
+    <servlet-class>servlets.LibrosCategoriaServlet</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>LibrosCategoriaServlet</servlet-name>
+    <url-pattern>/Categoria.do</url-pattern>
+  </servlet-mapping>
+       <servlet>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>servlets.IndexServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexServlet</servlet-name>
+    <url-pattern>/Index.do</url-pattern>
+  </servlet-mapping>
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>Index.do</welcome-file>
   </welcome-file-list>
 </web-app>
