@@ -18,20 +18,19 @@
             <p>Nota: Se muestra una vista de la página principal con la sesión sin iniciar. Para consultar los detalles de una cuenta, pulsar <a href="account.jsp">aquí</a>.</p>
         </div>
         <h1 class="owlbooks-h-categories">Libros en la categoría «Ciencia&nbsp;ficción»</h1>
-        <div class="owlbooks-section owlbooks-categories">
-        <%List<String> librosList = (List<String>) request.getAttribute("libros"); 
-            if (librosList != null) {
-                for(String libro:librosList){
-                    String[] at = libro.split(",");{%>
-            <a href="book.jsp"><div class="owlbooks-book">
-                <div style="width:100px; height:140px; border:1px solid #000; background: #fff; float:left; margin-right:.9em;"></div>
-                <h2 class="owlbooks-h-book"><%=at[0] %></h2>
-                <p>de <%=at[1]%>.</p>
-                <p><%=at[2]%> ejemplares en venta.</p>
-            </div></a>
-                <%}
-                }
-            }%>
+        <div class="owlbooks-section owlbooks-categories"><% 
+        List<String> librosList = (List<String>) request.getAttribute("libros"); 
+        if (librosList != null) {
+        for (String libro : librosList) {
+        String[] at = libro.split(","); %>
+        <a href="book.jsp"><div class="owlbooks-book">
+            <div style="width:100px; height:140px; border:1px solid #000; background: #fff; float:left; margin-right:.9em;"></div>
+            <h2 class="owlbooks-h-book"><%=at[0] %></h2>
+            <p>de <%=at[1]%>.</p>
+            <p><%=at[2]%> ejemplares en venta.</p>
+        </div></a><% 
+        }
+        } %>
         </div>
         <%@include file="includes/footer.jsp" %>
     </body>
