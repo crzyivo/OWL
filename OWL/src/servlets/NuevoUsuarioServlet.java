@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import facades.UsuariosFacade;
+import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
@@ -55,10 +55,13 @@ public class NuevoUsuarioServlet extends HttpServlet {
 		
 			OwlUserVO usuario = new OwlUserVO(email,nombre,apellidos,telefono,nacimiento,calle,numero,piso,poblacion,provincia,pass);
 			try{
-				UsuariosFacade fachada = new UsuariosFacade();
+				OWLFacade fachada = new OWLFacade();
 				fachada.insertarNuevoUsuario(usuario,errorList);
 				if(errorList.isEmpty()){
-					RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("login.do");
+					request.setAttribute("owlbooks-correo", email);
+					request.setAttribute("owlbooks-clave", pass);
+					response.setHeader("Refresh", "0;url=Index.do");
 		            rd.forward(request, response);
 				}
 				else{

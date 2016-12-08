@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.*;
 
-import facades.UsuariosFacade;
+import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
@@ -41,7 +41,7 @@ public class LogoutServlet extends HttpServlet {
 			try{
 
 					request.getSession().invalidate();
-					RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("Index.do");
 	                rd.forward(request, response);
 
 

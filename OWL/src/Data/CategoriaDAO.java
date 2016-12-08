@@ -59,11 +59,32 @@ public class CategoriaDAO {
         try{
             /* Create "preparedStatement". */
             String queryString = "UPDATE categoria " +
-                "SET nombre = ?, nlibros = ?,  WHERE  nombre = ?)";  
+                "SET nombre = ?, nlibros = ?  WHERE  nombre = ?)";  
             jdbctemp.executeSentence(queryString, 
          		   categoria.getNombre(),
          		   categoria.getNLibros(),
          		   categoria.getNombre());
+            
+        } catch (Exception e) {
+        	System.out.println("DAO-Error al actualizar categoria: ");
+           // e.printStackTrace(System.err);
+        }                
+    } 
+	
+	public void actualizarCategorian (JDBCTemplate jdbctemp) {     
+        try{
+            /* Create "preparedStatement". */
+            String queryString = "SELECT nombre FROM categoria";  
+            List<Object> categorias = jdbctemp.executeSentenceResult(queryString);
+            for(Object name:categorias){
+            	String query2 = "Select count(*) from pertenece where categoria = '"+(String) name+"'";
+            	System.out.println(query2);
+            	List<Object> n = jdbctemp.executeSentenceResult(query2);
+            	int num = Integer.parseInt((String) n.get(0));
+            	String query3 = "UPDATE categoria SET nlibros = "+num+" where nombre = '"+(String) name+"'";
+            	System.out.println(query3);
+            	jdbctemp.executeSentence(query3);
+            }
             
         } catch (Exception e) {
         	System.out.println("DAO-Error al actualizar categoria: ");
@@ -178,7 +199,7 @@ public class CategoriaDAO {
             while(!resultSet.isEmpty()){
             String nombre = (String) resultSet.get(0);
 		    resultSet.remove(0);
-            int nlibros = Integer.parseInt((String) resultSet.get(i0));
+            int nlibros = Integer.parseInt((String) resultSet.get(0));
 		    resultSet.remove(0);
             
            	categoriaVO = new CategoriaVO (nombre,nlibros);

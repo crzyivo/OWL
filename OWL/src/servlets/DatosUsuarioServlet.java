@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import facades.UsuariosFacade;
+import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
@@ -46,7 +46,7 @@ public class DatosUsuarioServlet extends HttpServlet {
 			OwlUserVO usuario = new OwlUserVO();
 			try{
 			
-				UsuariosFacade fachada = new UsuariosFacade();
+				OWLFacade fachada = new OWLFacade();
 				String usuario_sesion=(String) request.getSession().getAttribute("user");
 				usuario = fachada.verUsuario(usuario_sesion);
 				String email = usuario.getEmail();

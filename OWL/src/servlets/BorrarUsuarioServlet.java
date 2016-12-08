@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import facades.UsuariosFacade;
+import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
@@ -41,11 +41,11 @@ public class BorrarUsuarioServlet extends HttpServlet {
 		}
 		if (!errores){
 			try{
-				UsuariosFacade fachada = new UsuariosFacade();
+				OWLFacade fachada = new OWLFacade();
 				fachada.borrarCuenta(email);
 				request.getSession().removeAttribute("user");
 				RequestDispatcher rd = request.getRequestDispatcher("exito_borrar.jsp");
-				response.setHeader("Refresh", "3;url=index.jsp");
+				response.setHeader("Refresh", "3;url=Index.do");
                 rd.forward(request, response);
 			}catch (Exception e){
 				e.printStackTrace(System.err);

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import facades.UsuariosFacade;
+import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
@@ -70,7 +70,7 @@ public class EditarUsuarioServlet extends HttpServlet {
 		if (!errores){
 			OwlUserVO usuario = new OwlUserVO (email, nombre, apellidos, telefono, nacimiento,calle, numero, piso,poblacion, provincia, pass);
 			try{
-				UsuariosFacade fachada = new UsuariosFacade();
+				OWLFacade fachada = new OWLFacade();
 				fachada.modificarUsuario(usuario,cambioPass,errorList);
 				if(errorList.isEmpty()){
 					RequestDispatcher rd = request.getRequestDispatcher("account.jsp");

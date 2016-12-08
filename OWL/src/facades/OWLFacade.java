@@ -2,6 +2,8 @@ package facades;
 
 import Data.CategoriaDAO;
 import Data.CategoriaVO;
+import Data.EjemplarDAO;
+import Data.EjemplarVO;
 import Data.LibroDAO;
 import Data.LibroVO;
 import Data.MysqlConnection;
@@ -154,7 +156,7 @@ public class OWLFacade{
 			}finally{
 				mysql.disconnect();
 			}
-	}
+}
 	public void librosPorCategorian(){
 		JDBCTemplate mysql=MysqlConnection.getConnection();
 		try{
@@ -187,5 +189,76 @@ public class OWLFacade{
 				mysql.disconnect();
 			}
 	}
+	
+	public List<LibroVO> librosMasLeidos(){
+		JDBCTemplate mysql=MysqlConnection.getConnection();
+		try{
+			mysql.connect();
+			LibroDAO OwlDAO=new LibroDAO();
+			List<LibroVO>resultado = new ArrayList();
+			resultado=OwlDAO.obtenerLibrosByVenta(mysql);
+			if(resultado.isEmpty()){
+				mysql.disconnect();
+				return null;
+				
+			}else{
+				mysql.disconnect();
+				return resultado;
+			}
+			
+			}catch (Exception e) {
+				       e.printStackTrace(System.err);
+				       return null;
+			}finally{
+				mysql.disconnect();
+			}
+	}
+	public List<EjemplarVO> EjemplaresLibro(int id){
+		JDBCTemplate mysql=MysqlConnection.getConnection();
+		try{
+			mysql.connect();
+			EjemplarDAO OwlDAO=new EjemplarDAO();
+			List<EjemplarVO>resultado = new ArrayList();
+			resultado=OwlDAO.obtenerEjemplaresBy("libro","",id,mysql);
+			if(resultado.isEmpty()){
+				mysql.disconnect();
+				return new ArrayList();
+				
+			}else{
+				mysql.disconnect();
+				return resultado;
+			}
+			
+			}catch (Exception e) {
+				       e.printStackTrace(System.err);
+				       return null;
+			}finally{
+				mysql.disconnect();
+			}
+	}
+	
+	public void insertarNuevoEjemplar(EjemplarVO ejemplar,List<String> errores) throws SQLException{
+		JDBCTemplate mysql=null;
+		try{
+			mysql=MysqlConnection.getConnection();
+			mysql.connect();
+			EjemplarDAO OwlDAO=new EjemplarDAO();
+			//ErrorsStrings.compruebaDatos(usuario,errores);
+			if(errores.isEmpty()){
+				OwlDAO.insertarEjemplar(ejemplar, mysql);
+
+			}
+			mysql.disconnect();
+			
+			}catch (Exception e) {
+					errores.add(e.getMessage());
+				       e.printStackTrace(System.err);
+				       
+			}finally{
+				mysql.disconnect();
+			}
+		
+	}
+	
 	
 }

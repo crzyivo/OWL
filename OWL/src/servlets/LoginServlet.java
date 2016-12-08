@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.*;
 
-import facades.UsuariosFacade;
+import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
 		if (!errores){
 			try{
 
-				UsuariosFacade fachada = new UsuariosFacade();
+				OWLFacade fachada = new OWLFacade();
 				goodLogin=fachada.comprobarLogin(email,pass);
 				if(goodLogin){
 					request.getSession().setAttribute("user", email);
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
 	                rd.forward(request, response);
 				}
 				else{
-					request.getSession().setAttribute("errorMessage", "Email o contraseña erroneos");
+					request.setAttribute("errorMessage", "Email o contraseña erroneos");
 					RequestDispatcher rd = request.getRequestDispatcher((String) request.getSession().getAttribute("current"));
                     rd.forward(request, response);
 				}

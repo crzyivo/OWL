@@ -12,19 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import facades.OWLFacade;
+import Data.EjemplarVO;
 import Data.LibroVO;
 import Data.OwlUserVO;
 
 /**
  * Servlet implementation class CrearUsuarioServlet
  */
-public class LibrosCategoriaServlet extends HttpServlet {
+public class LibrosEjemplaresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public LibrosCategoriaServlet() {
+    public LibrosEjemplaresServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -34,31 +35,38 @@ public class LibrosCategoriaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-	 	
-		String category = request.getParameter("categoria");
+	 	String titulo = request.getParameter("titulo");
+	 	String autor = request.getParameter("autor");
+	 	String descripcion = request.getParameter("desc");
+	 	int id = Integer.parseInt(request.getParameter("id"));
+		String origen;
 
-		List<LibroVO> librosvarios = new ArrayList();
+		List<EjemplarVO> ejemplaresvarios = new ArrayList();
 		List<String> listas = new ArrayList();
-		response.getWriter().append("Va");
 		try {
 			OWLFacade fachada = new OWLFacade(); 
-			response.getWriter().append("Va");
-			librosvarios=fachada.librosPorCategoria(category);
-			response.getWriter().append("Va");
-			librosvarios=librosvarios.subList(0, 45);
-			if((librosvarios!=null)){
-				for(LibroVO libro:librosvarios){
-					String s = libro.getTitulo()+","+libro.getAutor()+","+libro.getVentas()+","+libro.getId();
-					
+			ejemplaresvarios=fachada.EjemplaresLibro(id);
+			if((!ejemplaresvarios.isEmpty())){
+				for(EjemplarVO libro:ejemplaresvarios){
+					origen = fachada.verUsuario(libro.getVendedor()).getProvincia();
+					String s = libro.getEditorial()+","+libro.getAnno()+","+libro.getPrecio()+","+libro.getISBN()+","+libro.getVendedor()+","+origen+","+libro.getEstado();
 					listas.add(s);
 				}
+				RequestDispatcher rd = request.getRequestDispatcher("book.jsp");
 				request.setAttribute("libros",listas);
-				request.setAttribute("categoria", category);
-				RequestDispatcher rd = request.getRequestDispatcher("category.jsp");
+				request.setAttribute("titulo", titulo);
+				request.setAttribute("autor",autor);
+				request.setAttribute("descripcion",descripcion);
+				request.setAttribute("id", id);
 	            rd.forward(request, response);
 			}else{
-				RequestDispatcher rd = request.getRequestDispatcher("Index.do");
-	            rd.forward(request, response);
+				RequestDispatcher rd = request.getRequestDispatcher("book.jsp");
+				request.setAttribute("noLibros", "1");
+				request.setAttribute("libros",listas);
+				request.setAttribute("titulo", titulo);
+				request.setAttribute("autor",autor);
+				request.setAttribute("descripcion",descripcion);
+				request.setAttribute("id", id);
 			}
 			
 		}catch (Exception e){

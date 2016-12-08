@@ -123,6 +123,46 @@ public class LibroDAO {
         }
     	return lista;
     }
+    public List<LibroVO> obtenerLibrosByVenta (JDBCTemplate jdbctemp){     
+    	LibroVO libroVO = new LibroVO ();
+    	List<LibroVO> lista = new ArrayList <LibroVO>();
+    	String sql="";
+    	try{
+    		
+            /* Create "preparedStatement". */
+    			sql="SELECT  titulo, autor, descripcion, ventas, id"+
+            		"  FROM libro ORDER BY ventas desc LIMIT 5";  
+
+            
+            /* Execute query. */   
+            ArrayList<Object> resultSet=  jdbctemp.executeSentenceResult(sql);
+                   
+            
+            /* Execute query. */ 
+            while(!resultSet.isEmpty()){
+            String titulo = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            String autort = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            String descripcion = (String) resultSet.get(0);
+		    resultSet.remove(0);
+            int ventas = Integer.parseInt((String) resultSet.get(0));
+		    resultSet.remove(0);
+            int id = Integer.parseInt((String) resultSet.get(0));
+		    resultSet.remove(0);
+            
+            	
+            
+           	libroVO = new LibroVO (id, titulo, autort, descripcion, ventas);
+           	lista.add(libroVO);
+            }
+             
+                
+        } catch (Exception e) {
+            e.printStackTrace(System.err);
+        }
+    	return lista;
+    }
     
     
     
