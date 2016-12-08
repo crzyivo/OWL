@@ -26,6 +26,13 @@ box-shadow: 0px 3px 5px 1px rgba(0,0,0,0.05);
 .owlbooks-mostread-title {
     font-size: 120%;
 }
+.owlbooks-mostread li:first-child {
+    font-size: 130%;
+    font-weight:bold;
+}
+.owlbooks-mostread li:nth-child(2),.owlbooks-mostread li:nth-child(3) {
+    font-weight:bold;
+}
 .owlbooks-category {
     width: 300px;
     min-height:120px;
