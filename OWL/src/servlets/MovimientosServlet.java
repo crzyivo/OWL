@@ -12,19 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import facades.OWLFacade;
+import Data.EjemplarVO;
 import Data.LibroVO;
 import Data.OwlUserVO;
 
 /**
  * Servlet implementation class CrearUsuarioServlet
  */
-public class LibrosCategoriaServlet extends HttpServlet {
+public class MovimientosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
 	 */
-	public LibrosCategoriaServlet() {
+	public MovimientosServlet() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -36,32 +37,40 @@ public class LibrosCategoriaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String category = request.getParameter("categoria");
-
+		String user = (String) request.getSession().getAttribute("user");
 		List<LibroVO> librosvarios = new ArrayList();
-		List<String> listas = new ArrayList();
-
+		List<String> listasV = new ArrayList();
+		List<String> listasC = new ArrayList();
+		List<EjemplarVO> ventas = new ArrayList();
+		List<EjemplarVO> compras = new ArrayList();
+		List<List<EjemplarVO>> mov = new ArrayList();
 		try {
 			OWLFacade fachada = new OWLFacade();
+			mov = fachada.movimientosUsuario(user);
+			ventas = mov.get(0);
+			compras = mov.get(1);
+			if (!(ventas.isEmpty())) {
+				for (EjemplarVO libro : ventas) {
+					LibroVO lib = fachada.VerLibro(libro.getLibro());
+					String s = libro.getfventa() + "," + libro.getId() + "-" + lib.getTitulo() + " " + lib.getAutor()
+							+ "," + libro.getPrecio() + ", Puesta a la Venta";
 
-			librosvarios = fachada.librosPorCategoria(category);
-
-			librosvarios = librosvarios.subList(0, 45);
-			if ((librosvarios != null)) {
-				for (LibroVO libro : librosvarios) {
-					String s = libro.getTitulo() + "," + libro.getAutor() + "," + libro.getVentas() + ","
-							+ libro.getId();
-
-					listas.add(s);
+					listasV.add(s);
 				}
-				request.setAttribute("libros", listas);
-				request.setAttribute("categoria", category);
-				RequestDispatcher rd = request.getRequestDispatcher("category.jsp");
-				rd.forward(request, response);
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("Index.do");
-				rd.forward(request, response);
+				request.setAttribute("ventas", listasV);
 			}
+			if (!(compras.isEmpty())) {
+				for (EjemplarVO libro : compras) {
+					LibroVO lib = fachada.VerLibro(libro.getLibro());
+					String s = libro.getfcompra() + "," + libro.getId() + "-" + lib.getTitulo() + " " + lib.getAutor()
+							+ "," + libro.getPrecio() + ", Compra";
+
+					listasC.add(s);
+				}
+				request.setAttribute("compras", listasC);
+			}
+			RequestDispatcher rd = request.getRequestDispatcher("account_activity.jsp");
+			rd.forward(request, response);
 
 		} catch (Exception e) {
 			e.printStackTrace(System.err);

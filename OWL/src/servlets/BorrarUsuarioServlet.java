@@ -18,48 +18,52 @@ import Data.OwlUserVO;
 public class BorrarUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public BorrarUsuarioServlet() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public BorrarUsuarioServlet() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-	 	
-		boolean errores = true;	
+
+		boolean errores = true;
 		String email = (String) request.getSession().getAttribute("user");
-		if (email != null){
-			if (!email.trim().equals(new String(""))){
+		if (email != null) {
+			if (!email.trim().equals(new String(""))) {
 				errores = false;
 			}
 		}
-		if (!errores){
-			try{
+		if (!errores) {
+			try {
 				OWLFacade fachada = new OWLFacade();
 				fachada.borrarCuenta(email);
 				request.getSession().removeAttribute("user");
 				RequestDispatcher rd = request.getRequestDispatcher("exito_borrar.jsp");
 				response.setHeader("Refresh", "3;url=Index.do");
-                rd.forward(request, response);
-			}catch (Exception e){
+				rd.forward(request, response);
+			} catch (Exception e) {
 				e.printStackTrace(System.err);
 			}
-		}else{
+		} else {
 			response.sendRedirect("errorInterno.html");
 		}
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

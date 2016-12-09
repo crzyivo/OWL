@@ -19,35 +19,36 @@ import Data.OwlUserVO;
 public class DatosUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public DatosUsuarioServlet() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public DatosUsuarioServlet() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-	 	
+
 		boolean errores = true;
-		
-		
-	if (request.getSession().getAttribute("user") != null){
-			if (!request.getSession().getAttribute("user").equals(new String(""))){
-				
+
+		if (request.getSession().getAttribute("user") != null) {
+			if (!request.getSession().getAttribute("user").equals(new String(""))) {
+
 				errores = false;
 			}
 		}
-		if (!errores){
+		if (!errores) {
 			OwlUserVO usuario = new OwlUserVO();
-			try{
-			
+			try {
+
 				OWLFacade fachada = new OWLFacade();
-				String usuario_sesion=(String) request.getSession().getAttribute("user");
+				String usuario_sesion = (String) request.getSession().getAttribute("user");
 				usuario = fachada.verUsuario(usuario_sesion);
 				String email = usuario.getEmail();
 				String nombre = usuario.getNombre();
@@ -71,22 +72,24 @@ public class DatosUsuarioServlet extends HttpServlet {
 				request.setAttribute("poblacion", poblacion);
 				request.setAttribute("provincia", provincia);
 				request.getSession().setAttribute("password", pass);
-			}catch (Exception e){
+			} catch (Exception e) {
 				e.printStackTrace(System.err);
 			}
 			RequestDispatcher rd = request.getRequestDispatcher("account_personal.jsp");
-            rd.forward(request, response);
-			
-		}else{
+			rd.forward(request, response);
+
+		} else {
 			response.sendRedirect("errorInterno.html");
 		}
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

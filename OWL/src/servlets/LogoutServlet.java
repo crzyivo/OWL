@@ -16,49 +16,49 @@ import Data.OwlUserVO;
  */
 public class LogoutServlet extends HttpServlet {
 
-    /**
-     * Default constructor. 
-     */
-    public LogoutServlet() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public LogoutServlet() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	 	
+
 		boolean errores = true;
-		
-		
-		if (request.getSession().getAttribute("user") != null){
-			if (!request.getSession().getAttribute("user").equals(new String(""))){
+
+		if (request.getSession().getAttribute("user") != null) {
+			if (!request.getSession().getAttribute("user").equals(new String(""))) {
 				errores = false;
 			}
 		}
-		if (!errores){
-			try{
+		if (!errores) {
+			try {
 
-					request.getSession().invalidate();
-					RequestDispatcher rd = request.getRequestDispatcher("Index.do");
-	                rd.forward(request, response);
+				request.getSession().invalidate();
+				RequestDispatcher rd = request.getRequestDispatcher("Index.do");
+				rd.forward(request, response);
 
-
-	
-				
-			}catch (Exception e){
+			} catch (Exception e) {
 				e.printStackTrace(System.err);
 			}
 
 		}
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

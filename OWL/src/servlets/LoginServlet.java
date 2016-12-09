@@ -16,58 +16,62 @@ import Data.OwlUserVO;
  */
 public class LoginServlet extends HttpServlet {
 
-    /**
-     * Default constructor. 
-     */
-    public LoginServlet() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public LoginServlet() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	 	
+
 		boolean errores = false;
 		String email = request.getParameter("owlbooks-correo");
 		String pass = request.getParameter("owlbooks-clave");
 		boolean goodLogin;
-		
-		
-		if (email != null){
-			if (!email.trim().equals(new String(""))){
+
+		if (email != null) {
+			if (!email.trim().equals(new String(""))) {
 				errores = false;
 			}
 		}
-		if (!errores){
-			try{
+		if (!errores) {
+			try {
 
 				OWLFacade fachada = new OWLFacade();
-				goodLogin=fachada.comprobarLogin(email,pass);
-				if(goodLogin){
+				goodLogin = fachada.comprobarLogin(email, pass);
+				OwlUserVO user = fachada.verUsuario(email);
+				if (goodLogin) {
 					request.getSession().setAttribute("user", email);
-					RequestDispatcher rd = request.getRequestDispatcher((String) request.getSession().getAttribute("current"));
-	                rd.forward(request, response);
+					request.getSession().setAttribute("username", user.getNombre());
+					RequestDispatcher rd = request.getRequestDispatcher("Index.do");
+					rd.forward(request, response);
+				} else {
+					request.getSession().setAttribute("errorMessage", "Email o contraseña erroneos");
+					RequestDispatcher rd = request.getRequestDispatcher("Index.do");
+					rd.forward(request, response);
 				}
-				else{
-					request.setAttribute("errorMessage", "Email o contraseña erroneos");
-					RequestDispatcher rd = request.getRequestDispatcher((String) request.getSession().getAttribute("current"));
-                    rd.forward(request, response);
-				}
-				
-			}catch (Exception e){
+
+			} catch (Exception e) {
 				e.printStackTrace(System.err);
 			}
 
 		}
-		
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

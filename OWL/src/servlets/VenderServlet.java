@@ -2,7 +2,6 @@ package servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,13 +17,13 @@ import Data.OwlUserVO;
 /**
  * Servlet implementation class CrearUsuarioServlet
  */
-public class LibrosCategoriaServlet extends HttpServlet {
+public class VenderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
 	 */
-	public LibrosCategoriaServlet() {
+	public VenderServlet() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -35,37 +34,38 @@ public class LibrosCategoriaServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		String category = request.getParameter("categoria");
+		boolean errores = true;
+		LibroVO lib = new LibroVO();
+		int libro = Integer.parseInt(request.getParameter("id"));
 
-		List<LibroVO> librosvarios = new ArrayList();
-		List<String> listas = new ArrayList();
+		if (request.getSession().getAttribute("user") != null) {
+			if (!request.getSession().getAttribute("user").equals(new String(""))) {
 
-		try {
-			OWLFacade fachada = new OWLFacade();
-
-			librosvarios = fachada.librosPorCategoria(category);
-
-			librosvarios = librosvarios.subList(0, 45);
-			if ((librosvarios != null)) {
-				for (LibroVO libro : librosvarios) {
-					String s = libro.getTitulo() + "," + libro.getAutor() + "," + libro.getVentas() + ","
-							+ libro.getId();
-
-					listas.add(s);
-				}
-				request.setAttribute("libros", listas);
-				request.setAttribute("categoria", category);
-				RequestDispatcher rd = request.getRequestDispatcher("category.jsp");
-				rd.forward(request, response);
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("Index.do");
-				rd.forward(request, response);
+				errores = false;
 			}
-
-		} catch (Exception e) {
-			e.printStackTrace(System.err);
 		}
+		if (!errores) {
+
+			try {
+				OWLFacade fachada = new OWLFacade();
+				lib = fachada.VerLibro(libro);
+				request.setAttribute("titulo", lib.getTitulo());
+				request.setAttribute("id", libro);
+				request.setAttribute("autor", lib.getAutor());
+			} catch (Exception e) {
+				e.printStackTrace(System.err);
+			}
+			RequestDispatcher rd = request.getRequestDispatcher("put_on_sale.jsp");
+			rd.forward(request, response);
+
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("LibroEjemplar.do?id=" + libro);
+			request.setAttribute("errorlogin", "1");
+			rd.forward(request, response);
+		}
+
 	}
 
 	/**

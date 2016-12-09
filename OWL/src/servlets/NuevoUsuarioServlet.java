@@ -20,25 +20,25 @@ import Data.OwlUserVO;
 public class NuevoUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * Default constructor. 
-     */
-    public NuevoUsuarioServlet() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public NuevoUsuarioServlet() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-	 	
-		boolean errores = false;
 		String email = request.getParameter("correo");
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");
-		int telefono=Integer.parseInt(request.getParameter("telefono"));
+		int telefono = Integer.parseInt(request.getParameter("telefono"));
 		int nacimiento = Integer.parseInt(request.getParameter("nacimiento"));
 		String calle = request.getParameter("calle");
 		String numero = request.getParameter("numero");
@@ -48,47 +48,47 @@ public class NuevoUsuarioServlet extends HttpServlet {
 		String pass = request.getParameter("clave");
 		String cpass = request.getParameter("confirmarclave");
 		List<String> errorList = new ArrayList();
-		if(!(pass.equals(cpass))){
+		if (!(pass.equals(cpass))) {
 			errorList.add("Las contraseñas no coinciden");
 			pass = "";
 		}
-		
-			OwlUserVO usuario = new OwlUserVO(email,nombre,apellidos,telefono,nacimiento,calle,numero,piso,poblacion,provincia,pass);
-			try{
-				OWLFacade fachada = new OWLFacade();
-				fachada.insertarNuevoUsuario(usuario,errorList);
-				if(errorList.isEmpty()){
-					RequestDispatcher rd = request.getRequestDispatcher("login.do");
-					request.setAttribute("owlbooks-correo", email);
-					request.setAttribute("owlbooks-clave", pass);
-					response.setHeader("Refresh", "0;url=Index.do");
-		            rd.forward(request, response);
-				}
-				else{
-					request.setAttribute("errors", errorList);
-					request.setAttribute("correo", email);
-					request.setAttribute("nombre", nombre);
-					request.setAttribute("apellidos", apellidos);
-					request.setAttribute("telefono", telefono);
-					request.setAttribute("nacimiento", nacimiento);
-					request.setAttribute("calle", calle);
-					request.setAttribute("numero", numero);
-					request.setAttribute("piso", piso);
-					request.setAttribute("poblacion", poblacion);
-					request.setAttribute("provincia", provincia);
-					RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
-		            rd.forward(request, response);
-				}
-			}catch (Exception e){
-				e.printStackTrace(System.err);
+
+		OwlUserVO usuario = new OwlUserVO(email, nombre, apellidos, telefono, nacimiento, calle, numero, piso,
+				poblacion, provincia, pass);
+		try {
+			OWLFacade fachada = new OWLFacade();
+			fachada.insertarNuevoUsuario(usuario, errorList);
+			if (errorList.isEmpty()) {
+				RequestDispatcher rd = request.getRequestDispatcher("Index.do");
+				request.getSession().setAttribute("user", email);
+				request.getSession().setAttribute("username", nombre);
+				rd.forward(request, response);
+			} else {
+				request.setAttribute("errors", errorList);
+				request.setAttribute("correo", email);
+				request.setAttribute("nombre", nombre);
+				request.setAttribute("apellidos", apellidos);
+				request.setAttribute("telefono", telefono);
+				request.setAttribute("nacimiento", nacimiento);
+				request.setAttribute("calle", calle);
+				request.setAttribute("numero", numero);
+				request.setAttribute("piso", piso);
+				request.setAttribute("poblacion", poblacion);
+				request.setAttribute("provincia", provincia);
+				RequestDispatcher rd = request.getRequestDispatcher("signup.jsp");
+				rd.forward(request, response);
 			}
+		} catch (Exception e) {
+			e.printStackTrace(System.err);
 		}
-		
+	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
