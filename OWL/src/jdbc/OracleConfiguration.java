@@ -15,13 +15,13 @@ public class OracleConfiguration implements Configuration {
 		this.port = port;
 		this.sid = sid;
 	}
-	
+
 	public String getDriver() {
 		return "oracle.jdbc.driver.OracleDriver";
 	}
 
 	public String getURL() {
-		return "jdbc:oracle:thin:@" + getHost() + ":" + getPort() +":" + getSid();
+		return "jdbc:oracle:thin:@" + getHost() + ":" + getPort() + ":" + getSid();
 	}
 
 	private String getSid() {
@@ -29,7 +29,7 @@ public class OracleConfiguration implements Configuration {
 	}
 
 	private String getPort() {
-		return port == null?"1521":port;
+		return port == null ? "1521" : port;
 	}
 
 	private String getHost() {

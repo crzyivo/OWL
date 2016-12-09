@@ -1,14 +1,13 @@
 package jdbc;
+
 import java.sql.*;
 import java.util.ArrayList;
-
-
 
 /**
  * Clase para acceder a una BD Oracle
  */
 public class JDBCTemplate {
-	
+
 	/**
 	 * CaDena de caracteres con el nombre de usuario, o login, a emplear para
 	 * conectarse a la BD
@@ -23,17 +22,16 @@ public class JDBCTemplate {
 	 * Conexion con la BD
 	 */
 	Connection connection = null;
-	
+
 	Configuration config = null;
 
 	/**
 	 * Metodo constructor. Asigna los valores de usuario, password, host, puerto
 	 * y nombre de la bd, para que posteriormente pueda hacerse la conexion
-
+	 * 
 	 */
-	public JDBCTemplate(Configuration config, String user,
-			String password) throws InstantiationException,
-			IllegalAccessException, ClassNotFoundException {
+	public JDBCTemplate(Configuration config, String user, String password)
+			throws InstantiationException, IllegalAccessException, ClassNotFoundException {
 		this.config = config;
 		this.user = user;
 		this.password = password;
@@ -131,21 +129,20 @@ public class JDBCTemplate {
 
 	}
 
-	
-	public ResultSet executeQueryResult(String sqlorig,String email) {
+	public ResultSet executeQueryResult(String sqlorig, String email) {
 
 		// Creamos una sentencia para poder usarla con la conexion que
 		// tenemos abierta
 		Statement stmt = null;
 		ResultSet rs;
-		String sql= sqlorig.substring(0,sqlorig.length()-1);
-		sql+=email;
+		String sql = sqlorig.substring(0, sqlorig.length() - 1);
+		sql += email;
 		try {
 			System.out
 					.println("---------------------------------------------------------------------------------------");
 			stmt = connection.createStatement();
 			// Formulamos la pregunta y obtenemos el resultado
-			 rs = stmt.executeQuery(sql);
+			rs = stmt.executeQuery(sql);
 
 			// Convertiremos el resutlado obtenido (tabla), en una cadena de
 			// caracteres
@@ -174,14 +171,14 @@ public class JDBCTemplate {
 			return rs;
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
-			rs=null;
+			rs = null;
 		} finally {
 			System.out
 					.println("---------------------------------------------------------------------------------------");
 			if (stmt != null) {
 				try {
 					stmt.close();
-					
+
 				} catch (SQLException e) {
 				}
 			}
@@ -189,11 +186,7 @@ public class JDBCTemplate {
 		return rs;
 
 	}
-	
-	
-	
-	
-	
+
 	/**
 	 * Metodo para ejecutar una sentencia SQL que no sea una pregunta, es decir,
 	 * que no devuelva una tabla como resultado.
@@ -223,14 +216,14 @@ public class JDBCTemplate {
 		}
 	}
 
-	public void executeSentence(String sql, Object...params) {
+	public void executeSentence(String sql, Object... params) {
 		PreparedStatement stmt = null;
 		try {
 			System.out
 					.println("---------------------------------------------------------------------------------------");
 			stmt = connection.prepareStatement(sql);
-			for(int i = 0; i<params.length; i++) {
-				stmt.setObject(i+1, params[i]);
+			for (int i = 0; i < params.length; i++) {
+				stmt.setObject(i + 1, params[i]);
 			}
 			int resultado = stmt.executeUpdate();
 			System.out.println(resultado);
@@ -247,8 +240,8 @@ public class JDBCTemplate {
 			}
 		}
 	}
-	
-	public ArrayList<Object> executeSentenceResult(String sql, Object...params) {
+
+	public ArrayList<Object> executeSentenceResult(String sql, Object... params) {
 		PreparedStatement stmt = null;
 		ArrayList<Object> list = new ArrayList<Object>();
 		ResultSet rs;
@@ -256,13 +249,13 @@ public class JDBCTemplate {
 			System.out
 					.println("---------------------------------------------------------------------------------------");
 			stmt = connection.prepareStatement(sql);
-			for(int i = 0; i<params.length; i++) {
-				stmt.setObject(i+1, params[i]);
+			for (int i = 0; i < params.length; i++) {
+				stmt.setObject(i + 1, params[i]);
 			}
-			//int resultado = stmt.executeUpdate();
-			//rs=stmt.executeUpdate();
-			rs=stmt.executeQuery();
-			//System.out.println(resultado);
+			// int resultado = stmt.executeUpdate();
+			// rs=stmt.executeUpdate();
+			rs = stmt.executeQuery();
+			// System.out.println(resultado);
 			ResultSetMetaData rsmd = rs.getMetaData();
 			int numberOfColumns = rsmd.getColumnCount();
 
@@ -283,13 +276,12 @@ public class JDBCTemplate {
 				}
 				System.out.println();
 			}
-			//return rs;
+			// return rs;
 			return list;
-			
-			
+
 		} catch (SQLException e) {
 			System.out.println("Error: " + e.getMessage());
-			rs=null;
+			rs = null;
 		} finally {
 			System.out
 					.println("---------------------------------------------------------------------------------------");
@@ -300,7 +292,7 @@ public class JDBCTemplate {
 				}
 			}
 		}
-		//return rs;
+		// return rs;
 		return list;
 	}
 

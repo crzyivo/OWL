@@ -1,4 +1,5 @@
 package jdbc;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -10,7 +11,7 @@ import java.util.Iterator;
 public class Cursor implements Iterable<Cursor> {
 
 	final ResultSet rs;
-	
+
 	public Cursor(ResultSet rs) {
 		this.rs = rs;
 	}
@@ -38,7 +39,7 @@ public class Cursor implements Iterable<Cursor> {
 
 			public void remove() {
 			}
-			
+
 		};
 	}
 

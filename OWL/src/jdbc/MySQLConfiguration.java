@@ -15,13 +15,13 @@ public class MySQLConfiguration implements Configuration {
 		this.port = port;
 		this.dbName = dbName;
 	}
-	
+
 	public String getDriver() {
 		return "com.mysql.jdbc.Driver";
 	}
 
 	public String getURL() {
-		return "jdbc:mysql://" + getHost() + ":" + getPort() +"/" + getDBName();
+		return "jdbc:mysql://" + getHost() + ":" + getPort() + "/" + getDBName();
 	}
 
 	private String getDBName() {
@@ -29,7 +29,7 @@ public class MySQLConfiguration implements Configuration {
 	}
 
 	private String getPort() {
-		return port == null?"3306":port;
+		return port == null ? "3306" : port;
 	}
 
 	private String getHost() {
