@@ -1,23 +1,21 @@
 package Data;
 
-public class CategoriaVO{
-	
+public class CategoriaVO {
+
 	private int nlibros;
 	private String nombre;
 
-
-	
 	public CategoriaVO() {
 		this.nlibros = -1;
-		this.nombre = "Catgoria Vacía";
-		
+		this.nombre = "Catgoria Vacï¿½a";
+
 	}
-	
-	public CategoriaVO(String nombre, int nlibros){
+
+	public CategoriaVO(String nombre, int nlibros) {
 		this.nombre = nombre;
-		this.nlibros = nlibros;	
+		this.nlibros = nlibros;
 	}
-	
+
 	public String getNombre() {
 		return this.nombre;
 	}
@@ -33,5 +31,5 @@ public class CategoriaVO{
 	public void setNLibros(int nlibros) {
 		this.nlibros = nlibros;
 	}
-	
+
 };

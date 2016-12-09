@@ -7,30 +7,30 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class OwlUserVO {
-	private String email=null;
-	private String nombre=null;
-	private String apellidos=null;
+	private String email = null;
+	private String nombre = null;
+	private String apellidos = null;
 	private Integer nacimiento = 9999;
 	private Integer tlfn = 999999999;
-	private String calle=null;
+	private String calle = null;
 	private String numero = "";
 	private String piso = "";
-	private String poblacion=null;
-	private String provincia=null;
-	private String pass=null;
-	
-	public OwlUserVO(){
-		this.email=null;
-		this.nombre=null;
-		this.apellidos=null;
+	private String poblacion = null;
+	private String provincia = null;
+	private String pass = null;
+
+	public OwlUserVO() {
+		this.email = null;
+		this.nombre = null;
+		this.apellidos = null;
 		this.nacimiento = 9999;
 		this.tlfn = 999999999;
-		this.calle=null;
+		this.calle = null;
 		this.numero = "";
 		this.piso = "";
-		this.poblacion=null;
-		this.provincia=null;
-		this.pass=null;
+		this.poblacion = null;
+		this.provincia = null;
+		this.pass = null;
 	};
 
 	public OwlUserVO(String email, String nombre, String apellidos, Integer tlfn, Integer nacimiento, String calle,
@@ -47,7 +47,7 @@ public class OwlUserVO {
 		this.calle = calle;
 
 		this.nacimiento = nacimiento;
-		
+
 		this.numero = numero;
 
 		this.piso = piso_puerta;
