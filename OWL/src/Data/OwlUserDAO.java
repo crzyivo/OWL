@@ -104,7 +104,7 @@ public class OwlUserDAO {
 		try{
 			 /* Create "preparedStatement". */
             String queryString = "DELETE * FROM ejemplar " +
-                    "WHERE vendedor = "+usuario.getEmail()+" and comprador = 'null'";
+                    "WHERE vendedor = "+usuario.getEmail()+" and comprador is NULL";
                   jdbctemp.executeQuery(queryString);
 			
              queryString = "UPDATE ejemplar "
