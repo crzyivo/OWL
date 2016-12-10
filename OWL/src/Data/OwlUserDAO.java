@@ -99,24 +99,24 @@ public class OwlUserDAO {
     	return usuarioVO;
     }  
     
-    public void borrarUsuario (OwlUserVO usuario, JDBCTemplate jdbctemp){
-		//No Connectuion, se trabajara con jdbtemplate
+    public void borrarUsuario (String usuario, JDBCTemplate jdbctemp){
+		//No Connection, se trabajara con jdbtemplate
 		try{
 			 /* Create "preparedStatement". */
-            String queryString = "DELETE * FROM ejemplar " +
-                    "WHERE vendedor = "+usuario.getEmail()+" and comprador is NULL";
-                  jdbctemp.executeQuery(queryString);
+            String queryString = "DELETE FROM ejemplar " +
+                    "WHERE vendedor = '"+usuario+"'"+" and comprador is NULL";
+                  jdbctemp.executeSentence(queryString);
 			
              queryString = "UPDATE ejemplar "
              		+ "Set ejemplar.vendedor = 'usuario@borrado' " +
-                "WHERE vendedor = "+usuario.getEmail();
-             jdbctemp.executeQuery(queryString);
+                "WHERE vendedor = '"+usuario+"'";
+             jdbctemp.executeSentence(queryString);
              
-             queryString = "DELETE * FROM usuario " +
-                     "WHERE email = "+usuario.getEmail();
+             queryString = "DELETE FROM usuario " +
+                     "WHERE email = '"+usuario+"'";
             
             
-            jdbctemp.executeQuery(queryString);
+            jdbctemp.executeSentence(queryString);
 
 		}catch (Exception e){
 			System.out.println("DAO-Error al borrar: ");
@@ -124,5 +124,4 @@ public class OwlUserDAO {
 		}
 		
 	}
-
 }
