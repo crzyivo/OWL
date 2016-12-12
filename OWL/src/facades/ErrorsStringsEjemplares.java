@@ -8,6 +8,8 @@ import Data.EjemplarVO;
 
 public class ErrorsStringsEjemplares {
 
+	// private final static List<String> LISTA_CENTIMOS_POSIBLES =
+	// Arrays.asList("00,05,09,10,15,19,20,25,29,30,35,39,40,45,49,50,55,59,60,65,69,70,75,79,80,85,89,90,95,99".split(","));
 	private final static List<String> LISTA_ESTADOS_CONSERVACION = Arrays
 			.asList("Excelente,Bueno,Deteriorado".split(","));
 
@@ -28,7 +30,8 @@ public class ErrorsStringsEjemplares {
 		final Integer id = ejemplar.getId();
 		final Integer libro = ejemplar.getLibro();
 		final String editorial = ejemplar.getEditorial();
-		final String estado = ejemplar.getEstado(); // excelente, bueno o deteriorado
+		final String estado = ejemplar.getEstado(); // excelente, bueno o
+													// deteriorado
 		final Float precio = ejemplar.getPrecio();
 		final String vendedor = ejemplar.getVendedor();
 		final String comprador = ejemplar.getComprador();

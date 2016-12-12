@@ -20,7 +20,10 @@ import facades.ErrorsStrings;
 import java.sql.Connection;
 
 public class OWLFacade {
-
+	/*
+	 * Pre: "usuario" contiene un usuario inicializado correctamente.
+	 * Post:En caso de errores en el usuario, los devuelve en "errores". Si no, añade a la base el usuario.
+	 */
 	public void insertarNuevoUsuario(OwlUserVO usuario, List<String> errores) throws SQLException {
 		JDBCTemplate mysql = null;
 		OwlUserVO test = new OwlUserVO();
@@ -51,7 +54,10 @@ public class OWLFacade {
 		}
 
 	}
-
+	/*
+	 * Pre: "usuario" contiene un usario creado correctamente y existente en la base.
+	 * Post: En caso de errores en el usuario, los devuelve en "errores". Si no, modifica en la  base el usuario.
+	 */
 	public void modificarUsuario(OwlUserVO usuario, boolean pass, List<String> errores) {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -81,7 +87,10 @@ public class OWLFacade {
 
 	}
 
-	// Obtiene datos de un usuario a partir de su mail.
+	/*
+	 * Pre:---
+	 * Post:Obtiene datos de un usuario a partir de su mail.
+	 */
 	public OwlUserVO verUsuario(String email) {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -98,7 +107,10 @@ public class OWLFacade {
 			mysql.disconnect();
 		}
 	}
-
+	/*
+	 * Pre:---
+	 * Post:Borra el usuario "email"
+	 */
 	public void borrarCuenta(String email) {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -114,7 +126,11 @@ public class OWLFacade {
 		}
 
 	}
-
+	/*
+	 * Pre:---
+	 * Post: Devuelve TRUE si el usuario "usuario" existe en la base y ademas tiene como contraseña
+	 * 		"pass". En caso contrario devuelve FALSE
+	 */
 	public boolean comprobarLogin(String usuario, String pass) {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -132,7 +148,11 @@ public class OWLFacade {
 			mysql.disconnect();
 		}
 	}
-
+	/*
+	 * Pre:---
+	 * Post: Devuelve una lista de los libros de una categoria "cat". En caso contrario 
+	 * 		 devuelve una lista vacia.
+	 */
 	public List<LibroVO> librosPorCategoria(String cat) {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -157,6 +177,10 @@ public class OWLFacade {
 		}
 	}
 
+	/*
+	 * Pre:---
+	 * Post: Devuelve el libro con el id "id". En caso de que no exista devuelve el libro vacio.
+	 */
 	public LibroVO VerLibro(int id) {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -181,6 +205,10 @@ public class OWLFacade {
 		}
 	}
 
+	/*
+	 * Pre:--
+	 * Post: Actualiza el numero de libros de todas las categorias en la base de datos
+	 */
 	public void librosPorCategorian() {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -197,6 +225,10 @@ public class OWLFacade {
 		}
 	}
 
+	/*
+	 * Pre:--
+	 * Post: Devuelve una lista de todas las categorias existentes en la base de datos.
+	 */
 	public List<CategoriaVO> mostrarCategorias() {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -215,6 +247,10 @@ public class OWLFacade {
 		}
 	}
 
+	/*
+	 * Pre:---
+	 * Post: Devuelve una lista con los libros mas leidos(con mas ventas)
+	 */
 	public List<LibroVO> librosMasLeidos() {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -239,6 +275,10 @@ public class OWLFacade {
 		}
 	}
 
+	/*
+	 * Pre: "id" > 0
+	 * Post: Devuelve una lista de los ejemplares del libro con id "id"
+	 */
 	public List<EjemplarVO> EjemplaresLibro(int id) {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -263,6 +303,10 @@ public class OWLFacade {
 		}
 	}
 
+	/*
+	 * Pre: "ejemplar" es un ejemplar bien formado
+	 * Post:En caso de errores en el ejemplar, los devuelve en "errores". Si no añade a la base el ejemplar
+	 */
 	public void insertarNuevoEjemplar(EjemplarVO ejemplar, List<String> errores) throws SQLException {
 		JDBCTemplate mysql = null;
 		try {
@@ -285,7 +329,12 @@ public class OWLFacade {
 		}
 
 	}
-
+	
+	/*
+	 * Pre:"user" es un usario existente en la base de datos
+	 * Post: Devuelve una lista con la lista de puestas en venta como primer elemento y
+	 * 		la lista de compras como segundo elemento del usuario "user"
+	 */
 	public List<List<EjemplarVO>> movimientosUsuario(String user) {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
@@ -307,6 +356,11 @@ public class OWLFacade {
 		}
 	}
 
+	/*
+	 * Pre: "user" es un usario existente, "id" es el id de un ejemplar existente
+	 * Post: Devuelve el ejemplar correspondiente al id "id" y lo actualiza como comprado en la fecha
+	 * 		fcompra.
+	 */
 	public EjemplarVO realizarCompra(String user, int id, String fcompra) {
 		JDBCTemplate mysql = MysqlConnection.getConnection();
 		try {
