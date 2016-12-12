@@ -1,3 +1,4 @@
+
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
@@ -53,7 +54,7 @@ error = true;
                         </form><% 
                         }
                         else { %>
-                        <p class="owlbooks-login-welcome">¡Hola, Fulanito!</p>
+                        <p class="owlbooks-login-welcome">¡Hola, <%=session.getAttribute("username")%>!</p>
                         <ul class="owlbooks-login-actions">
                             <a id="owlbooks-login-action-myaccount" href="account.jsp"><li>Mi cuenta »</li></a>
                             <a id="owlbooks-login-actions-logout" href="logout.do"><li>Cerrar sesión »</li></a>
