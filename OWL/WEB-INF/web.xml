@@ -56,6 +56,46 @@
     <servlet-name>LibrosCategoriaServlet</servlet-name>
     <url-pattern>/Categoria.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>LibrosEjemplaresServlet</servlet-name>
+    <servlet-class>servlets.LibrosEjemplaresServlet</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>LibrosEjemplaresServlet</servlet-name>
+    <url-pattern>/LibroEjemplar.do</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>VenderEjemplarServlet</servlet-name>
+    <servlet-class>servlets.VenderEjemplarServlet</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>VenderEjemplarServlet</servlet-name>
+    <url-pattern>/VenderEjemplar.do</url-pattern>
+  </servlet-mapping>
+      <servlet>
+    <servlet-name>VenderServlet</servlet-name>
+    <servlet-class>servlets.VenderServlet</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>VenderServlet</servlet-name>
+    <url-pattern>/Vender.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MovimientosServlet</servlet-name>
+    <servlet-class>servlets.MovimientosServlet</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>MovimientosServlet</servlet-name>
+    <url-pattern>/Mov.do</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>ComprarEjemplarServlet</servlet-name>
+    <servlet-class>servlets.ComprarEjemplarServlet</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>ComprarEjemplarServlet</servlet-name>
+    <url-pattern>/ComprarEjemplar.do</url-pattern>
+  </servlet-mapping>
        <servlet>
     <servlet-name>IndexServlet</servlet-name>
     <servlet-class>servlets.IndexServlet</servlet-class>
