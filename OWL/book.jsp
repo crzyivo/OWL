@@ -3,9 +3,10 @@
          import="java.util.List,java.util.Arrays"
          pageEncoding="UTF-8"
 %><!DOCTYPE html>
+<% session.setAttribute("current","LibroEjemplar.do"); %>
 <html lang="es">
     <head>
-        <jsp:include page="includes/head.jsp">
+        <jsp:include page="includes/head.jsp" >
             <jsp:param name="title" value="${titulo}, de ${autor}"/>
             <jsp:param name="specificCss" value="book"/>
         </jsp:include>
@@ -19,25 +20,44 @@
                 <h1 class="owlbooks-h-mostread">Lo más leído</h1>
                 <div class="owlbooks-section owlbooks-mostread">
                     <ol>
-                        <li><i>El Quijote</i>, de Miguel de Cervantes Saavedra.</li>
-                        <li><i>El Quijote (versión extendida)</i>, de Miguel de Cervantes Saavedra.</li>
-                        <li><i>Otra vez tú, don Quijote</i>, de Miguel de Cervantes Saavedra.</li>
+                    <%List<String> MostReadList = (List<String>) request.getAttribute("masLeidos"); 
+                    if (MostReadList != null) {
+                        for(String lib:MostReadList){
+                            String[] at = lib.split(",");%>
+                                <li><a href="LibroEjemplar.do?id=<%=at[3]%>"><i><%=at[0]%></i></a>, de <%=at[1]%>.</li>
+                        <%}
+                    }%>
                     </ol>
                 </div>
                 <h1 class="owlbooks-h-categories">Categorías</h1>
                 <div class="owlbooks-section owlbooks-categories">
                     <ul>
-                        <li>Ciencia ficción (535 libros)</li>
-                        <li>Policíaca (23 libros)</li>
+                    <%List<String> CategoryList = (List<String>) request.getAttribute("categorias"); 
+                    if (CategoryList != null) {
+                        for(String cat:CategoryList){
+                            String[] at = cat.split(",");%>
+                        <li><a href="Categoria.do?categoria=<%=at[0]%>"><em><%=at[0]%></em></a>, <%=at[1]%> libros</li>
+                        <%}
+                    }%>
                     </ul>
                 </div>
             </div>
             <div class="owlbooks-body">
                 <div class="owlbooks-section owlbooks-product">
                     <h1><em><%=request.getAttribute("titulo")%></em><span class="owlbooks-secondary-text">, de <%=request.getAttribute("autor")%></span></h1>
+                    <% if(request.getAttribute("errorlogin")!=null){%>
+                        <div class="owlbooks-band-errors">
+                            Debes iniciar sesion para poder vender un libro
+                        </div>
+                    <%}%> 
+                     <% if(request.getAttribute("errorloginC")!=null){%>
+                        <div class="owlbooks-band-errors">
+                            Debes iniciar sesion para poder comprar un libro
+                        </div>
+                    <%}%>
                     <div class="owlbooks-product-actions">
                         <a href="#buy"><div class="owlbooks-product-action owlbooks-product-buy">Comprar este libro</div></a>
-                        <a href=""><div class="owlbooks-product-action owlbooks-product-sell">Vender este libro</div></a>
+                        <a href="Vender.do?id=<%=request.getAttribute("id")%>"><div class="owlbooks-product-action owlbooks-product-sell">Vender este libro</div></a>
                     </div>
                     <div class="owlbooks-product-description">
                         <div class="owlbooks-product-cover">
@@ -52,8 +72,8 @@
                             Ejemplares del libro ordenados de menor a mayor precio.
                         -->
                         <div class="owlbooks-section owlbooks-categories"><% 
-                            List<String> ejemplaresList = (List<String>) request.getAttribute("libros"); 
-                            if (!ejemplaresList.isEmpty()) {
+                        List<String> ejemplaresList = (List<String>) request.getAttribute("libros"); 
+                        if (!(ejemplaresList.isEmpty())) {
                             for (String libro : ejemplaresList) {
                             String[] at = libro.split(","); %>
                             <div class="owlbooks-product-copy">
@@ -66,17 +86,15 @@
                                     <li>Origen: <%=at[5]%></li>
                                     <li>Estado: <span class="owlbooks-product-copy-info-<%=at[6].toLowerCase()%>"><%=at[6]%></span></li>
                                 </ul>
-                                <a href=""><div class="owlbooks-product-action owlbooks-product-buy owlbooks-product-copy-buy">Comprar este ejemplar</div></a>
-                            </div><% 
-                            }
-                            }
-                            else { %>
+                                <a href="ComprarEjemplar.do?ejemplar=<%=at[7]%>"><div class="owlbooks-product-action owlbooks-product-buy owlbooks-product-copy-buy">Comprar este ejemplar</div></a>
+                            </div>
+                            <%}
+                            }else{%>
                             <div class="owlbooks-band-none">
                                 Ahora mismo no tenemos ejemplares de este libro a la venta.<br>
                                 ¡Sé el primero en vender uno!
                             </div><% 
-                            } %>
-                        </div>
+                            }%>
                     </div>
                 </div>
             </div>

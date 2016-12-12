@@ -2,10 +2,8 @@
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
          import="java.util.List,java.util.Arrays"
-%><% 
-session.setAttribute("current","signup.jsp");
-List<String> errorList = (List<String>) request.getAttribute("errors");
-final boolean HAY_ERRORES = errorList != null; %><!DOCTYPE html>
+%><!DOCTYPE html>
+<% session.setAttribute("current","signup.jsp"); %>
 <html lang="es">
     <head>
         <jsp:include page="includes/head.jsp" >
@@ -17,19 +15,36 @@ final boolean HAY_ERRORES = errorList != null; %><!DOCTYPE html>
         <jsp:include page="includes/header.jsp" >
             <jsp:param name="owlbooksLocation" value='Cuenta > Datos personales'/>
         </jsp:include>
+        
+        <%--
+            String modo = (String) session.getAttribute("modo");
+            String accion;
+            if(modo.equals(new String("NUEVO"))){
+                accion="InsertarUsuraio.do";
+            }else if(modo.equals(new String("EDICION"))){
+                accion="EditarUsuario.do";
+            }
+        --%>
         <div class="owlbooks-account">
-            <h1>Datos para el registro</h1><% 
-            if (HAY_ERRORES) { %>
+            <h1>Datos para el registro</h1>
+            <% 
+                List<String> error_list=(List<String>) request.getAttribute("errors"); 
+                boolean hayError = false;
+                if(!(error_list==null)){
+                    hayError = true;
+            %>
             <div class="owlbooks-band-errors">
                 <p>Por favor, subsana los siguientes problemas:</p>
-                <ul class="owlbooks-band-errors-list"><% 
-                    for (String error : errorList) { %>
-                    <li><%=error%></li><% 
-                    } %>
+                <ul class="owlbooks-band-errors-list">
+                    <%
+                        for (String error : error_list) {   
+                    %>
+                        <li><%=error%></li>
+                    <%}%>
                 </ul>
-            </div><% 
-            }
-            else {
+            </div>
+            <%}
+            if(!hayError){
                 request.setAttribute("correo", "");
                 request.setAttribute("nombre", "");
                 request.setAttribute("apellidos", "");
@@ -40,7 +55,8 @@ final boolean HAY_ERRORES = errorList != null; %><!DOCTYPE html>
                 request.setAttribute("piso", "");
                 request.setAttribute("poblacion", "");
                 request.setAttribute("provincia", "Zaragoza");
-            } %>
+            
+            }%>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
             <form class="owlbooks-account-personal-form" method="post" action=InsertarUsuario.do>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
@@ -49,7 +65,7 @@ final boolean HAY_ERRORES = errorList != null; %><!DOCTYPE html>
                 </div>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="passwd">Contraseña:</label>
-                    <input type="password" name="clave" id="passwd" required /><span class="owlbooks-secondary-text">(REQUISITOS DE LA CLAVE...)</span>
+                    <input type="password" name="clave" id="passwd" required /><span class="owlbooks-secondary-text">(al menos, 6 caracteres)</span>
                 </div>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="confirm-passwd">Confirmar contraseña:</label>
@@ -65,7 +81,7 @@ final boolean HAY_ERRORES = errorList != null; %><!DOCTYPE html>
                 </div>
                 <div class="owlbooks-account-personal-form-group">
                     <label for="phone">Teléfono:</label>
-                    +34<input type="number" name="telefono" id="phone" min="100000000" max="999999999" value="<%=request.getAttribute("telefono")%>" />
+                    +34<input type="number" name="telefono" id="phone" min="100000000" max="999999999" value="<%=request.getAttribute("telefono")%>" required />
                 </div>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                     <label for="birth">Año de nacimiento:</label>
@@ -92,7 +108,7 @@ final boolean HAY_ERRORES = errorList != null; %><!DOCTYPE html>
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                         <label for="province">Provincia:</label>
                         <select id="province" name="provincia"required><%
-                            List<String> listaProvincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
+                                                    List<String> listaProvincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
                             String provinciaPredefinida = (String) request.getAttribute("provincia");
                             for (String provincia : listaProvincias) {
                             if (provinciaPredefinida.equals(provincia)) { %>
@@ -109,9 +125,6 @@ final boolean HAY_ERRORES = errorList != null; %><!DOCTYPE html>
                         <div>España</div>
                     </div>
                 </fieldset>
-                <div class="owlbooks-account-personal-form-group-checkboxes">
-                    <input type="checkbox" class="owlbooks-account-personal-form-required" id="owlbooks-readpolicies-checkbox" required ><p>He leído y acepto el <a href="aviso_legal.jsp" target="_blank">aviso legal</a> y la <a href="privacy_policy.jsp" target="_blank">política de privacidad</a> de OwlBooks.</p>
-                </div>
                 <div class="owlbooks-account-personal-form-group">
                     <input type="submit" value="Guardar" />
                     <input type="reset" value="Deshacer cambios" />

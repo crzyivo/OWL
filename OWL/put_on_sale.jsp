@@ -1,7 +1,7 @@
 <%@ page language="java"
          contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"
-         import="java.util.Calendar"
+         import="java.util.Calendar,java.util.List,java.util.Arrays"
 %><!DOCTYPE html>
 <% session.setAttribute("current","put_on_sale.jsp"); %>
 <html lang="es">
@@ -13,18 +13,34 @@
     </head>
     <body>
         <jsp:include page="includes/header.jsp" >
-            <jsp:param name="owlbooksLocation" value='Libros > El Quijote > Poner a la venta'/>
+            <jsp:param name="owlbooksLocation" value='Libros > ${titulo} > Poner a la venta'/>
         </jsp:include>
         <div class="owlbooks-account">
-            <h1>Poner a la venta un ejemplar de <em>El Quijote</em></h1>
+            <h1>Poner a la venta un ejemplar de <em><%=request.getAttribute("titulo")%></em></h1>
+            <% 
+                List<String> error_list=(List<String>) request.getAttribute("errors"); 
+                if(!(error_list==null)){
+                    
+            %>
+            <div class="owlbooks-band-errors">
+                <p>Por favor, subsana los siguientes problemas:</p>
+                <ul class="owlbooks-band-errors-list">
+                    <%
+                        for (String error : error_list) {   
+                    %>
+                        <li><%=error%></li>
+                    <%}%>
+                </ul>
+            </div>
+            <%}%>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
-            <form class="owlbooks-account-personal-form" method="post" action="">
+            <form class="owlbooks-account-personal-form" method="post" action="VenderEjemplar.do?id=<%=request.getAttribute("id")%>">
                 <div class="owlbooks-account-personal-form">
                     <div class="owlbooks-account-personal-form-group">
-                    <p>Título de la obra:</p><em>El Quijote</em>
+                    <p>Título de la obra:</p><em><%=request.getAttribute("titulo")%></em>
                     </div>
                     <div class="owlbooks-account-personal-form-group">
-                    <p>Autor/a:</p><p>Miguel de Cervantes Saavedra</p>
+                    <p>Autor/a:</p><p><%=request.getAttribute("autor")%></p>
                     </div>
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                         <label for="editor">Editorial:</label>
@@ -41,9 +57,9 @@
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                         <label for="preservation">Estado de conservación:</label>
                         <select id="preservation" name="nconservacion" required>
-                            <option value="excelente">Excelente (de primera mano)</option>
-                            <option value="bueno" selected="">Bueno</option>
-                            <option value="deteriorado">Deteriorado</option>
+                            <option value="Excelente">Excelente (de primera mano)</option>
+                            <option value="Bueno" selected="">Bueno</option>
+                            <option value="Deteriorado">Deteriorado</option>
                         </select>
                     </div>
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">

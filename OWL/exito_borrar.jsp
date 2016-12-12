@@ -8,7 +8,7 @@
             <jsp:param name="title" value="Cuenta"/>
             <jsp:param name="specificCss" value="account"/>
         </jsp:include>
-        <meta http-equiv="refresh" content="3; URL='index.jsp'" />
+        <meta http-equiv="refresh" content="3; URL='Index.do'" />
     </head>
     <body>
         <div class="owlbooks-account">

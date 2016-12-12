@@ -12,9 +12,7 @@
     </head>
     <body>
         <jsp:include page="includes/header.jsp"></jsp:include>
-        <div class="owlbooks-section">
-            <p>Nota: Se muestra una vista de la página principal con la sesión sin iniciar. Para consultar los detalles de una cuenta, pulsar <a href="account.jsp">aquí</a>.</p>
-        </div>
+
         <h1 class="owlbooks-h-mostread">Lo más leído</h1>
         <div class="owlbooks-section owlbooks-mostread">
             <ol>
@@ -22,7 +20,7 @@
             if (MostReadList != null) {
                 for(String lib:MostReadList){
                     String[] at = lib.split(",");%>
-                <li><span class="owlbooks-mostread-title"><a href="LibroEjemplar.do?titulo=<%=at[0]%>&autor=<%=at[1]%>&id=<%=at[3]%>&desc=<%=at[2]%>"><em><%=at[0]%></em></a></span>, de <%=at[1]%>.</li>
+                <li><span class="owlbooks-mostread-title"><a href="LibroEjemplar.do?id=<%=at[3]%>"><em><%=at[0]%></em></a></span>, de <%=at[1]%>.</li>
                 <%}
                 }%>
             </ol>

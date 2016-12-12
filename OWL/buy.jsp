@@ -8,7 +8,6 @@
             <jsp:param name="title" value="Pago procesado"/>
             <jsp:param name="specificCss" value="account"/>
         </jsp:include>
-        <meta http-equiv="refresh" content="10; URL='index.jsp'" />
     </head>
     <body>
         <div class="owlbooks-account">
