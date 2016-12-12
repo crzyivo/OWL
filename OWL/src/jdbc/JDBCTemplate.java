@@ -128,14 +128,6 @@ public class JDBCTemplate {
 		}
 
 	}
-	
-	/**
-	 * Metodo para realizar una pregunta SQL a la BD (una sentencia SELECT)
-	 * que devuelve una tabla como resultado
-	 * @param sqlorig
-	 *            sentencia SQL
-	 * @resul rs
-	 */
 
 	public ResultSet executeQueryResult(String sqlorig, String email) {
 
@@ -223,15 +215,6 @@ public class JDBCTemplate {
 			}
 		}
 	}
-	
-	
-	/**
-	 * Metodo para ejecutar una sentencia SQL que no sea una pregunta, es decir,
-	 * que no devuelva una tabla como resultado mediante parametros dados
-	 * 
-	 * @param sql
-	 *            sentencia SQL
-	 */
 
 	public void executeSentence(String sql, Object... params) {
 		PreparedStatement stmt = null;
@@ -257,15 +240,6 @@ public class JDBCTemplate {
 			}
 		}
 	}
-	
-	
-	/**
-	 * Metodo para ejecutar una sentencia SQL que devuelva una tabla como
-	 * como resultado a partir de parametros.
-	 * 
-	 * @param sql
-	 *            sentencia SQL
-	 */
 
 	public ArrayList<Object> executeSentenceResult(String sql, Object... params) {
 		PreparedStatement stmt = null;

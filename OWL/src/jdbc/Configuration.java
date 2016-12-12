@@ -1,4 +1,5 @@
 package jdbc;
+
 /**
  * Interfaz para representar una configuracion de base de datos.
  *
