@@ -13,7 +13,10 @@ import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class BorrarUsuarioServlet Borrar una cuenta de
+ * usuario,borrando su usuario pero no sus libros o transcacciones Como
+ * alternativa se podria marcar la cuenta para mantener los datos pero
+ * inutilizarla o borrar en cascada para eliminar todos los datos relacionados
  */
 public class BorrarUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

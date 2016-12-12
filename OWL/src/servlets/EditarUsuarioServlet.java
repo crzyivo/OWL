@@ -15,7 +15,8 @@ import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class EditarUsuarioServlet Servlet que gestiona la
+ * edicion de datos de un usuario, y la reinsercion de los mismos
  */
 public class EditarUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

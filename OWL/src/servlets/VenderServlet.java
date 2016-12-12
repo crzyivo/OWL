@@ -15,7 +15,8 @@ import Data.LibroVO;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class VenderServlet
+ * Servlet para el acceso a la puesta en venta de un ejemplar
  */
 public class VenderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

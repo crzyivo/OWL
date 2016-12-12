@@ -16,7 +16,8 @@ import Data.CategoriaVO;
 import Data.LibroVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class IndexServlet Gestiona la pagina de inicio del
+ * sitio
  */
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

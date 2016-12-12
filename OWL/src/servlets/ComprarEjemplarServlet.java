@@ -20,7 +20,8 @@ import Data.LibroVO;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class ComprarEjemplarServlet Servlet que gestiona la
+ * compra de un ejemplar.
  */
 public class ComprarEjemplarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -44,12 +45,26 @@ public class ComprarEjemplarServlet extends HttpServlet {
 		EjemplarVO lib = new EjemplarVO();
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateobj = new Date();
+		boolean errores = true;
+		if (usuario != null) {
+			if (!usuario.equals(new String(""))) {
+
+				errores = false;
+			}
+		}
 		try {
 			OWLFacade fachada = new OWLFacade();
 			lib = fachada.realizarCompra(usuario, libro, df.format(dateobj));
-			RequestDispatcher rd = request.getRequestDispatcher("buy.jsp");
-			response.setHeader("Refresh", "5;url=LibroEjemplar.do?id=" + lib.getLibro());
-			rd.forward(request, response);
+			if (!errores) {
+
+				RequestDispatcher rd = request.getRequestDispatcher("buy.jsp");
+				response.setHeader("Refresh", "5;url=LibroEjemplar.do?id=" + lib.getLibro());
+				rd.forward(request, response);
+			} else {
+				RequestDispatcher rd = request.getRequestDispatcher("LibroEjemplar.do?id=" + lib.getLibro());
+				request.setAttribute("errorloginC", "1");
+				rd.forward(request, response);
+			}
 		} catch (Exception e) {
 			e.printStackTrace(System.err);
 		}

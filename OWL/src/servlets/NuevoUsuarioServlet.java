@@ -15,7 +15,11 @@ import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class NuevoUsuarioServlet
+ * Servlet que gestiona la creacion de usuario y devuelve los 
+ * errores cometidos en caso de que el usuario introduzca
+ * datos erroneos.
+ * Si la creacion es exitosa inicia la sesion de usuario.
  */
 public class NuevoUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -35,6 +39,7 @@ public class NuevoUsuarioServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
+		boolean errores = false;
 		String email = request.getParameter("correo");
 		String nombre = request.getParameter("nombre");
 		String apellidos = request.getParameter("apellidos");

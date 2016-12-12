@@ -18,7 +18,9 @@ import Data.LibroVO;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class LibrosEjemplarServlet
+ * Servlet que obtiene los ejemplares de un libro dado y que estan disponibles 
+ * para su venta, es decir, que no han sido comprados ya.
  */
 public class LibrosEjemplaresServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +17,8 @@ import Data.LibroVO;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class LibrosCategoriaServlet Gestiona la obtencion de
+ * los libros en una categoria
  */
 public class LibrosCategoriaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,34 +39,41 @@ public class LibrosCategoriaServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String category = request.getParameter("categoria");
+		// final Pattern PATTERN_CATEGORIA = Pattern.compile("*;*");
 
 		List<LibroVO> librosvarios = new ArrayList();
 		List<String> listas = new ArrayList();
+		boolean error = false;
 
-		try {
-			OWLFacade fachada = new OWLFacade();
+		if (!(category.contains(";"))) {
+			try {
+				OWLFacade fachada = new OWLFacade();
 
-			librosvarios = fachada.librosPorCategoria(category);
+				librosvarios = fachada.librosPorCategoria(category);
 
-			librosvarios = librosvarios.subList(0, 45);
-			if ((librosvarios != null)) {
-				for (LibroVO libro : librosvarios) {
-					String s = libro.getTitulo() + "," + libro.getAutor() + "," + libro.getVentas() + ","
-							+ libro.getId();
+				librosvarios = librosvarios.subList(0, 45);
+				if ((librosvarios != null)) {
+					for (LibroVO libro : librosvarios) {
+						String s = libro.getTitulo() + "," + libro.getAutor() + "," + libro.getVentas() + ","
+								+ libro.getId();
 
-					listas.add(s);
+						listas.add(s);
+					}
+					request.setAttribute("libros", listas);
+					request.setAttribute("categoria", category);
+					RequestDispatcher rd = request.getRequestDispatcher("category.jsp");
+					rd.forward(request, response);
+				} else {
+					RequestDispatcher rd = request.getRequestDispatcher("Index.do");
+					rd.forward(request, response);
 				}
-				request.setAttribute("libros", listas);
-				request.setAttribute("categoria", category);
-				RequestDispatcher rd = request.getRequestDispatcher("category.jsp");
-				rd.forward(request, response);
-			} else {
-				RequestDispatcher rd = request.getRequestDispatcher("Index.do");
-				rd.forward(request, response);
-			}
 
-		} catch (Exception e) {
-			e.printStackTrace(System.err);
+			} catch (Exception e) {
+				e.printStackTrace(System.err);
+			}
+		} else {
+			RequestDispatcher rd = request.getRequestDispatcher("Index.do");
+			rd.forward(request, response);
 		}
 	}
 

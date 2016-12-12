@@ -14,7 +14,8 @@ import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class DatosUsuarioServlet Servlet que obtiene los
+ * datos de un usuario dado su email, para poder mostrarlos mediante atributos
  */
 public class DatosUsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

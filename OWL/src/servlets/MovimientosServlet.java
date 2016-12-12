@@ -17,7 +17,9 @@ import Data.LibroVO;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class MovimientosServlet
+ * Servlet que obtiene los movimientos de venta y compra de un usuario
+ * con sesion iniciada
  */
 public class MovimientosServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

@@ -7,7 +7,7 @@ import java.util.List;
 
 import jdbc.JDBCTemplate;
 
-//TODO: Método a parte para aumentar el numero de libros a una categoria sin hacer updateCategoria
+//TODO: Método a parte para aumentar el numero de libros libros a una categoria sin hacer updateCategoria
 //TODO: Control de errores
 public class CategoriaDAO {
 

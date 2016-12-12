@@ -12,7 +12,8 @@ import facades.OWLFacade;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class LoginServlet 
+ * Gestiona los login de los usuarios
  */
 public class LoginServlet extends HttpServlet {
 
@@ -31,7 +32,9 @@ public class LoginServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		boolean errores = false;
+		boolean errores = true;
+
+		// Pametros de login introucidos por el usuario
 		String email = request.getParameter("owlbooks-correo");
 		String pass = request.getParameter("owlbooks-clave");
 		boolean goodLogin;
@@ -45,14 +48,18 @@ public class LoginServlet extends HttpServlet {
 			try {
 
 				OWLFacade fachada = new OWLFacade();
+				/* Se comprueba el login */
 				goodLogin = fachada.comprobarLogin(email, pass);
+				/* Se obtienen los datos del usuario para pasarlos */
 				OwlUserVO user = fachada.verUsuario(email);
 				if (goodLogin) {
+					/* Exito en el login */
 					request.getSession().setAttribute("user", email);
 					request.getSession().setAttribute("username", user.getNombre());
 					RequestDispatcher rd = request.getRequestDispatcher("Index.do");
 					rd.forward(request, response);
 				} else {
+					/* Fallo en el login */
 					request.getSession().setAttribute("errorMessage", "Email o contraseña erroneos");
 					RequestDispatcher rd = request.getRequestDispatcher("Index.do");
 					rd.forward(request, response);

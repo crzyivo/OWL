@@ -20,7 +20,10 @@ import Data.LibroVO;
 import Data.OwlUserVO;
 
 /**
- * Servlet implementation class CrearUsuarioServlet
+ * Servlet implementation class VenderEjemplarServlet
+ * Servlet que gestiona el registro de venta para un ejemplar de
+ * un usuario logeado.
+ * En caso de error en los campos, los detecta e informa de los mismos.
  */
 public class VenderEjemplarServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -40,7 +43,7 @@ public class VenderEjemplarServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String usuario = (String) request.getSession().getAttribute("user");
-		String libro = request.getParameter("id");
+		int libro = Integer.parseInt(request.getParameter("id"));
 		String editorial = request.getParameter("neditorial");
 		int año = Integer.parseInt(request.getParameter("nanyopub"));
 		String estado = request.getParameter("nconservacion");
@@ -53,12 +56,12 @@ public class VenderEjemplarServlet extends HttpServlet {
 		LibroVO lib = new LibroVO();
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		Date dateobj = new Date();
-		EjemplarVO ejemplar = new EjemplarVO(0, Integer.parseInt(libro), editorial, estado, nprecio, usuario, null,
-				isbn, año, df.format(dateobj), null);
+		EjemplarVO ejemplar = new EjemplarVO(0, libro, editorial, estado, nprecio, usuario, null, isbn, año,
+				df.format(dateobj), null);
 		List<String> errores = new ArrayList();
 		try {
 			OWLFacade fachada = new OWLFacade();
-			lib = fachada.VerLibro(Integer.parseInt(libro));
+			lib = fachada.VerLibro(libro);
 			fachada.insertarNuevoEjemplar(ejemplar, errores);
 			if (errores.isEmpty()) {
 				RequestDispatcher rd = request.getRequestDispatcher("LibroEjemplar.do?id=" + libro);
