@@ -102,6 +102,9 @@ public class OwlUserDAO {
 
 			queryString = "UPDATE ejemplar " + "Set ejemplar.vendedor = NULL " + "WHERE vendedor = '" + usuario + "'";
 			jdbctemp.executeSentence(queryString);
+			
+			queryString = "UPDATE ejemplar " + "Set ejemplar.comprador = NULL " + "WHERE comprador = '" + usuario + "'";
+			jdbctemp.executeSentence(queryString);
 
 			queryString = "DELETE FROM usuario " + "WHERE email = '" + usuario + "'";
 
