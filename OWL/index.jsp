@@ -12,7 +12,12 @@
     </head>
     <body>
         <jsp:include page="includes/header.jsp"></jsp:include>
-
+        <div class="owlbooks-searchbar">
+            <form>
+                <input type="text" class="owlbooks-searchbar-text" id="owlbooks-searchbar-text">
+                <input type="submit" class="owlbooks-searchbar-button" id="owlbooks-searchbar-button" value="Search">
+            </form>
+        </div>
         <h1 class="owlbooks-h-mostread">Lo más leído</h1>
         <div class="owlbooks-section owlbooks-mostread">
             <ol>
