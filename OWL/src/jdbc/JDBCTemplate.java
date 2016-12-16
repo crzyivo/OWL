@@ -1,7 +1,23 @@
 package jdbc;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.es.SpanishAnalyzer;
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.Version;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.FieldType;
+import org.apache.lucene.document.IntField;
+import org.apache.lucene.document.StringField;
 
 /**
  * Clase para acceder a una BD Oracle
@@ -311,5 +327,53 @@ public class JDBCTemplate {
 			}
 		}
 		return null;
+	}
+
+	public Directory indexaLibroSQL() throws IOException {
+		File INDEX_DIRECTORY = new File("../Database/Index");
+		PreparedStatement stmt = null;
+		IndexWriter indice = null;
+		ResultSet rs;
+		Analyzer analizador = new SpanishAnalyzer(Version.LUCENE_40);
+		String mysql ="select * from libro";
+		try {
+			System.out
+					.println("---------------------------------------------------------------------------------------");
+			stmt = connection.prepareStatement(mysql);
+			rs=stmt.executeQuery(mysql); 
+			Directory directorioAlmacenarIndice = FSDirectory.open(INDEX_DIRECTORY);
+
+			IndexWriterConfig configuracionIndice = new IndexWriterConfig(Version.LUCENE_40, analizador);
+
+			indice = new IndexWriter(directorioAlmacenarIndice, configuracionIndice);
+			int count = 0;
+			while (rs.next()) {
+			    Document doc = new Document();
+			    doc.add(new Field("id", rs.getString("id"), Field.Store.YES, Field.Index.NOT_ANALYZED));
+			    doc.add(new Field("titulo", rs.getString("titulo"), Field.Store.YES, Field.Index.ANALYZED)); 
+			    doc.add(new Field("autor", rs.getString("autor"), Field.Store.YES, Field.Index.ANALYZED));
+			    doc.add(new Field("descripcion", rs.getString("descripcion"), Field.Store.YES, Field.Index.NOT_ANALYZED));
+			    doc.add(new Field("ventas", rs.getString("ventas"), Field.Store.YES,Field.Index.NOT_ANALYZED ));
+			    indice.addDocument(doc);
+			    count++;
+			    System.out.println(doc.get("titulo"));
+			}
+			System.out.println(count+" añadido");
+			indice.close();
+			return directorioAlmacenarIndice;
+			
+		} catch (SQLException e) {
+			System.out.println("Error: " + e.getMessage());
+			return null;
+		} finally {
+			System.out
+					.println("---------------------------------------------------------------------------------------");
+			if (stmt != null) {
+				try {
+					stmt.close();
+				} catch (SQLException e) {
+				}
+			}
+		}
 	}
 }

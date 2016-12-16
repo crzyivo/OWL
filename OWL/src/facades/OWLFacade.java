@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import facades.ErrorsStrings;
 
+import java.io.IOException;
 import java.sql.Connection;
 
 public class OWLFacade {
@@ -380,5 +381,38 @@ public class OWLFacade {
 			mysql.disconnect();
 		}
 	}
+	
+	public List<LibroVO> busquedaEnLibros(String busqueda) {
+		JDBCTemplate mysql = MysqlConnection.getConnection();
+		try {
+			mysql.connect();
+			LibroDAO OwlDAO = new LibroDAO();
+			List<LibroVO> resultado = new ArrayList();
+			resultado = OwlDAO.busquedaLibros(busqueda, mysql);
+			if (resultado.isEmpty()) {
+				mysql.disconnect();
+				return null;
 
+			} else {
+				mysql.disconnect();
+				return resultado;
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace(System.err);
+			return null;
+		} finally {
+			mysql.disconnect();
+		}
+	}
+	
+	public void indexInicial()throws IOException, SQLException{
+		JDBCTemplate mysql = MysqlConnection.getConnection();
+		try {
+			mysql.connect();
+			mysql.indexaLibroSQL();
+		}finally{
+			mysql.disconnect();
+		}
+	}
 }

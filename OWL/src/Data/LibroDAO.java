@@ -1,9 +1,23 @@
 package Data;
 
+import java.io.File;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.es.SpanishAnalyzer;
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.queryparser.classic.MultiFieldQueryParser;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.search.Query;
+import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.store.Directory;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.Version;
 
 import jdbc.JDBCTemplate;
 
@@ -151,6 +165,45 @@ public class LibroDAO {
 			System.out.println("DAO-Error: " + e.getMessage());
 		}
 
+	}public List<LibroVO> busquedaLibros(String searchString, JDBCTemplate jdbctemp) {
+		LibroVO libroVO = new LibroVO();
+		List<LibroVO> lista = new ArrayList<LibroVO>();
+		String sql = "";
+		try {
+			//mysql.indexaLibroSQL();
+			File FILE_INDEX_DIRECTORY = new File("../Database/Index");
+			Directory INDEX_DIRECTORY_ = FSDirectory.open(FILE_INDEX_DIRECTORY);
+			DirectoryReader directoryReader = DirectoryReader.open(INDEX_DIRECTORY_);
+			IndexSearcher buscador = new IndexSearcher(directoryReader);
+			Analyzer analizador = new SpanishAnalyzer(Version.LUCENE_40);
+			
+			//QueryParser queryParser = new QueryParser(Version.LUCENE_40, "titulo", analizador);
+			MultiFieldQueryParser queryParser = new MultiFieldQueryParser(Version.LUCENE_40,new String[]{"titulo","autor"}, analizador);
+			Query query =queryParser.parse(searchString);
+			TopDocs resultado = buscador.search(query, 10);
+			ScoreDoc[] hits = resultado.scoreDocs;
+			  
+			System.out.println("Found " + hits.length + " hits.");
+			for(int i=0;i<hits.length;++i) {
+				int docId = hits[i].doc;
+				Document doc = buscador.doc(docId);
+				System.out.println((i + 1) + ". " + doc.get("id") +doc.get("autor")+ "\t" + hits[i].score);
+				String titulo = (String) doc.get("titulo");
+				String autor = (String) doc.get("autor");
+				String descripcion = (String) doc.get("descripcion");
+				Integer ventas = Integer.parseInt((String) doc.get("ventas"));
+				int ids = Integer.parseInt((String) doc.get("id"));
+				libroVO = new LibroVO(ids, titulo, autor, descripcion, ventas);
+				lista.add(libroVO);
+			}
+			return lista;
+
+		} catch (Exception e) {
+			e.printStackTrace(System.err);
+		}
+		return lista;
 	}
+	
+	
 
 }

@@ -20,13 +20,13 @@ import Data.OwlUserVO;
  * Servlet implementation class LibrosCategoriaServlet Gestiona la obtencion de
  * los libros en una categoria
  */
-public class LibrosCategoriaServlet extends HttpServlet {
+public class BusquedaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * Default constructor.
 	 */
-	public LibrosCategoriaServlet() {
+	public BusquedaServlet() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -38,43 +38,42 @@ public class LibrosCategoriaServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String category = request.getParameter("categoria");
+		String busqueda = request.getParameter("owlbooks-search");
 		// final Pattern PATTERN_CATEGORIA = Pattern.compile("*;*");
 
 		List<LibroVO> librosvarios = new ArrayList();
 		List<String> listas = new ArrayList();
 		boolean error = false;
 
-		if (!(category.contains(";"))) {
 			try {
 				OWLFacade fachada = new OWLFacade();
 
-				librosvarios = fachada.librosPorCategoria(category);
+				librosvarios = fachada.busquedaEnLibros(busqueda);
+
 				if ((librosvarios != null)) {
-					librosvarios = librosvarios.subList(0, 45);
 					for (LibroVO libro : librosvarios) {
 						String s = libro.getTitulo() + "," + libro.getAutor() + "," + libro.getVentas() + ","
 								+ libro.getId();
 
 						listas.add(s);
 					}
+					request.setAttribute("termino", busqueda);
 					request.setAttribute("libros", listas);
-					request.setAttribute("categoria", category);
-					RequestDispatcher rd = request.getRequestDispatcher("category.jsp");
+					RequestDispatcher rd = request.getRequestDispatcher("searchRes.jsp");
 					rd.forward(request, response);
 				} else {
-					RequestDispatcher rd = request.getRequestDispatcher("Index.do");
+					request.setAttribute("termino", busqueda);
+					RequestDispatcher rd = request.getRequestDispatcher("searchRes.jsp");
 					rd.forward(request, response);
 				}
 
 			} catch (Exception e) {
-				e.printStackTrace(System.err);
+				
+				e.printStackTrace(response.getWriter());
+				//response.getWriter().append(e.getStackTrace().toString());
+				
 			}
-		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("Index.do");
-			rd.forward(request, response);
 		}
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
