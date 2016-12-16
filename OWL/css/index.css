@@ -99,13 +99,14 @@ input[type="submit"].owlbooks-searchbar-button:active {
 
 @media (max-width: 860px) {
     .owlbooks-searchbar {
-    position:relative;
-    top:24px;
-    margin-bottom:3.5em;
-    width: 350px; 
+        position:relative;
+        top:24px;
+        margin-bottom:3.5em;
+        width: 90%; 
+        text-align: right;
     }
     input[type="text"] { 
-        width: 180px;
+        width: 190px;
     } 
     input[type="submit"].owlbooks-searchbar-button { 
         width: 100px;
