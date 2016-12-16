@@ -96,6 +96,14 @@
     <servlet-name>ComprarEjemplarServlet</servlet-name>
     <url-pattern>/ComprarEjemplar.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>BusquedaServlet</servlet-name>
+    <servlet-class>servlets.BusquedaServlet</servlet-class>
+ </servlet>
+  <servlet-mapping>
+    <servlet-name>BusquedaServlet</servlet-name>
+    <url-pattern>/Buscar.do</url-pattern>
+  </servlet-mapping>
        <servlet>
     <servlet-name>IndexServlet</servlet-name>
     <servlet-class>servlets.IndexServlet</servlet-class>
@@ -105,6 +113,9 @@
     <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/Index.do</url-pattern>
   </servlet-mapping>
+<listener>
+    <listener-class>servlets.IndexarLibrosListener</listener-class>
+</listener>
   <session-config>
     <session-timeout>30</session-timeout>
   </session-config>
