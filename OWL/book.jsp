@@ -19,25 +19,23 @@
             <div class="owlbooks-navbar-left">
                 <h1 class="owlbooks-h-mostread">Lo más leído</h1>
                 <div class="owlbooks-section owlbooks-mostread">
-                    <ol>
-                    <%List<String> MostReadList = (List<String>) request.getAttribute("masLeidos"); 
+                    <ol><%
+					List<String> MostReadList = (List<String>) request.getAttribute("masLeidos"); 
                     if (MostReadList != null) {
                         for(String lib:MostReadList){
                             String[] at = lib.split(",");%>
-                                <li><a href="LibroEjemplar.do?id=<%=at[3]%>"><i><%=at[0]%></i></a>, de <%=at[1]%>.</li>
-                        <%}
-                    }%>
-                    </ol>
+                                <li><a href="LibroEjemplar.do?id=<%=at[3]%>"><i><%=at[0]%></i></a>, de <%=at[1]%>.</li><%
+						}
+                    }%></ol>
                 </div>
                 <h1 class="owlbooks-h-categories">Categorías</h1>
                 <div class="owlbooks-section owlbooks-categories">
-                    <ul>
-                    <%List<String> CategoryList = (List<String>) request.getAttribute("categorias"); 
+                    <ul><%List<String> CategoryList = (List<String>) request.getAttribute("categorias"); 
                     if (CategoryList != null) {
                         for(String cat:CategoryList){
                             String[] at = cat.split(",");%>
-                        <li><a href="Categoria.do?categoria=<%=at[0]%>"><em><%=at[0]%></em></a>, <%=at[1]%> libros</li>
-                        <%}
+                        <li><a href="Categoria.do?categoria=<%=at[0]%>"><em><%=at[0]%></em></a>, <%=at[1]%> libros</li><%
+						}
                     }%>
                     </ul>
                 </div>
@@ -48,13 +46,12 @@
                     <% if(request.getAttribute("errorlogin")!=null){%>
                         <div class="owlbooks-band-errors">
                             Debes iniciar sesion para poder vender un libro
-                        </div>
-                    <%}%> 
+                        </div><%
+						}%> 
                      <% if(request.getAttribute("errorloginC")!=null){%>
                         <div class="owlbooks-band-errors">
                             Debes iniciar sesion para poder comprar un libro
-                        </div>
-                    <%}%>
+                        </div><%}%>
                     <div class="owlbooks-product-actions">
                         <a href="#buy"><div class="owlbooks-product-action owlbooks-product-buy">Comprar este libro</div></a>
                         <a href="Vender.do?id=<%=request.getAttribute("id")%>"><div class="owlbooks-product-action owlbooks-product-sell">Vender este libro</div></a>
@@ -87,14 +84,14 @@
                                     <li>Estado: <span class="owlbooks-product-copy-info-<%=at[6].toLowerCase()%>"><%=at[6]%></span></li>
                                 </ul>
                                 <a href="ComprarEjemplar.do?ejemplar=<%=at[7]%>"><div class="owlbooks-product-action owlbooks-product-buy owlbooks-product-copy-buy">Comprar este ejemplar</div></a>
-                            </div>
-                            <%}
-                            }else{%>
+                            </div><%
+							}
+                        }else{%>
                             <div class="owlbooks-band-none">
                                 Ahora mismo no tenemos ejemplares de este libro a la venta.<br>
                                 ¡Sé el primero en vender uno!
-                            </div><% 
-                            }%>
+                            </div><%
+							}%>
                     </div>
                 </div>
             </div>

@@ -15,7 +15,6 @@
         <jsp:include page="includes/header.jsp" >
             <jsp:param name="owlbooksLocation" value='Cuenta > Datos personales'/>
         </jsp:include>
-        
         <%--
             String modo = (String) session.getAttribute("modo");
             String accion;
@@ -26,25 +25,20 @@
             }
         --%>
         <div class="owlbooks-account">
-            <h1>Datos para el registro</h1>
-            <% 
-                List<String> error_list=(List<String>) request.getAttribute("errors"); 
-                boolean hayError = false;
-                if(!(error_list==null)){
-                    hayError = true;
-            %>
-            <div class="owlbooks-band-errors">
-                <p>Por favor, subsana los siguientes problemas:</p>
-                <ul class="owlbooks-band-errors-list">
-                    <%
-                        for (String error : error_list) {   
-                    %>
-                        <li><%=error%></li>
-                    <%}%>
+            <h1>Datos para el registro</h1><% 
+            List<String> error_list=(List<String>) request.getAttribute("errors"); 
+            boolean hayError = false;
+            if(error_list!=null){
+                hayError = true;%>
+				<div class="owlbooks-band-errors">
+					<p>Por favor, subsana los siguientes problemas:</p>
+					<ul class="owlbooks-band-errors-list"><%
+                for (String error : error_list) {%>
+					<li><%=error%></li><%
+				}%>
                 </ul>
-            </div>
-            <%}
-            if(!hayError){
+            </div><%
+			}if(!hayError){
                 request.setAttribute("correo", "");
                 request.setAttribute("nombre", "");
                 request.setAttribute("apellidos", "");
@@ -54,9 +48,7 @@
                 request.setAttribute("numero", "");
                 request.setAttribute("piso", "");
                 request.setAttribute("poblacion", "");
-                request.setAttribute("provincia", "Zaragoza");
-            
-            }%>
+                request.setAttribute("provincia", "Zaragoza");}%>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
             <form class="owlbooks-account-personal-form" method="post" action=InsertarUsuario.do>
                 <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
@@ -108,17 +100,15 @@
                     <div class="owlbooks-account-personal-form-group owlbooks-account-personal-form-required">
                         <label for="province">Provincia:</label>
                         <select id="province" name="provincia"required><%
-                                                    List<String> listaProvincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
+							List<String> listaProvincias = Arrays.asList("Álava,Albacete,Alicante,Almería,Asturias,Ávila,Badajoz,Barcelona,Burgos,Cantabria,Castellón,Ceuta,Ciudad Real,Cuenca,Cáceres,Cádiz,Córdoba,Gerona,Granada,Guadalajara,Guipúzcoa,Huelva,Huesca,Islas Baleares,Jaén,La Coruña,La Rioja,Las Palmas,León,Lugo,Lérida,Madrid,Melilla,Murcia,Málaga,Navarra,Orense,Palencia,Pontevedra,Salamanca,Santa Cruz de Tenerife,Segovia,Soria,Tarragona,Teruel,Toledo,Valencia,Valladolid,Vizcaya,Zamora,Zaragoza".split(","));
                             String provinciaPredefinida = (String) request.getAttribute("provincia");
                             for (String provincia : listaProvincias) {
-                            if (provinciaPredefinida.equals(provincia)) { %>
-                            <option value="<%=provincia%>" selected=""><%=provincia%></option><% 
-                            }
-                            else { %>
-                            <option value="<%=provincia%>"><%=provincia%></option><% 
-                            }
-                            } %>
-                        </select>
+								if (provinciaPredefinida.equals(provincia)) { %>
+									<option value="<%=provincia%>" selected=""><%=provincia%></option><%
+								}else { %><option value="<%=provincia%>"><%=provincia%></option><%
+								}
+                            }%>
+						</select>
                     </div>
                     <div class="owlbooks-account-personal-form-group">
                         <label>País:</label>

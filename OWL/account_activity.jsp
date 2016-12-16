@@ -14,7 +14,6 @@
         <jsp:include page="includes/header.jsp" >
             <jsp:param name="owlbooksLocation" value='Cuenta > Movimientos'/>
         </jsp:include>
-        
         <%--
             String modo = (String) session.getAttribute("modo");
             String accion;
@@ -26,7 +25,6 @@
         --%>
         <div class="owlbooks-account">
             <h1>Movimientos de la cuenta</h1>
-            
             <h2>Puestas en Venta</h2>
             <table class="owlbooks-account-activity" id="owlbooks-account-activity">
                 <tr class="owlbooks-account-activity-header" id="owlbooks-account-activity-header">
@@ -34,8 +32,8 @@
                     <th>Concepto</th>
                     <th>Producto</th>
                     <th>Importe</th>
-                </tr>
-                 <%List<String> ActivityVList = (List<String>) request.getAttribute("ventas"); 
+                </tr><%
+					List<String> ActivityVList = (List<String>) request.getAttribute("ventas"); 
                     if (ActivityVList != null) {
                         for(String cat:ActivityVList){
                             String[] at = cat.split(",");%>
@@ -44,11 +42,10 @@
                     <td><%=at[3]%><br></td>
                     <td><%=at[1]%></td>
                     <td><%=at[2]%></td>
-                </tr>
-                <%}
+                </tr><%
+					}
                 }%>
-            </table>
-            
+				</table>
             <h2>Compras</h2>
             <table class="owlbooks-account-activity" id="owlbooks-account-activity">
                 <tr class="owlbooks-account-activity-header" id="owlbooks-account-activity-header">
@@ -56,8 +53,8 @@
                     <th>Concepto</th>
                     <th>Producto</th>
                     <th>Importe</th>
-                </tr>
-                 <%List<String> ActivityCList = (List<String>) request.getAttribute("compras"); 
+                </tr><%
+					List<String> ActivityCList = (List<String>) request.getAttribute("compras"); 
                     if (ActivityCList != null) {
                         for(String cat:ActivityCList){
                             String[] at = cat.split(",");%>
@@ -66,9 +63,9 @@
                     <td><%=at[3]%><br></td>
                     <td><%=at[1]%></td>
                     <td><%=at[2]%></td>
-                </tr>
-                <%}
-                }%>
+                </tr><%
+						}
+					}%>
             </table>
         </div>
         <%@include file="includes/footer.jsp" %>

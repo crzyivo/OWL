@@ -16,23 +16,18 @@
             <jsp:param name="owlbooksLocation" value='Libros > ${titulo} > Poner a la venta'/>
         </jsp:include>
         <div class="owlbooks-account">
-            <h1>Poner a la venta un ejemplar de <em><%=request.getAttribute("titulo")%></em></h1>
-            <% 
+            <h1>Poner a la venta un ejemplar de <em><%=request.getAttribute("titulo")%></em></h1><% 
                 List<String> error_list=(List<String>) request.getAttribute("errors"); 
-                if(!(error_list==null)){
-                    
-            %>
-            <div class="owlbooks-band-errors">
-                <p>Por favor, subsana los siguientes problemas:</p>
-                <ul class="owlbooks-band-errors-list">
-                    <%
-                        for (String error : error_list) {   
-                    %>
-                        <li><%=error%></li>
-                    <%}%>
-                </ul>
-            </div>
-            <%}%>
+                if(error_list!=null){%>
+					<div class="owlbooks-band-errors">
+						<p>Por favor, subsana los siguientes problemas:</p>
+						<ul class="owlbooks-band-errors-list"><%
+								for (String error : error_list) {%>
+								<li><%=error%></li><%
+								}%>
+						</ul>
+					</div><%
+				}%>
             <p>Los campos marcados con un asterisco (<span class="owlbooks-account-personal-form-required-example">*</span>) son obligatorios.
             <form class="owlbooks-account-personal-form" method="post" action="VenderEjemplar.do?id=<%=request.getAttribute("id")%>">
                 <div class="owlbooks-account-personal-form">
