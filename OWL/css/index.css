@@ -48,49 +48,66 @@ h1 {
     box-shadow: 1px 1px 2px 1px rgba(196,196,196,0.5);
 }
 .owlbooks-searchbar { 
-  width: 450px; 
-  padding: 10px 15px; 
-  background: #e2e2e2;
+    width: 450px; 
+    padding: 10px 15px; 
+    background: #e2e2e2;
     position:relative;
-    top:-30px;
-  border: 1px solid #b5b5b5; 
-  margin:auto;
-  -moz-border-radius: 5px; 
-  -webkit-border-radius: 5px; 
-  border-radius: 5px; 
+    top:-70px;
+    border: 1px solid #b5b5b5; 
+    margin:auto;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border-radius: 5px; 
+    margin-bottom:-3.5em;
 } 
   
 input[type="text"] { 
-  width: 250px; 
-  padding: 10px; 
-  margin-left: 3px; 
-  border: 1px solid #999999; 
-  -moz-border-radius: 5px; 
-  -webkit-border-radius: 5px; 
-  border-radius: 5px; 
+    width: 250px; 
+    padding: 10px; 
+    margin-left: 3px; 
+    border: 1px solid #999999; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border-radius: 5px; 
 } 
   
 input[type="submit"].owlbooks-searchbar-button { 
-  cursor: pointer; 
-  width: 130px; 
-  padding: 8px 6px; 
-  margin-left: 20px; 
-  background-color: #D6451B; 
-  color: rgba(255, 255, 255, 0.8); 
-  font-weight: bold; 
-  border: 1px solid #c6350B; 
-  -moz-border-radius: 5px; 
-  -webkit-border-radius: 5px; 
-  border-radius: 5px; 
-  -webkit-transition: background 0.2s ease-out; 
+    font-family: "Liberation Serif", "Times";
+    color: #fff;
+    cursor: pointer; 
+    width: 130px; 
+    padding: 8px 6px; 
+    margin-left: 20px; 
+    background-color: #D6451B;
+    font-weight: bold; 
+    border: 1px solid #c6350B; 
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border-radius: 5px; 
+    -webkit-transition: background 0.2s ease-out; 
 } 
     
 input[type="submit"].owlbooks-searchbar-button:hover, input[type="submit"].owlbooks-searchbar-button:focus { 
-  background: #f6653B; 
+    background: #f6653B; 
 } 
     
 input[type="submit"].owlbooks-searchbar-button:active { 
-  background: #f6653B; 
-  position: relative;
-  border: 1px solid #b62500; 
+    background: #f6653B; 
+    position: relative;
+    border: 1px solid #b62500; 
+}
+
+@media (max-width: 860px) {
+    .owlbooks-searchbar {
+    position:relative;
+    top:24px;
+    margin-bottom:3.5em;
+    width: 350px; 
+    }
+    input[type="text"] { 
+        width: 180px;
+    } 
+    input[type="submit"].owlbooks-searchbar-button { 
+        width: 100px;
+    } 
 }
