@@ -15,10 +15,10 @@
             <jsp:param name="owlbooksLocation" value="Resultado de ${termino}"/>
         </jsp:include>
 
-        <h1 class="owlbooks-h-categories">Resultado de la busqueda «<%=request.getAttribute("termino")%>»</h1>
+        <h1 class="owlbooks-h-categories">Resultado de la búsqueda «<%=request.getAttribute("termino")%>»</h1>
         <div class="owlbooks-section owlbooks-categories"><% 
-        List<String> librosList = (List<String>) request.getAttribute("libros"); 
-        if (librosList != null) {
+            List<String> librosList = (List<String>) request.getAttribute("libros"); 
+            if (librosList != null) {
             for (String libro : librosList) {
             String[] at = libro.split(","); %>
             <a href="LibroEjemplar.do?id=<%=at[3]%>"><div class="owlbooks-book">
@@ -28,9 +28,10 @@
                 <p><%=at[2]%> ejemplares en venta.</p>
             </div></a><% 
             }
-        }else{%>
+            }
+            else { %>
             <div class="owlbooks-band-none">
-                Su busqueda no ha producido ningun resultado.
+                La búsqueda no ha generado ningún resultado.
             </div><%
         }%>
         </div>
